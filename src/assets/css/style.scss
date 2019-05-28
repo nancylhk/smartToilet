@@ -1,0 +1,120 @@
+.head-container{
+    height: 60px;
+    width: 100%;
+    // background: #ccc;
+    .head-title{
+        color: rgb(245, 93, 84);
+        font-weight: 400;
+        font-size: 32px;
+    }
+}
+.left-container{
+    position: fixed;
+    left: 0;
+    top: 60px;
+    width: 200px;
+    background: #f0f0f0;
+    height: calc(100% - 60px);
+    .el-menu{
+        width: 200px;
+    }
+    .el-submenu__title{
+        width: 200px;
+    }
+    .el-menu-item.is-active{
+        background: rgba(245, 93, 84,0.9);
+        color: #fff;
+    }
+    .el-menu-item:hover{
+        background: rgba(245, 93, 84,0.7)
+    }
+}
+.title-container{
+    padding: 5px 10px;  
+    background: #fff;
+    h1{
+        padding: 15px 10px;  
+        border-bottom: 1px solid #eee;
+    }
+}
+
+.main-container{
+    margin-left: 200px;
+    padding: 20px;
+    background: #fffdfd;
+    min-height: 800px;
+    .render-container{
+        background: #fff;
+        min-height: 700px;
+        padding: 20px;
+    }
+}
+.login-container{
+    width: 380px;
+    margin: 200px auto;
+    padding: 20px 40px;
+    border: 1px solid #ccc;
+    .MainTitle{
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .loginBtn .el-button{
+        width: 100%;
+        background-color: rgb(245, 93, 84);
+        border-color: rgb(245, 93, 84);     
+        span{
+            color: #fff;
+        }
+    }
+}
+.disInline{
+    display: flex;
+    .box{
+        flex: 1;
+        text-align: center;
+    }
+    .boxData{
+        margin-top: 20px;
+        padding: 50px 0;
+        font-size: 30px;
+        border-right: 1px solid #eee;
+    }
+    .borderNo{
+        border-right: none;
+    }
+}
+.chart-container{
+    width: 100%;
+    height: 300px;
+}
+.platform-container{
+    width: 430px;
+    .readOnly{
+        .el-input__inner{
+            border: none;
+        }
+    }
+    .el-form-item__label{
+        font-weight: bold;
+    }
+}
+.addForm{
+    width: 430px;
+    .el-select{
+        width: 100%
+    }
+}
+.tableBox{
+    width: 100%;
+    th{
+        border-bottom: 1px solid #ccc;
+        padding: 16px 5px;  
+        font-weight: bold;
+    }
+    td{
+        border-bottom: 1px solid #ccc;
+        padding: 12px 5px;
+        text-align: center;
+    }
+}
