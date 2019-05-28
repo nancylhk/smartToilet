@@ -84,24 +84,24 @@
 				var chart = echarts.init(document.getElementById(id))
 				var option = {
 				    backgroundColor: '#fff',
-				    title: {
-						text: titleText,
-						textStyle: {
-							color: '#333',
-							fontFamily: 'Microsoft YaHei',
-							fontWeight: 'normal',
-							　　　　fontSize: 13
-						},
-						top: 6,
-						left: 6
-					},
+				    // title: {
+					// 	text: titleText,
+					// 	textStyle: {
+					// 		color: '#000',
+					// 		fontFamily: 'Microsoft YaHei',
+					// 		fontWeight: 'bold',
+					// 		　　　　fontSize: 13
+					// 	},
+					// 	top: 6,
+					// 	left: 6
+					// },
 				    tooltip: {
 				        trigger: 'axis',
 				    },
 				    grid: {
 					    left: '2%',
 						right: '3%',
-						bottom: '6%',
+						bottom: '4%',
 						containLabel: true
 				  	},
 				    legend: {

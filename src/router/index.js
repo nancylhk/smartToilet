@@ -16,7 +16,9 @@ const toiletSet = r => require.ensure([], () => r(require('@/pages/toiletMgt/toi
 const deviceSet = r => require.ensure([], () => r(require('@/pages/deviceMgt/deviceSet')), 'deviceMgt')
 const deviceAdd = r => require.ensure([], () => r(require('@/pages/deviceMgt/add')), 'deviceMgt')
 // 设置
-const platformInfo = r => require.ensure([], () => r(require('@/pages/set/platform')), 'set')
+const platformInfo = r => require.ensure([], () => r(require('@/pages/set/platform')), 'set')//平台信息
+// 角色管理
+const roleMgt = r => require.ensure([], () => r(require('@/pages/roleMgt/index')), 'roleMgt')
 Vue.use(Router)
 
 export const constantRouterMap  =[

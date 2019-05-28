@@ -1,9 +1,7 @@
 <template>
     <div>
-        <el-card class="box-card">
-            <div slot="header" class="clearfix">
-                <span>今日数据</span>
-            </div>
+        <div>
+            <p class="dataTitle">今日数据</p>
             <div class="disInline">
                 <div class="box">
                     <p>男厕</p>
@@ -18,26 +16,17 @@
                     <div class="boxData borderNo">300</div>
                 </div>
             </div>
-        </el-card>
-        <el-card class="box-card mt25">
-            <div slot="header" class="clearfix">
-                <span>今日数据</span>
-            </div>
-            <div class="disInline">
-                <div style="height:200px;"></div>
-            </div>
-        </el-card>
-        <el-card class="box-card mt25">
-            <div class="disInline">
-                <lineComp 
-                class="chart-container" 
-                ref="incomeTrendChart" 
-                :_id="'incomeTrend'" 
-                :_titleText="'近期数据'" 
-                :_chartData="incomeTrendData">
-                </lineComp>
-            </div>
-        </el-card>
+        </div>
+       <div class="mt25">
+           <p class="dataTitle">近期数据</p>
+            <lineComp 
+            class="chart-container" 
+            ref="incomeTrendChart" 
+            :_id="'incomeTrend'" 
+            :_titleText="'近期数据'" 
+            :_chartData="incomeTrendData">
+            </lineComp>
+        </div>
     </div>
 </template>
 <script>

@@ -1,8 +1,8 @@
 <template>
     <div class="main-container">
-        <div class="title-container">
+        <!-- <div class="title-container">
             <h1>{{title}}</h1>
-        </div>
+        </div> -->
         <div class="render-container">
             <router-view></router-view>
         </div>

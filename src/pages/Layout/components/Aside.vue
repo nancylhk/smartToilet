@@ -1,5 +1,9 @@
 <template>
     <div class="left-container">
+        <div class="headBox">
+            <img src="../../../assets/img/headIcon.jpg" class="headIcon"/>
+            <p>戚薇</p>
+        </div>
         <el-menu
         router
         class="el-menu-vertical-demo">
