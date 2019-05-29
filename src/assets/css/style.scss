@@ -20,6 +20,13 @@
             font-size: 16px;
         }
     }
+    .gslogo{
+        width: 45px;
+        height: 45px;
+        position: relative;
+        top: -3px;
+        margin-left: 10px;
+    }
 }
 .dataTitle{
     font-size: 16px;
@@ -29,7 +36,11 @@
     background: #fbfbfb;
     padding: 16px 20px;
     span{
-        font-size: 16px;
+        font-size: 15px;
+    }
+    .fa{
+        font-size: 18px;
+        margin-left: 3px;
     }
 }
 .left-container{
@@ -39,6 +50,14 @@
     width: 200px;
     background: #fff;
     height: calc(100% - 60px);
+    .fa{
+        color: #0090e1;
+        margin-right: 10px;
+        font-size: 16px;
+    }
+    .el-submenu .el-menu-item{
+        padding-left: 50px!important;
+    }
     .headBox{
         text-align: center;
         border-bottom: 1px solid #f3f3f3;
@@ -101,22 +120,53 @@
     }
 }
 .login-container{
-    width: 380px;
-    margin: 200px auto;
-    padding: 20px 40px;
-    border: 1px solid #ccc;
-    .MainTitle{
-        font-size: 24px;
+    width: 480px;
+    margin: 177px auto;
+    padding: 30px 0px 0;
+    border: 1px solid #fff;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    .MainTitle,h6{
+        font-size: 38px;
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
+        color: #fff
+    }
+    h6{
+        font-size: 14px;
     }
     .loginBtn .el-button{
-        width: 100%;
-        background-color: rgb(245, 93, 84);
-        border-color: rgb(245, 93, 84);     
+        background: #36a7fe;
+        width: 100%;   
         span{
             color: #fff;
         }
+    }
+    .input-container{
+       
+        background: #fff;
+        padding: 35px 83px 20px;
+    }
+    .el-button:focus, .el-button:hover {
+        color: #409EFF;
+        border-color: #5aa0ef;
+        background-color: #5aa0ef;
+    }
+}
+.bgBox{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: #fcfcfc;
+    img{
+        position: absolute;
+        left: 0;
+        top:0;
+        z-index: -1;
+        width: 100%;
+        height: 320px;
     }
 }
 .disInline{
@@ -152,11 +202,25 @@
             border: none;
         }
     }
+    .el-input__inner{
+        // height: 32px;
+        // line-height: 32px;
+    }
     .el-form-item__label{
         font-weight: bold;
+        // line-height: 32px;
+    }
+    .el-input__suffix{
+        // top: 5px;
+    }
+    .el-form-item__content{
+        // line-height: 32px;
     }
     .el-select{
         width: 100%
+    }
+    .el-button{
+        padding: 8px 20px;
     }
 }
 .addForm{
@@ -164,8 +228,12 @@
         font-weight: normal;
     }
 }
+
 .commonColor{
     color: #0090e1;
+}
+.commonBg{
+    background: #0090e1
 }
 .tableBox{
     width: 100%;
@@ -182,6 +250,11 @@
         text-align: center;
         color: #999;
         font-size: 14px;
+    }
+    .headIcon{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%
     }
     .tedit{
         color: #0090e1;

@@ -2,9 +2,9 @@
     <div>
         <div class="dataTitle">
             <span>搜索条件</span>
-            <div @click="add" class="right cp">
-                <span class="commonColor">新增</span>
-                <i class="fa fa-plus commonColor" aria-hidden="true"></i>
+             <div @click="add" class="right cp">
+                <span>新增</span>
+                <i class="fa fa-plus-circle commonColor" aria-hidden="true"></i>
             </div>
         </div>
         <div class="plr20">
@@ -68,7 +68,7 @@ export default {
         },
         add() {
             this.$router.push({
-                path:'/set/deviceAdd'
+                path:'/device/add'
             })
         }
     }

@@ -9,7 +9,7 @@ import 'font-awesome/css/font-awesome.min.css'
 import http from './utils/http.js'
 import api from './api/api.js'
 import store from './store/'
-// import './permission'
+import './permission'
 
 Vue.prototype.$http = http;
 Vue.prototype.api = api;
