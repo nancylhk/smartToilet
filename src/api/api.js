@@ -9,9 +9,14 @@ export default {
     "userDelete": BASE_URL + '/user/delete',//
     "userUpdate": BASE_URL + '/user/userUpdate',//
     "userGroupList": BASE_URL + '/user/userGroupList',//
+    "getCityList": BASE_URL + '/main/getCityList',//
+    // 设备管理
+    "getDevice": BASE_URL + '/deviceController/getDevice',//
+    "addDevice": BASE_URL + '/deviceController/addDevice',//
+    "deleteDevice": BASE_URL + '/deviceController/deleteDevice',//
+    "editDevice": BASE_URL + '/deviceController/editDevice',//
     "": BASE_URL + '',//
-    "": BASE_URL + '',//
-    "": BASE_URL + '',//
+    "": BASE_URL + '',// 
     "": BASE_URL + '',//
     "": BASE_URL + '',//
 }

@@ -11,7 +11,7 @@
                         <el-input v-model="form.name"  placeholder="用户名"></el-input>
                     </el-form-item>
                     <el-form-item label="" prop="password">
-                        <el-input v-model="form.password" type='password'  placeholder="密码"></el-input>
+                        <el-input v-model="form.password" type='password'  placeholder="密码" @keyup.enter.native="onSubmit"></el-input>
                     </el-form-item>
                     <el-form-item class="loginBtn">
                         <el-button class="commonBg" @click="onSubmit">登&nbsp;&nbsp;&nbsp;&nbsp;录</el-button>

@@ -28,6 +28,47 @@
         margin-left: 10px;
     }
 }
+.toiletInfo-container{
+    .el-col{
+        // border: 1px solid red;
+    }
+    .cinfo-content{
+        border-bottom: 1px solid #ccc;
+    }
+    .content{
+        padding:30px 0  ;
+        text-align: center;
+    }
+    .borderR{
+        border-right: 1px solid #ccc
+    }
+    .left-title{
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .contentHeight{
+        height: 350px;
+    }
+    .listContent{
+        line-height: 50px;
+        font-size: 16px;
+        color: #666
+    }
+    .info-title{
+        text-align: center;
+        padding: 30px 0;
+        font-size: 24px;
+        color: #333;
+        font-weight: bold
+    }
+    .nanicon{
+        margin-left: 16px;
+        width: 30px;
+        height: 30px;
+        margin-top: -4px;
+    }
+}
 .dataTitle{
     font-size: 16px;
     margin-bottom: 20px;

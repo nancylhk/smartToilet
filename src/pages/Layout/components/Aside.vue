@@ -1,9 +1,16 @@
 <template>
     <div class="left-container">
-        <div class="headBox">
+      <el-popover
+      placement="right"
+      width="100"
+      trigger="hover">
+      <p>修改密码</p>
+      <div class="headBox" slot="reference">
             <img src="../../../assets/img/headIcon.jpg" class="headIcon"/>
             <p>戚薇</p>
         </div>
+      </el-popover>
+        
         <el-menu
         router
         class="el-menu-vertical-demo">

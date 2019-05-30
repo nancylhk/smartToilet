@@ -10,7 +10,7 @@
         <div class="plr20">
             <el-form :inline="true" :model="form" class="demo-form-inline search-container">
                 <el-form-item label="用户名：">
-                    <el-input v-model="form.userName" placeholder="请输入"></el-input>
+                    <el-input v-model="form.userName" placeholder="请输入" clearable></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="search">查询</el-button>
@@ -53,7 +53,7 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="textRight mt30">
+            <div class="textRight pad20">
                 <el-pagination
                 @current-change="handleCurrentChange"
                 :current-page="currentPage"
@@ -83,10 +83,12 @@ export default {
     created() {
         this.getRoleList()
         this.getList()
+        this.getLength()
     },
     methods:{
         search() {
             this.getList();
+            this.getLength();
         },
         getRoleList() {
             let self = this;
@@ -105,6 +107,25 @@ export default {
             this.currentPage = val
             this.getList()
         },
+        getLength() {
+            let self = this;
+            self.$http.get(self.api.getUserList, {
+                params:{
+                    beginRow:'',
+                    endRow:'',
+                    userName:self.form.userName
+                }
+            }, function(response) {
+                if(response){
+                    self.total = response.length;
+                }else{
+
+                }
+            
+            }, function(response) {
+                //失败回调
+            })
+        },
         getList() {
             let self = this;
             let start = self.pageSize * (self.currentPage - 1) + 1;
@@ -118,7 +139,6 @@ export default {
             }, function(response) {
                 if(response){
                     self.dataList = response;
-                    self.total = response.length;
                     self.dataList.forEach(e=>{
                         self.roleList.forEach( role=>{
                             if(e.groupId == role.id ){
@@ -147,6 +167,7 @@ export default {
             })
         },
         handleDelete(id) {
+            let self = this;
             this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
@@ -159,15 +180,16 @@ export default {
                         "Content-Type": "multipart/form-data"
                     },
                 }, function (response) {
-                    if(response.status == 1) {
-                        this.$message({
+                    if(response) {
+                        self.$message({
                             type: 'success',
                             message: '删除成功!'
                         });
+                        self.getList()
                     }else{
                         self.$message({
                             type: 'error',
-                            message: response.msg
+                            message: '删除失败'
                         });
                     }
                 }, function (response) {
@@ -175,7 +197,7 @@ export default {
                 })
                 
             }).catch(() => {
-                this.$message({
+                self.$message({
                     type: 'info',
                     message: '已取消删除'
                 });          

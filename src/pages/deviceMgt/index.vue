@@ -2,7 +2,7 @@
     <div>
         <div class="dataTitle">
             <span>搜索条件</span>
-             <div @click="add" class="right cp">
+            <div @click="add" class="right cp">
                 <span>新增</span>
                 <i class="fa fa-plus-circle commonColor" aria-hidden="true"></i>
             </div>
@@ -10,7 +10,7 @@
         <div class="plr20">
             <el-form :inline="true" :model="form" class="demo-form-inline search-container">
                 <el-form-item label="设备ID：">
-                    <el-input v-model="form.user" placeholder="请输入"></el-input>
+                    <el-input v-model="form.deviceId" placeholder="请输入" clearable></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="search">查询</el-button>
@@ -31,24 +31,34 @@
                         <th>设备名称</th>
                         <th>设备使用状态</th>
                         <th>设备厂家</th>
-                        <th>使用时间</th>
+                        <th>创建时间</th>
                         <th>操作</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="item in dataList">
-                        <td>{{item.id}}</td>
-                        <td>{{item.id}}</td>
-                        <td>{{item.id}}</td>
-                        <td>{{item.id}}</td>
-                        <td>{{item.id}}</td>
+                        <td>{{item.deviceCode}}</td>
+                        <td>{{item.deviceName}}</td>
+                        <td>{{item.status==1?'使用中':'未使用'}}</td>
+                        <td>{{item.productor}}</td>
+                        <td>{{item.createTimes}}</td>
                         <td>
-                            <a class="tedit">修改</a>
-                            <a class="tdelete">删除</a>
+                            <a class="tedit" @click="edit(item.deviceId)">修改</a>
+                            <a class="tdelete" @click="handleDelete(item.deviceId)">删除</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
+            <div class="textRight pad20">
+                <el-pagination
+                @current-change="handleCurrentChange"
+                :current-page="currentPage"
+                :page-size="pageSize"
+                layout="total, prev, pager, next, jumper"
+                :total="total"
+                v-if="total>0">
+                </el-pagination>
+            </div>
         </div>
     </div>
 </template>
@@ -57,19 +67,129 @@ export default {
     data() {
         return{
             form:{
-
+                deviceId:''
             },
-            dataList:[{id:'xxx'}]
+            dataList:[],
+            currentPage:1,
+            pageSize:10,
+            total:0,
+            roleList:[]
         }
+    },
+    created() {
+        this.getList()
+        this.getLength()
     },
     methods:{
         search() {
+            this.getList();
+            this.getLength();
+        },
+        handleCurrentChange(val) {
+            this.currentPage = val
+            this.getList()
+        },
+        getLength() {
+            let self = this;
+            self.$http.get(self.api.getDevice, {
+                params:{
+                    satrt:'',
+                    end:'',
+                    status:'',
+                    deviceId:self.form.deviceId
+                }
+            }, function(response) {
+                if(response.status == 1){
+                    self.total = response.data.length;
+                }else{
 
+                }
+            
+            }, function(response) {
+                //失败回调
+            })
+        },
+        getList() {
+            let self = this;
+            let start = self.pageSize * (self.currentPage - 1) + 1;
+            let end = self.currentPage * self.pageSize;
+            self.$http.get(self.api.getDevice, {
+                params:{
+                    start:start,
+                    end:end,
+                    status:'',
+                    deviceId:self.form.deviceId
+                }
+            }, function(response) {
+                if(response.status == 1){
+                    self.dataList = response.data;
+                    self.dataList.forEach((e) => {
+                        if(e.createTime) {                     
+                            let date = new Date(parseInt(e.createTime));
+                            let Y = date.getFullYear() + '-'
+                            let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-'
+                            let D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ' '
+                            let h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':'
+                            let m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':'
+                            let s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds())
+                            e.createTimes = Y + M + D + h + m + s
+                        }
+                    })
+                }else{
+
+                }
+            
+            }, function(response) {
+                //失败回调
+            })
         },
         add() {
             this.$router.push({
                 path:'/device/add'
             })
+        },
+        edit(id) {
+            this.$router.push({
+                path:"/device/edit",
+                query:{ id:id }
+            })
+        },
+        handleDelete(id) {
+            let self = this;
+            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                let params = new FormData();
+                params.append('deviceId', id);
+                self.$http.post(self.api.deleteDevice, params, {
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                    },
+                }, function (response) {
+                    if(response) {
+                        self.$message({
+                            type: 'success',
+                            message: '删除成功!'
+                        });
+                        self.getList()
+                    }else{
+                        self.$message({
+                            type: 'error',
+                            message: '删除失败'
+                        });
+                    }
+                }, function (response) {
+                //失败回调
+                })
+                
+            }).catch(() => {
+                self.$message({
+                    type: 'info',
+                    message: '已取消删除'
+                });          
+            });
         }
     }
 }
