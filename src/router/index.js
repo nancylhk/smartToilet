@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Layout from '@/pages/Layout/Layout'
 
 const Login = r => require.ensure([], () => r(require('@/pages/login/login')), 'login')
+const changePass = r => require.ensure([], () => r(require('@/pages/login/changePass')), 'login')
 // 总览
 const dataOverView = r => require.ensure([], () => r(require('@/pages/overview/data')), 'overview')
 const toiletOverView = r => require.ensure([], () => r(require('@/pages/overview/toiletInfo')), 'overview')
@@ -11,7 +12,10 @@ const userMgt = r => require.ensure([], () => r(require('@/pages/userMgt/index')
 const userAdd = r => require.ensure([], () => r(require('@/pages/userMgt/add')), 'userMgt')
 const userEdit = r => require.ensure([], () => r(require('@/pages/userMgt/edit')), 'userMgt')
 // 厕位管理
-const toiletSet = r => require.ensure([], () => r(require('@/pages/toiletMgt/index')), 'toiletMgt')
+const toiletSet1 = r => require.ensure([], () => r(require('@/pages/toiletMgt/page1')), 'toiletMgt')
+const toiletSet2 = r => require.ensure([], () => r(require('@/pages/toiletMgt/page2')), 'toiletMgt')
+const toiletSet3 = r => require.ensure([], () => r(require('@/pages/toiletMgt/page3')), 'toiletMgt')
+const toiletSet4 = r => require.ensure([], () => r(require('@/pages/toiletMgt/page4')), 'toiletMgt')
 // 设备配置
 const deviceSet = r => require.ensure([], () => r(require('@/pages/deviceMgt/index')), 'deviceMgt')
 const deviceAdd = r => require.ensure([], () => r(require('@/pages/deviceMgt/add')), 'deviceMgt')
@@ -30,7 +34,46 @@ export const constantRouterMap  =[
     name: 'Login',
     component: Login,
     hidden:true
-  }
+  },
+  {
+    path: '/changePass',
+    component: Layout,
+    hidden:true,
+    redirect:'/changePass/page',
+    children:[
+      {
+        path:'page',
+        component:changePass,
+        hidden:true
+      }
+    ]
+  },
+  {
+    path: '/toilet',
+    component: Layout,
+    hidden:true,
+    redirect:'/toilet/configures',
+    children:[
+      {
+        path:'configure2',   
+        name:'厕位配置2', 
+        component:toiletSet2,
+        meta:{ title:'厕位配置2'}
+      },
+      {
+        path:'configure3',   
+        name:'厕位配置3', 
+        component:toiletSet3,
+        meta:{ title:'厕位配置3'}
+      },
+      {
+        path:'configure4',   
+        name:'厕位配置4', 
+        component:toiletSet4,
+        meta:{ title:'厕位配置4'}
+      }
+    ]
+  },
 ]
 
 export const routerMap = {
@@ -55,7 +98,7 @@ export const routerMap = {
   '12':{
     path:'toilet/configure',   
     name:'厕位配置', 
-    component:toiletSet,
+    component:toiletSet1,
     meta:{ title:'厕位配置'}
   },
   '13':{
@@ -97,7 +140,7 @@ export const routerMap = {
   '2':{
     path:'toilet/configure',   
     name:'厕位管理', 
-    component:toiletSet,
+    component:toiletSet1,
     meta:{ title:'厕位管理'}
   },
   '3':{
