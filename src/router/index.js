@@ -50,51 +50,120 @@ export const constantRouterMap  =[
     ]
   },
   {
-    path: '/toilet',
-    component: Layout,
-    hidden:true,
-    redirect:'/toilet/configures',
-    children:[
-      {
-        path:'configure2',   
-        name:'厕位配置2', 
-        component:toiletSet2,
-        meta:{ title:'厕位配置2'}
-      },
-      {
-        path:'configure3',   
-        name:'厕位配置3', 
-        component:toiletSet3,
-        meta:{ title:'厕位配置3'}
-      },
-      {
-        path:'configure4',   
-        name:'厕位配置4', 
-        component:toiletSet4,
-        meta:{ title:'厕位配置4'}
-      }
-    ]
+    path: '/login',
+    name: 'Login',
+    component: Login,
+    hidden:true
   },
 ]
 
-export const routerMap = {
-  '6':{
-    path:'overview/data',   
-    name:'总览', 
-    component:dataOverView,
-    meta:{ title:'总览'},
-  },
+export const routerMap = {  
   '1':{
     path:'user/userMgt',   
     name:'用户管理', 
     component:userMgt,
     meta:{ title:'用户管理'},
   },
+  '2':{
+    path:'toilet/configure',   
+    name:'厕位管理', 
+    component:toiletSet1,
+    meta:{ title:'厕位管理'}
+  },
+  '3':{
+    path:'device/configure',   
+    name:'设备管理', 
+    component:deviceSet,
+    meta:{ title:'设备管理'}
+  },
+  '4':{
+    path:'platform/info',   
+    name:'设置', 
+    component:platformInfo,
+    meta:{ title:'设置'}
+  },
+  '5':{
+    path:'display/index',   
+    name:'展示', 
+    component:display,
+    meta:{ title:'展示'}
+  },
+  '6':{
+    path:'overview/data',   
+    name:'总览', 
+    component:dataOverView,
+    meta:{ title:'总览'},
+  },
   '11':{
     path:'user/userMgt',   
     name:'用户维护', 
     component:userMgt,
     meta:{ title:'用户维护'},
+  },
+  '13':{
+    path:'device/configure',   
+    name:'设备配置', 
+    component:deviceSet,
+    meta:{ title:'设备配置'}
+  },
+  '14':{
+    path:'platform/info',   
+    name:'平台信息', 
+    component:platformInfo,
+    meta:{ title:'平台信息'}
+  },
+  '15':{
+    path:'display/index',   
+    name:'展示效果', 
+    component:display,
+    meta:{ title:'展示效果'}
+  },
+  '16':{
+    path:'user/add',   
+    name:'用户新增', 
+    component:userAdd,
+    meta:{ title:'用户新增'},
+    hidden:true
+  },
+  '17':{
+    path:'user/edit',   
+    name:'用户修改', 
+    component:userEdit,
+    meta:{ title:'用户修改'},
+    hidden:true
+  },
+  '18':{
+    path:'device/add',   
+    name:'设备新增', 
+    component:deviceAdd,
+    meta:{ title:'设备新增'},
+    hidden:true
+  },
+  '19':{
+    path:'device/edit',   
+    name:'设备修改', 
+    component:deviceEdit,
+    meta:{ title:'设备修改'},
+    hidden:true
+  },
+  '20':{
+    path:'platform/update',   
+    name:'平台信息修改', 
+    component:platformInfoUpdate,
+    meta:{ title:'平台信息修改'},
+    hidden:true
+  },
+  '21':{
+    path:'overview/data',   
+    name:'数据汇总', 
+    component:dataOverView,
+    meta:{ title:'数据汇总'},
+  },
+  '22':{
+    path:'overview/toiletInfo',   
+    name:'厕位信息', 
+    component:toiletOverView,
+    meta:{ title:'厕位信息'},
   },
   '23':{
     path:'toilet/configure1',   
@@ -120,98 +189,7 @@ export const routerMap = {
     component:toiletSet4,
     meta:{ title:'西侧女卫生间'}
   },
-  '13':{
-    path:'device/configure',   
-    name:'设备配置', 
-    component:deviceSet,
-    meta:{ title:'设备配置'}
-  },
-  '14':{
-    path:'platform/info',   
-    name:'平台信息', 
-    component:platformInfo,
-    meta:{ title:'平台信息'}
-  },
-  '20':{
-    path:'platform/update',   
-    name:'平台信息修改', 
-    component:platformInfoUpdate,
-    meta:{ title:'平台信息修改'},
-    hidden:true
-  },
-  '15':{
-    path:'display/index',   
-    name:'展示效果', 
-    component:display,
-    meta:{ title:'展示效果'}
-  },
-  '5':{
-    path:'display/index',   
-    name:'展示', 
-    component:display,
-    meta:{ title:'展示'}
-  },
-  '4':{
-    path:'platform/info',   
-    name:'设置', 
-    component:platformInfo,
-    meta:{ title:'设置'}
-  },
-  '21':{
-    path:'overview/data',   
-    name:'数据汇总', 
-    component:dataOverView,
-    meta:{ title:'数据汇总'},
-  },
-  '2':{
-    path:'toilet/configure',   
-    name:'厕位管理', 
-    component:toiletSet1,
-    meta:{ title:'厕位管理'}
-  },
-  '3':{
-    path:'device/configure',   
-    name:'设备管理', 
-    component:deviceSet,
-    meta:{ title:'设备管理'}
-  },
   
-  '22':{
-    path:'overview/toiletInfo',   
-    name:'厕位信息', 
-    component:toiletOverView,
-    meta:{ title:'厕位信息'},
-  },
-  '16':{
-    path:'user/add',   
-    name:'用户新增', 
-    component:userAdd,
-    meta:{ title:'用户新增'},
-    hidden:true
-  },
-  '17':{
-    path:'user/edit',   
-    name:'用户修改', 
-    component:userEdit,
-    meta:{ title:'用户修改'},
-    hidden:true
-  },
-  
-  
-  '18':{
-    path:'device/add',   
-    name:'设备新增', 
-    component:deviceAdd,
-    meta:{ title:'设备新增'},
-    hidden:true
-  },
-  '19':{
-    path:'device/edit',   
-    name:'设备修改', 
-    component:deviceEdit,
-    meta:{ title:'设备修改'},
-    hidden:true
-  },
   
 }
 export default new Router({
