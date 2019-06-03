@@ -148,13 +148,14 @@
 }
 
 .toliet-set-container{
-    border: 5px solid #0090e1;
+    border: 6px solid #0090e1;
     border-bottom: none;
     .toilet3,.toilet4{
         li {
             padding: 30px;
             padding-left: 0;
-            border-bottom: 2px solid #999
+            border-bottom: 2px solid #999;
+            // box-sizing: content-box;
         }
         li:last-of-type{
             border-bottom: none;
@@ -163,7 +164,7 @@
     .toilet4{
         text-align: right;
         li{
-            padding-right: 10px;
+            padding-right: 0px;
             // border-style:solid none solid solid;
         }
         
@@ -177,6 +178,7 @@
             border-width: 1px ;
             border-color: #999;
             margin-bottom: 20px;
+            // box-sizing: content-box;
             img{
                 width: 60px;
                 height: auto;
@@ -194,14 +196,64 @@
         }
     }
     .borderR{
-        border-right: 5px solid #0090e1
+        border-right: 3px solid #0090e1
+    }
+    .borderL{
+        border-left: 3px solid #0090e1;
+        margin-left: -1px;
+    }
+    .borderL2{
+        border-left: 3px solid #0090e1;
+    }
+    .borderL3{
+        border-left: 3px solid #0090e1;
+        //  margin-left: -1px;
+    }
+}
+.toilet-set-box2{
+    .toilet1,.toilet2{
+        li{
+            padding: 10px;
+            padding-right: 10px;
+            border-style:solid none solid solid;
+            border-width: 1px ;
+            border-color: #999;
+            margin-bottom: 10px;
+            img{
+                width: 50px;
+                height: auto;
+            }
+        }
+        li:last-of-type{
+            margin-bottom: 0;
+        }
+    }
+    .toilet2{
+        text-align: left;
+        li{
+            padding-left: 10px;
+            border-style:solid solid solid none ;
+        }
+    }
+    .sLbox5,.sRbox5{
+        li{
+            padding: 10px;
+            margin-bottom: 63px;
+        }
+        
+    }
+    .sLbox5 li{
+        padding-left: 10px;
+    }
+    .sRbox5 li{
+        padding-right: 10px;
     }
 }
 @media  screen  and (max-width:1600px){
     .toliet-set-container{
         border: 5px solid #0090e1;
         border-bottom: none;
-        .toilet3{
+        .toilet3,.toilet4{
             li{            
                 img{
                     width: 47px;
@@ -216,6 +268,45 @@
                     height: auto;
                 }
             }
+        }
+    }
+    .toilet-set-box2{
+        .toilet1,.toilet2{
+            li{
+                padding: 10px;
+                padding-right: 10px;
+                border-style:solid none solid solid;
+                border-width: 1px ;
+                border-color: #999;
+                margin-bottom: 10px;
+                img{
+                    width: 50px;
+                    height: auto;
+                }
+            }
+            li:last-of-type{
+                margin-bottom: 0;
+            }
+        }
+        .toilet2{
+            text-align: left;
+            li{
+                padding-left: 10px;
+                border-style:solid solid solid none ;
+            }
+        }
+        .sLbox5,.sRbox5{
+            li{
+                padding: 10px;
+                margin-bottom: 63px;
+            }
+            
+        }
+        .sLbox5 li{
+            padding-left: 10px;
+        }
+        .sRbox5 li{
+            padding-right: 10px;
         }
     }
     .toiletSet-right-container{   
@@ -338,6 +429,15 @@
         border-bottom: 1px solid #eee;
     }
 }
+.toiletCode{
+    color: #f00;
+    font-size: 18px;
+    position: relative;
+    top: 5px;
+    margin:0 5px;
+    display: inline-block;
+    min-width: 22px;
+}
 
 .main-container{
     margin-left: 200px;
@@ -346,9 +446,13 @@
     background: #f5f5f5;
     min-height: 800px;
     .render-container{
+        // background: #fff;
+        // min-height: 755px;
+        // padding: 20px;
+    }
+    .render-div{
         background: #fff;
         min-height: 755px;
-        // padding: 20px;
     }
 }
 .login-container{

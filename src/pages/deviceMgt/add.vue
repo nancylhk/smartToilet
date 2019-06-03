@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="render-div">
         <div class="dataTitle">
             <span>新增设备信息</span>
         </div>

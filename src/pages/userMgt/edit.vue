@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="render-div">
         <div class="dataTitle">
             <span>修改用户信息</span>
         </div>

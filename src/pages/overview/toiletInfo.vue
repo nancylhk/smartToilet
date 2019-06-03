@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="render-div">
         <p class="dataTitle">今日数据</p>
         <div class="toiletInfo-container">
             <el-row>

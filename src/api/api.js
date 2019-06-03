@@ -15,7 +15,12 @@ export default {
     "addDevice": BASE_URL + '/deviceController/addDevice',//
     "deleteDevice": BASE_URL + '/deviceController/deleteDevice',//
     "editDevice": BASE_URL + '/deviceController/editDevice',//
+    // 平台信息
+    "getConfigInfo": BASE_URL + '/config/getConfigInfo',// 
+    "updateConfig": BASE_URL + '/config/updateConfig',//
     "": BASE_URL + '',//
+    // 厕位配置
+    "toiletConfig": BASE_URL + '/deviceController/toiletConfig',//
     "": BASE_URL + '',// 
     "": BASE_URL + '',//
     "": BASE_URL + '',//

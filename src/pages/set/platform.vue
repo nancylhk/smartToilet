@@ -1,5 +1,8 @@
 <template>
-    <div>
+    <div class="render-div">
+        <div class="dataTitle">
+            <span>平台信息</span>
+        </div>
         <div class="platform-container">
             <el-form ref="form" :model="form" label-width="120px">
                 <el-form-item label="平台名称：" class="readOnly" >
@@ -14,18 +17,17 @@
                 <el-form-item label="联系电话：" class="readOnly">
                     <el-input v-model="form.mobile" readonly></el-input>
                 </el-form-item>
-                <el-form-item label="开发商：">
-                    <el-input v-model="form.developer"></el-input>
+                <el-form-item label="开发商：" class="readOnly">
+                    <el-input v-model="form.developer" readonly></el-input>
                 </el-form-item>
-                <el-form-item label="固定电话：">
-                    <el-input v-model="form.telephone"></el-input>
+                <el-form-item label="固定电话：" class="readOnly">
+                    <el-input v-model="form.telephone" readonly></el-input>
                 </el-form-item>
-                <el-form-item label="所属区域：">
-                    <el-input v-model="form.region"></el-input>
+                <el-form-item label="所属区域：" class="readOnly">
+                    <el-input v-model="form.region" readonly></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <!-- <el-button type="primary" @click="onSubmit">立即创建</el-button>
-                    <el-button>取消</el-button> -->
+                    <el-button type="primary" @click="update">修改</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -44,6 +46,35 @@ export default {
                 telephone:'400-820-0000',
                 region:'江苏省南京市建邺区康缘智汇港'
             }
+        }
+    },
+    created() {
+        this.getInfo();
+    },
+    methods:{
+        getInfo() {
+            let self = this;
+            self.$http.get(self.api.getConfigInfo, {}, function(response) {
+                if(response){
+                    let data = response[0];
+                    self.form.name = data.configName,
+                    self.form.period = data.configStartTime + ' ~ ' + data.configEndTime ,
+                    self.form.contactMan = data.contact,
+                    self.form.mobile = data.telephone,
+                    self.form.developer = data.developer,
+                    self.form.telephone = data.celphone,
+                    self.form.region = data.address
+                }else{
+
+                }     
+            }, function(response) {
+                //失败回调
+            })
+        },
+        update() {
+            this.$router.push({
+                path:'/platform/update'
+            })
         }
     }
 }

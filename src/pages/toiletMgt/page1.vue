@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="dataTitle mb0">
-            <span>大东侧（男）</span>
+            <span>东侧（男）</span>
         </div>
         <div class="toilet-set-box">
             <el-row :gutter="30">
@@ -12,15 +12,17 @@
                                 <el-row  >
                                     <el-col :span="8">
                                         <ul class="toilet3">
-                                            <li v-for="o in 4">
+                                            <li v-for="o in 4" :key="o">
                                                 <img src="../../assets/img/toiletIcon3.png" />
                                             </li>
                                         </ul>
                                     </el-col>
                                     <el-col :span="8" class="borderR" :offset="8">
                                         <ul class="toilet1">
-                                            <li v-for="o in 6">
+                                            <li v-for="o in [96,97,98,99,100,115]" :key="o" @click="set(o)" class="cp">
+                                                <span class="toiletCode">{{o}}</span>
                                                 <img src="../../assets/img/toiletIcon1.png" />
+                                                
                                             </li>
                                         </ul>
                                     </el-col>
@@ -28,16 +30,18 @@
                             </el-col>
                             <el-col :span="12">
                                 <el-row >
-                                    <el-col :span="8">
+                                    <el-col :span="8" class="borderL">
                                         <ul class="toilet2">
-                                            <li v-for="o in 6">
+                                            <li v-for="o in [116,117,118,119,120,121]" :key="o" @click="set(o)" class="cp">
                                                 <img src="../../assets/img/toiletIcon2.png" />
+                                                <span class="toiletCode">{{o}}</span>
                                             </li>
                                         </ul>
                                     </el-col>
                                     <el-col :span="8" :offset="8">
                                         <ul class="toilet1">
-                                            <li v-for="o in 6">
+                                            <li v-for="o in [122,123,124,125,126,127]" :key="o" @click="set(o)" class="cp">
+                                                 <span class="toiletCode">{{o}}</span>
                                                 <img src="../../assets/img/toiletIcon1.png" />
                                             </li>
                                         </ul>
@@ -77,7 +81,25 @@
                     </div>
                 </el-col>
             </el-row>
-            
+            <!-- 设备和厕位绑定弹框 -->
+            <el-dialog
+            title="厕位配置"
+            :visible.sync="dialogVisible"
+            width="380px"
+            :before-close="handleClose">
+            <el-form ref="form" :model="form" label-width="100px" :rules="rules">
+                <el-form-item label="此厕位号：" prop="toiletId" readonly>
+                    <el-input v-model="form.toiletId"></el-input>
+                </el-form-item>
+                <el-form-item label="此设备号：" prop="deviceId">
+                    <el-input v-model="form.deviceId"></el-input>
+                </el-form-item>
+            </el-form>
+            <span slot="footer" class="dialog-footer">
+                <el-button @click="handleClose">取 消</el-button>
+                <el-button type="primary" @click="handleBind">绑 定</el-button>
+            </span>
+            </el-dialog>
         </div>
     </div>
 </template>
@@ -87,7 +109,20 @@ export default {
         return {
             nowTime:'',
             nowDate:'',
-            nowWeek:''
+            nowWeek:'',
+            dialogVisible:false,
+            form:{
+                toiletId:'',
+                deviceId:''
+            },
+            rules:{
+                toiletId:[
+                    { required: true, message: '请输入活动名称', trigger: 'blur' },
+                ],
+                deviceId:[
+                    { required: true, message: '请输入设备编号', trigger: 'blur' },
+                ]
+            }
         }
     },
     mounted() {
@@ -108,6 +143,51 @@ export default {
                 zero += '0';
             }
             return (zero + num).slice(-digit);
+        }
+    },
+    methods:{
+        set(id) {
+            this.dialogVisible = true;
+            this.form.toiletId = id;
+            this.form.deviceId = id;
+        },
+        handleClose() {
+            this.dialogVisible = false;
+            this.$refs.form.resetFields();
+        },
+        handleBind() {
+            let self = this;
+            this.$refs.form.validate((valid) => {
+                if (valid) {
+                    let params = new FormData();
+                    params.append('deviceId', self.form.deviceId)
+                    params.append('toiletId', self.form.toiletId)
+                    self.$http.post(self.api.toiletConfig, params, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        },
+                    }, function (response) {
+                        if(response.status == 1) {
+                            self.$message({
+                                type: 'success',
+                                message: '绑定成功!'
+                            });
+                            setTimeout(function() {
+                                self.dialogVisible = false;
+                            },1500)
+                        }else{
+                            self.$message({
+                            type: 'error',
+                            message: response.msg
+                            });
+                        }
+                    }, function (response) {
+                    //失败回调
+                    })
+                } else {
+                    return false;
+                }
+            });
         }
     }
 }

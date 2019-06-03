@@ -22,6 +22,7 @@ const deviceAdd = r => require.ensure([], () => r(require('@/pages/deviceMgt/add
 const deviceEdit = r => require.ensure([], () => r(require('@/pages/deviceMgt/edit')), 'deviceMgt')
 // 设置
 const platformInfo = r => require.ensure([], () => r(require('@/pages/set/platform')), 'set')//平台信息
+const platformInfoUpdate = r => require.ensure([], () => r(require('@/pages/set/update')), 'set')//平台信息
 // 角色管理
 const roleMgt = r => require.ensure([], () => r(require('@/pages/roleMgt/index')), 'roleMgt')
 // 展示效果
@@ -95,11 +96,29 @@ export const routerMap = {
     component:userMgt,
     meta:{ title:'用户维护'},
   },
-  '12':{
-    path:'toilet/configure',   
-    name:'厕位配置', 
+  '23':{
+    path:'toilet/configure1',   
+    name:'东侧南卫生间', 
     component:toiletSet1,
+    meta:{ title:'东侧南卫生间'}
+  },
+  '24':{
+    path:'toilet/configure2',   
+    name:'东侧女卫生间', 
+    component:toiletSet2,
+    meta:{ title:'东侧女卫生间'}
+  },
+  '25':{
+    path:'toilet/configure3',   
+    name:'厕位配置', 
+    component:toiletSet3,
     meta:{ title:'厕位配置'}
+  },
+  '26':{
+    path:'toilet/configure4',   
+    name:'西侧女卫生间', 
+    component:toiletSet4,
+    meta:{ title:'西侧女卫生间'}
   },
   '13':{
     path:'device/configure',   
@@ -112,6 +131,13 @@ export const routerMap = {
     name:'平台信息', 
     component:platformInfo,
     meta:{ title:'平台信息'}
+  },
+  '20':{
+    path:'platform/update',   
+    name:'平台信息修改', 
+    component:platformInfoUpdate,
+    meta:{ title:'平台信息修改'},
+    hidden:true
   },
   '15':{
     path:'display/index',   

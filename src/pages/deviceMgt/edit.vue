@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div class="render-div">
         <div class="dataTitle">
-            <span>修改用户信息</span>
+            <span>修改设备信息</span>
         </div>
         <el-form ref="form" :model="form" label-width="160px" :rules="rules" class="addForm">
             <el-form-item label="设备ID：" prop="deviceCode">
