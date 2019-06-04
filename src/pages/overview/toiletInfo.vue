@@ -5,34 +5,29 @@
             <el-row>
                 <el-col :span="12">
                     <div class="cinfo-content borderR contentHeight">
-                        <p class="info-title">南区厕所</p>
+                        <p class="info-title" v-if="dataInfo.length>0">{{dataInfo[0].positionName}}</p>
                         <el-row>
-                            <el-col :span="12" class="content">
-                                <p class="left-title">男厕<img src="../../assets/img/nan.png" class="nanicon" /></p>
-                                <div class="listContent">蹲位：1</div>
-                                <div class="listContent">剩余：1</div>
+                            <el-col :span="12" class="content" v-for="(item,index) in dataInfo.slice(0,2)" :key='index'>
+                                <p class="left-title">{{item.toiletTypeName}}<img :src="item.toiletTypeName=='男厕所'?nanIcon:nvIcon" class="nanicon" /></p>
+                                <div class="listContent">设备数：{{item.deviceCount}}</div>
+                                <div class="listContent">今日流量：{{item.amount}}</div>
                             </el-col>
-                            <el-col :span="12" class="content">
+                            <!-- <el-col :span="12" class="content">
                                 <p class="left-title">女厕<img src="../../assets/img/nv.png" class="nanicon" /></p>
-                                <div class="listContent">蹲位：1</div>
-                                <div class="listContent">剩余：1</div>
-                            </el-col>
+                                <div class="listContent">设备数：1</div>
+                                <div class="listContent">今日流量：1</div>
+                            </el-col> -->
                         </el-row>
                     </div>
                 </el-col>
                 <el-col :span="12">
                     <div class="cinfo-content contentHeight">
-                        <p class="info-title">北区厕所</p>
+                        <p class="info-title" v-if="dataInfo.length>2">{{dataInfo[3].positionName}}</p>
                         <el-row>
-                            <el-col :span="12" class="content">
-                                <p class="left-title">男厕<img src="../../assets/img/nan.png" class="nanicon" /></p>
-                                <div class="listContent">蹲位：1</div>
-                                <div class="listContent">剩余：1</div>
-                            </el-col>
-                            <el-col :span="12" class="content">
-                                <p class="left-title">女厕<img src="../../assets/img/nv.png" class="nanicon" /></p>
-                                <div class="listContent">蹲位：1</div>
-                                <div class="listContent">剩余：1</div>
+                            <el-col :span="12" class="content" v-for="(item,index) in dataInfo.slice(2,4)" :key='index'>
+                                <p class="left-title">{{item.toiletTypeName}}<img :src="item.toiletTypeName=='男厕所'?nanIcon:nvIcon" class="nanicon" /></p>
+                                <div class="listContent">设备数：{{item.deviceCount}}</div>
+                                <div class="listContent">今日流量：{{item.amount}}</div>
                             </el-col>
                         </el-row>
                     </div>
@@ -45,11 +40,11 @@
                         <el-row>
                             <el-col :span="12" class="content">
                                 <p class="left-title">南区</p>
-                                <div class="listContent">当前使用状态：已使用</div>
+                                <div class="listContent">设备数：10</div>
                             </el-col>
                             <el-col :span="12" class="content">
                                 <p class="left-title">北区</p>
-                                <div class="listContent">当前使用状态：未使用</div>
+                                <div class="listContent">设备数：11</div>
                             </el-col>
                         </el-row>
                     </div>
@@ -75,3 +70,32 @@
         </div>
     </div>
 </template>
+<script>
+export default {
+    data() {
+        return{
+            dataInfo:[],
+            nanIcon:require('../../assets/img/nan.png'),
+            nvIcon:require('../../assets/img/nv.png'),
+        }
+    },
+    created() {
+        this.getDeviceCountByToiletType()
+    },
+    methods:{
+        getDeviceCountByToiletType() {
+            let self = this;
+            self.$http.get(self.api.getDeviceCountByToiletType, {}, function(response) {
+                if(response){
+                    self.dataInfo = response.data;
+                }else{
+
+                }
+            
+            }, function(response) {
+                //失败回调
+            })
+        }
+    }
+}
+</script>

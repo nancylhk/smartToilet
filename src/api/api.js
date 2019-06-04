@@ -26,6 +26,11 @@ export default {
     "bindDevice": BASE_URL + '/deviceController/bindDevice',//
     "unBindDevice": BASE_URL + '/deviceController/unBindDevice',//
     "getToiletIds": BASE_URL + '/deviceController/getToiletIds',//
+    // 数据汇总
+    "getTodayAmount": BASE_URL + '/toiletController/getTodayAmount',//
+    "getRecentAmount": BASE_URL + '/toiletController/getRecentAmount',//
+    "getDeviceCountByToiletType": BASE_URL + '/deviceController/getDeviceCountByToiletType',//
+    "": BASE_URL + '',//
     "": BASE_URL + '',//
     "": BASE_URL + '',//
 }
