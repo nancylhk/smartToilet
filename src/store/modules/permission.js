@@ -1,5 +1,6 @@
 import { routerMap, constantRouterMap } from '@/router'
 import Layout from '@/pages/Layout/Layout'
+import display from '@/pages/display/index'
 import axios from 'axios';
 import router from '@/router'
 import store from '@/store/'
@@ -104,7 +105,21 @@ const permission = {
 							}
 							router.push({
                                  path: '/'
-                            })
+							})
+							tempRouter.push({
+								path: '',
+								icon: "fa-database",
+								meta:{ title:'展示效果'},
+								name:'5',
+								children:[
+									{
+										path:'display/index',
+										name: '展示',
+										component:display,
+										meta:{ title:'展示效果'},
+									}
+								]
+							})
 							commit('SET_ROUTERS', tempRouter)
 							resolve()
 						} else {

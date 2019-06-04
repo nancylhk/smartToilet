@@ -27,7 +27,7 @@
             <table class="tableBox" cellspacing=0>
                 <thead>
                     <tr>
-                        <th>设备ID</th>
+                        <th>设备编号</th>
                         <th>设备名称</th>
                         <th>设备使用状态</th>
                         <th>设备厂家</th>

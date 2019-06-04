@@ -21,7 +21,11 @@ export default {
     "": BASE_URL + '',//
     // 厕位配置
     "toiletConfig": BASE_URL + '/deviceController/toiletConfig',//
-    "": BASE_URL + '',// 
+    "getUnBindDevice": BASE_URL + '/deviceController/getUnBindDevice',// 
+    "getDeviceByToiletId": BASE_URL + '/deviceController/getDeviceByToiletId',//
+    "bindDevice": BASE_URL + '/deviceController/bindDevice',//
+    "unBindDevice": BASE_URL + '/deviceController/unBindDevice',//
+    "getToiletIds": BASE_URL + '/deviceController/getToiletIds',//
     "": BASE_URL + '',//
     "": BASE_URL + '',//
 }

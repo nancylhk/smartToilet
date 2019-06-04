@@ -50,10 +50,13 @@ export const constantRouterMap  =[
     ]
   },
   {
-    path: '/login',
-    name: 'Login',
-    component: Login,
-    hidden:true
+    path: '/display/index',
+    name: 'display',
+    component: display,
+    hidden:true,
+    meta:{
+      title:'展示'
+    }
   },
 ]
 
@@ -167,9 +170,9 @@ export const routerMap = {
   },
   '23':{
     path:'toilet/configure1',   
-    name:'东侧南卫生间', 
+    name:'东侧男卫生间', 
     component:toiletSet1,
-    meta:{ title:'东侧南卫生间'}
+    meta:{ title:'东侧男卫生间'}
   },
   '24':{
     path:'toilet/configure2',   
@@ -179,9 +182,9 @@ export const routerMap = {
   },
   '25':{
     path:'toilet/configure3',   
-    name:'厕位配置', 
+    name:'西侧男卫生间', 
     component:toiletSet3,
-    meta:{ title:'厕位配置'}
+    meta:{ title:'西侧男卫生间'}
   },
   '26':{
     path:'toilet/configure4',   

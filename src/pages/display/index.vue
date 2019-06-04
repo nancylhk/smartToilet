@@ -1,81 +1,75 @@
 <template>
-  <div>
-    <input type="text" v-model="text">
-    <button @click="send()">发送消息</button>
-    <br>
-    <button @click="closeWebSocket()">关闭websocket连接</button>
-    <br>
-    <div>{{data}}</div>
+  <div class="test">
+      <div>12233</div>
   </div>
-</template>
-<script>
+  </template>
+  <script>
+ import SockJS from  'sockjs-client';
+import  Stomp from 'stompjs';
 export default {
-  name: "WebSocket",
-  components: {
- 
-  },
-  data() {
-    return {
-      text: '',
-      data: '',
-      websocket: null
+    data(){
+        return {
+            stompClient:'',
+            timer:'',
+        }
+    },
+    methods:{
+        initWebSocket() {
+            this.connection();
+            let that= this;
+            // 断开重连机制,尝试发送消息,捕获异常发生时重连
+            this.timer = setInterval(() => {
+                try {
+                    that.stompClient.send("hahaha");
+                } catch (err) {
+                    console.log("断线了: " + err);
+                    that.connection();
+                }
+            }, 5000);
+        },  
+        connection() {
+            // 建立连接对象
+            let socket = new SockJS('/my-websocket');
+            // 获取STOMP子协议的客户端对象
+            this.stompClient = Stomp.over(socket);
+            // 定义客户端的认证信息,按需求配置
+            let headers = {
+                Authorization:''
+            }
+            
+            // 向服务器发起websocket连接
+            this.stompClient.connect(headers,() => {
+                this.stompClient.subscribe('/topic/send', function (msg) {
+                        console.log('注册成功')
+                        console.log(msg)
+                    });
+                    // 注册推送时间回调
+                    this.stompClient.subscribe('/topic/callback', function (msg) {
+                        console.log(msg.body)
+                    });
+            }, (err) => {
+                // 连接发生错误时的处理函数
+                console.log('失败')
+                console.log(err);
+            });
+        },    //连接 后台
+        disconnect() {
+            if (this.stompClient) {
+                this.stompClient.disconnect();
+            }
+        },  // 断开连接
+    },
+    mounted(){
+        this.initWebSocket();
+    },
+    beforeDestroy: function () {
+        // 页面离开时断开连接,清除定时器
+        this.disconnect();
+        clearInterval(this.timer);
     }
-  },
-  mounted() {
-    if ('WebSocket' in window) {
-      this.websocket = new WebSocket('ws://192.168.2.115:8888/topic/callback')
-      this.initWebSocket()
-    } else {
-      alert('当前浏览器 Not support websocket')
-    }
-  },
-  beforeDestroy() {
-    this.onbeforeunload()
-  },
-  methods: {
-    initWebSocket() {
-      //连接错误
-      this.websocket.onerror = this.setErrorMessage
- 
-      // //连接成功
-      this.websocket.onopen = this.setOnopenMessage
- 
-      //收到消息的回调
-      this.websocket.onmessage = this.setOnmessageMessage
- 
-      //连接关闭的回调
-      this.websocket.onclose = this.setOncloseMessage
- 
-      //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
-      window.onbeforeunload = this.onbeforeunload
-    },
-    setErrorMessage() {
-      this.data = "WebSocket连接发生错误" + '   状态码：' + this.websocket.readyState;
-    },
-    setOnopenMessage() {
-      this.data = "WebSocket连接成功" + '   状态码：' + this.websocket.readyState;
-    },
-    setOnmessageMessage(event) {
-      this.data = '服务端返回：' + event.data;
-    },
-    setOncloseMessage() {
-      this.data = "WebSocket连接关闭" + '   状态码：' + this.websocket.readyState;
-    },
-    onbeforeunload() {
-      this.closeWebSocket();
-    },
- 
-    //websocket发送消息
-    send() {
-      this.websocket.send(this.text)
-      this.text = ''
-    },
-    closeWebSocket() {
-      this.websocket.close()
-    }
-  }
+
 }
+  </script>
+  <style >
+ </style>
  
-</script>
-<style scoped>
-</style>

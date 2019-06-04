@@ -12,17 +12,17 @@
                                 <el-row >
                                     <el-col :span="8">
                                         <ul class="toilet2">
-                                            <li v-for="o in [45,46,47,48,49,50,51]">
+                                            <li v-for="o in list1" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
                                                 <img src="../../assets/img/toiletIcon2.png" />
-                                                <span class="toiletCode">{{o}}</span>
+                                                <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                             </li>
                                         </ul>
                                     </el-col>
                                     <el-col :span="8" :offset="8" class="borderR">
                                         <ul class="toilet1 sRbox5">
-                                            <li v-for="o in [52,53,54,55,56]">
+                                            <li v-for="o in list2" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
                                                 <img src="../../assets/img/toiletIcon1.png" />
-                                                <span class="toiletCode">{{o}}</span>
+                                                <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -33,18 +33,18 @@
                                     <el-col :span="8" class="borderL2">
                                         <ul class="toilet2">
                                             <ul class="toilet2 sLbox5">
-                                            <li v-for="o in [57,58,59,60,61]">
+                                            <li v-for="o in list3" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
                                                 <img src="../../assets/img/toiletIcon2.png" />
-                                                <span class="toiletCode">{{o}}</span>
+                                                <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                             </li>
                                         </ul>
                                         </ul>
                                     </el-col>
                                     <el-col :span="8" :offset="8" class="borderR">
                                         <ul class="toilet1 sRbox5">
-                                            <li v-for="o in [62,63,64,65,66]">
+                                            <li v-for="o in list4" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
                                                 <img src="../../assets/img/toiletIcon1.png" />
-                                                <span class="toiletCode">{{o}}</span>
+                                                <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -54,17 +54,17 @@
                                 <el-row >
                                     <el-col :span="8" class="borderL">
                                         <ul class="toilet2 sLbox5">
-                                            <li v-for="o in [67,68,69,70,71]">
+                                            <li v-for="o in list5" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
                                                 <img src="../../assets/img/toiletIcon2.png" />
-                                                <span class="toiletCode">{{o}}</span>
+                                                <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                             </li>
                                         </ul>
                                     </el-col>
                                     <el-col :span="8" :offset="8" class="borderR">
                                         <ul class="toilet1 sRbox5">
-                                            <li v-for="o in [72,73,74,75,76]">
+                                            <li v-for="o in list6" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
                                                 <img src="../../assets/img/toiletIcon1.png" />
-                                                <span class="toiletCode">{{o}}</span>
+                                                <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -74,17 +74,17 @@
                                 <el-row >
                                     <el-col :span="8" class="borderL">
                                         <ul class="toilet2 sLbox5">
-                                            <li v-for="o in [77,78,79,80,101]">
+                                            <li v-for="o in list7" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
                                                 <img src="../../assets/img/toiletIcon2.png" />
-                                                <span class="toiletCode">{{o}}</span>
+                                                <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                             </li>
                                         </ul>
                                     </el-col>
                                     <el-col :span="8" :offset="8">
                                         <ul class="toilet1">
-                                            <li v-for="o in [102,103,104,105,106,107,108]">
+                                            <li v-for="o in list8" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
                                                 <img src="../../assets/img/toiletIcon1.png" />
-                                                <span class="toiletCode">{{o}}</span>
+                                                <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -126,21 +126,48 @@
             <!-- 设备和厕位绑定弹框 -->
             <el-dialog
             title="厕位配置"
+            :custom-class="'toiletSetDialog'"
             :visible.sync="dialogVisible"
             width="380px"
-            :before-close="handleClose">
-            <el-form ref="form" :model="form" label-width="100px" :rules="rules">
-                <el-form-item label="此厕位号：" prop="toiletId" readonly>
-                    <el-input v-model="form.toiletId"></el-input>
-                </el-form-item>
-                <el-form-item label="此设备号：" prop="deviceId">
-                    <el-input v-model="form.deviceId"></el-input>
-                </el-form-item>
-            </el-form>
-            <span slot="footer" class="dialog-footer">
-                <el-button @click="handleClose">取 消</el-button>
-                <el-button type="primary" @click="handleBind">绑 定</el-button>
-            </span>
+            :before-close="handleClose1">
+                <el-form ref="form" :model="form" label-width="100px" :rules="rules">
+                    <el-form-item label="此厕位号：" prop="toiletId" >
+                        <el-input v-model="form.toiletId" readonly></el-input>
+                    </el-form-item>
+                    <el-form-item label="此设备号：" prop="deviceCode">
+                        <el-select v-model="form.deviceCode" placeholder="请选择设备号">
+                            <el-option
+                            v-for="item in unBindDeviceList"
+                            :key="item.deviceId"
+                            :label="item.deviceName"
+                            :value="item.deviceId">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                </el-form>
+                <span slot="footer" class="dialog-footer">
+                    <el-button @click="handleClose1">取 消</el-button>
+                    <el-button type="primary" @click="handleBind">绑 定</el-button>
+                </span>
+            </el-dialog>
+            <!-- 解绑 -->
+            <el-dialog
+            title="解绑设备"
+            :visible.sync="unBindDialogVisible"
+            width="380px"
+            :before-close="handleClose2">
+                <el-form ref="unbindForm" :model="unbindForm" label-width="100px" :rules="rules">
+                    <el-form-item label="此厕位号：" prop="toiletId" >
+                        <el-input v-model="unbindForm.toiletId" readonly></el-input>
+                    </el-form-item>
+                    <el-form-item label="设备名称：" prop="deviceCode">
+                        <el-input v-model="unbindForm.deviceCode" readonly="readonly"></el-input>
+                    </el-form-item>
+                </el-form>
+                <span slot="footer" class="dialog-footer">
+                    <el-button @click="handleClose2">取 消</el-button>
+                    <el-button type="primary" @click="handleUnBind">解 绑</el-button>
+                </span>
             </el-dialog>
         </div>
     </div>
@@ -153,19 +180,88 @@ export default {
             nowDate:'',
             nowWeek:'',
             dialogVisible:false,
+            unBindDialogVisible:false,
+            unBindDeviceList:[],
+            list1:[ 
+                {toiletId:'45',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'46',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'47',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'48',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'49',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'50',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'51',deviceCode:'',deviceId:'',bind:false},
+            ],
+            list2:[ 
+                {toiletId:'52',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'53',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'54',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'55',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'56',deviceCode:'',deviceId:'',bind:false},
+            ],
+            list3:[ 
+                {toiletId:'57',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'58',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'59',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'60',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'61',deviceCode:'',deviceId:'',bind:false},
+            ],
+            list4:[ 
+                {toiletId:'62',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'63',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'64',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'65',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'66',deviceCode:'',deviceId:'',bind:false},
+            ],
+            list5:[ 
+                {toiletId:'67',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'68',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'69',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'70',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'71',deviceCode:'',deviceId:'',bind:false},
+            ],
+            list6:[ 
+                {toiletId:'72',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'73',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'74',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'75',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'76',deviceCode:'',deviceId:'',bind:false},
+            ],
+            list7:[ 
+                {toiletId:'77',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'78',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'79',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'80',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'101',deviceCode:'',deviceId:'',bind:false}
+            ],
+            list8:[ 
+                {toiletId:'102',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'103',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'104',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'105',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'106',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'107',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'108',deviceCode:'',deviceId:'',bind:false},
+            ],
             form:{
                 toiletId:'',
-                deviceId:''
+                deviceCode:''
+            },
+            unbindForm:{
+                toiletId:'',
+                deviceCode:''
             },
             rules:{
                 toiletId:[
                     { required: true, message: '请输入活动名称', trigger: 'blur' },
                 ],
-                deviceId:[
-                    { required: true, message: '请输入设备编号', trigger: 'blur' },
+                deviceCode:[
+                    { required: true, message: '请选择设备编号', trigger: 'change' },
                 ]
             }
         }
+    },
+    created() {
+        this.getToiletIds()
     },
     mounted() {
         var self = this;
@@ -188,35 +284,192 @@ export default {
         }
     },
     methods:{
-        set(id) {
-            this.dialogVisible = true;
-            this.form.toiletId = id;
-            this.form.deviceId = id;
+        getToiletIds() {
+            let self = this;
+            self.list1.forEach( e=>{
+                e.bind = false
+            })
+            self.list2.forEach( e=>{
+                e.bind = false
+            })
+            self.list3.forEach( e=>{
+                e.bind = false
+            })
+            self.list4.forEach( e=>{
+                e.bind = false
+            })
+            self.list5.forEach( e=>{
+                e.bind = false
+            })
+            self.list6.forEach( e=>{
+                e.bind = false
+            })
+            self.list7.forEach( e=>{
+                e.bind = false
+            })
+            self.list8.forEach( e=>{
+                e.bind = false
+            })
+            self.$http.get(self.api.getToiletIds, {}, function(response) {
+                if(response.status == 1){           
+                    response.data.forEach(toiletId => {
+                        self.list1.forEach( e=>{
+                            if(e.toiletId == toiletId ){
+                                e.bind = true
+                            }
+                        })
+                        self.list2.forEach( e=>{
+                            if(e.toiletId == toiletId ){
+                                e.bind = true
+                            }
+                        })
+                        self.list3.forEach( e=>{
+                            if(e.toiletId == toiletId ){
+                                e.bind = true
+                            }
+                        })
+                        self.list4.forEach( e=>{
+                            if(e.toiletId == toiletId ){
+                                e.bind = true
+                            }
+                        })
+                        self.list5.forEach( e=>{
+                            if(e.toiletId == toiletId ){
+                                e.bind = true
+                            }
+                        })
+                        self.list6.forEach( e=>{
+                            if(e.toiletId == toiletId ){
+                                e.bind = true
+                            }
+                        })
+                        self.list7.forEach( e=>{
+                            if(e.toiletId == toiletId ){
+                                e.bind = true
+                            }
+                        })
+                        self.list8.forEach( e=>{
+                            if(e.toiletId == toiletId ){
+                                e.bind = true
+                            }
+                        })
+                    });
+                }else{
+
+                }
+            
+            }, function(response) {
+                //失败回调
+            })
         },
-        handleClose() {
+        set(id) {                  
+            let self = this;
+            self.$http.get(self.api.getDeviceByToiletId, {
+                params:{
+                    toiletId:id
+                }
+            }, function(response) {
+                if(response.status == 1){           
+                    if(response.data.length==0) {
+                        self.getUnBindDevice();
+                        self.dialogVisible = true;
+                        self.form.toiletId = id;
+                    }else{
+                        self.unBindDialogVisible = true;
+                        self.unbindForm.toiletId = response.data[0].toiletId;
+                        self.unbindForm.deviceCode = response.data[0].deviceName;
+                    }
+                }else{
+
+                }
+            
+            }, function(response) {
+                //失败回调
+            })
+        },
+        // 获取未绑定的所有设备
+        getUnBindDevice() {
+            let self = this;
+            self.$http.get(self.api.getUnBindDevice, {
+                params:{
+                    
+                }
+            }, function(response) {
+                if(response.status == 1){
+                    self.unBindDeviceList = response.data;
+                }else{
+
+                }
+            
+            }, function(response) {
+                //失败回调
+            })
+        },
+        handleClose1() {
             this.dialogVisible = false;
             this.$refs.form.resetFields();
+        },
+        handleClose2() {
+            this.unBindDialogVisible = false;
+            this.$refs.unbindForm.resetFields();
+        },
+        // 解绑
+        handleUnBind() {
+            let self = this;
+            this.$refs.unbindForm.validate((valid) => {
+                if (valid) {
+                    let params = new FormData();
+                    params.append('toiletId', self.unbindForm.toiletId)
+                    self.$http.post(self.api.unBindDevice, params, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        },
+                    }, function (response) {
+                        if(response.data == 1) {
+                            self.$message({
+                                type: 'success',
+                                message: '解绑成功!'
+                            });
+                            setTimeout(function() {
+                                self.handleClose2()
+                                self.getToiletIds()
+                            },500)
+                        }else{
+                            self.$message({
+                            type: 'error',
+                            message: response.msg
+                            });
+                        }
+                    }, function (response) {
+                    //失败回调
+                    })
+                } else {
+                    return false;
+                }
+            });
         },
         handleBind() {
             let self = this;
             this.$refs.form.validate((valid) => {
                 if (valid) {
                     let params = new FormData();
-                    params.append('deviceId', self.form.deviceId)
+                    params.append('deviceId', self.form.deviceCode)
                     params.append('toiletId', self.form.toiletId)
-                    self.$http.post(self.api.toiletConfig, params, {
+                    params.append('toiletTypeId', '2')
+                    self.$http.post(self.api.bindDevice, params, {
                         headers: {
                             "Content-Type": "multipart/form-data"
                         },
                     }, function (response) {
-                        if(response.status == 1) {
+                        if(response.data == 1) {
                             self.$message({
                                 type: 'success',
                                 message: '绑定成功!'
                             });
                             setTimeout(function() {
-                                self.dialogVisible = false;
-                            },1500)
+                                self.handleClose1()
+                                self.getToiletIds()
+                            },500)
                         }else{
                             self.$message({
                             type: 'error',

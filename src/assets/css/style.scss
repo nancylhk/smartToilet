@@ -147,6 +147,11 @@
     }
 }
 
+.toiletSetDialog{
+    .el-select{
+        width: 100%;
+    }
+}
 .toliet-set-container{
     border: 6px solid #0090e1;
     border-bottom: none;
@@ -602,4 +607,8 @@
 }
 .mb0{
     margin-bottom: 0;
+}
+.green{
+    color: #16de68;
+    font-weight: bold;
 }
