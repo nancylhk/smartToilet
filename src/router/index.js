@@ -26,7 +26,10 @@ const platformInfoUpdate = r => require.ensure([], () => r(require('@/pages/set/
 // 角色管理
 const roleMgt = r => require.ensure([], () => r(require('@/pages/roleMgt/index')), 'roleMgt')
 // 展示效果
-const display = r => require.ensure([], () => r(require('@/pages/display/index')), 'display')
+const display1 = r => require.ensure([], () => r(require('@/pages/display/index1')), 'display')
+const display2 = r => require.ensure([], () => r(require('@/pages/display/index2')), 'display')
+const display3 = r => require.ensure([], () => r(require('@/pages/display/index3')), 'display')
+const display4 = r => require.ensure([], () => r(require('@/pages/display/index4')), 'display')
 Vue.use(Router)
 
 export const constantRouterMap  =[
@@ -50,9 +53,36 @@ export const constantRouterMap  =[
     ]
   },
   {
-    path: '/display/index',
-    name: 'display',
-    component: display,
+    path: '/display/index1',
+    name: 'display1',
+    component: display1,
+    hidden:true,
+    meta:{
+      title:'展示'
+    }
+  },
+  {
+    path: '/display/index2',
+    name: 'display2',
+    component: display2,
+    hidden:true,
+    meta:{
+      title:'展示'
+    }
+  },
+  {
+    path: '/display/index3',
+    name: 'display3',
+    component: display3,
+    hidden:true,
+    meta:{
+      title:'展示'
+    }
+  },
+  {
+    path: '/display/index4',
+    name: 'display4',
+    component: display4,
     hidden:true,
     meta:{
       title:'展示'
@@ -86,9 +116,9 @@ export const routerMap = {
     meta:{ title:'设置'}
   },
   '5':{
-    path:'display/index',   
+    path:'display/index1',   
     name:'展示', 
-    component:display,
+    component:display1,
     meta:{ title:'展示'}
   },
   '6':{
@@ -116,9 +146,9 @@ export const routerMap = {
     meta:{ title:'平台信息'}
   },
   '15':{
-    path:'display/index',   
+    path:'display/index1',   
     name:'展示效果', 
-    component:display,
+    component:display1,
     meta:{ title:'展示效果'}
   },
   '16':{

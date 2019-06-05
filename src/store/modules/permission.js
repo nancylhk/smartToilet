@@ -1,6 +1,9 @@
 import { routerMap, constantRouterMap } from '@/router'
 import Layout from '@/pages/Layout/Layout'
-import display from '@/pages/display/index'
+import display1 from '@/pages/display/index1'
+import display2 from '@/pages/display/index2'
+import display3 from '@/pages/display/index3'
+import display4 from '@/pages/display/index4'
 import axios from 'axios';
 import router from '@/router'
 import store from '@/store/'
@@ -106,20 +109,41 @@ const permission = {
 							router.push({
                                  path: '/'
 							})
-							tempRouter.push({
-								path: '',
-								icon: "fa-database",
-								meta:{ title:'展示效果'},
-								name:'5',
-								children:[
-									{
-										path:'display/index',
-										name: '展示',
-										component:display,
-										meta:{ title:'展示效果'},
-									}
-								]
-							})
+							tempRouter.push(
+								{
+									path: '',
+									icon: "fa-database",
+									meta:{ title:'展示效果'},
+									name:'5',
+									children:[
+										{
+											path:'display/index1',
+											name: '东侧男',
+											component:display1,
+											meta:{ title:'展示效果'},
+										},
+										{
+											path:'display/index2',
+											name: '东侧女',
+											component:display2,
+											meta:{ title:'展示效果'},
+										},
+										{
+											path:'display/index3',
+											name: '西侧男',
+											component:display3,
+											meta:{ title:'展示效果'},
+										},
+										{
+											path:'display/index4',
+											name: '西侧女',
+											component:display4,
+											meta:{ title:'展示效果'},
+										}
+									]
+								},
+								
+							)
 							commit('SET_ROUTERS', tempRouter)
 							resolve()
 						} else {

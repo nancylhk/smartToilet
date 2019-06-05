@@ -32,7 +32,6 @@
     </div>
 </template>
 <script>
-import display from '../../display/index'
 export default {
 
     computed: {
@@ -41,20 +40,6 @@ export default {
         }
     },
     mounted() {
-      // // console.log(this.routeList)
-      // this.routeList.push({
-      //   icon: "fa-cog ",
-      //   meta:{ title:'展示效果'},
-      //   name:'5',
-      //   children:[
-      //     {
-      //       path:'display/index',
-      //       name: '展示',
-      //       component:display,
-      //       meta:{ title:'展示效果'},
-      //     }
-      //   ]
-      // })
     },
     methods:{
       changePass() {

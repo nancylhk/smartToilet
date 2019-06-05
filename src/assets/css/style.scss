@@ -658,6 +658,14 @@
                     font-size: 16px;
                 }
             } 
+            .blueColor{
+                h2{
+                    color: #00f6ff
+                }
+                p{
+                    color: #00f6ff
+                }
+            }
             .twoBox{
                 padding:40px 45px 0; 
                 div{
@@ -733,35 +741,181 @@
         z-index: -1
     }
 }
+.my-position-container{
+    width: 214px;
+    margin: 0 auto ;
+    border-top: 4px solid #00bffd;
+    .position-tip{
+        img{
+            vertical-align: top;
+        }
+    }
+    .my-position{
+        display: inline-block;
+        width: 140px;
+        text-align: center;
+        span{
+            font-size: 23px;
+            display: block;
+            line-height: 40px;
+        }
+    }
+    .entrance{
+        font-size:28px;
+        text-align: center;
+        background: #121541;
+        position: relative;
+        top: 26px; 
+    }
+}
+.my-position-container2{
+    margin: 10px 0 0 470px;
+    .entrance{
+        top: 16px; 
+    }
+}
+.my-position-container3{
+    margin: 10px 0 0 442px;
+    .entrance{
+        top: 16px; 
+    }
+}
 .toliet-display-container{
-    .toilet1{
+    ul li {
+        img{
+            width: 40px;
+            height: 40px;
+        }
+    }
+    .toiletL7{
         li{
             height: 80px;
             border-bottom: 4px solid #00bffd;
-            padding: 18px;
-            padding-left: 34px;
+            padding-top: 18px;
+            text-align: center
         }
         
+    }
+    .toiletR7{
+        li{
+            height: 80px;
+            border-bottom: 4px solid #00bffd;
+            padding-top: 18px;
+            text-align: center;
+        }
     }
     .toiletR5{
         li{
             height: 112px;
             border-bottom: 4px solid #00bffd;
-            border-right: 4px solid #00bffd;
-            padding: 40px;
-            padding-right: 34px;
+            border-right: 4px solid #00bffd; 
+            text-align: center;  
+            padding-top: 40px;
         }
     }
     .toiletL5{
         li{
             height: 112px;
             border-bottom: 4px solid #00bffd;
-            // border-right: 4px solid #00bffd;
-            padding: 40px;
-            padding-right: 34px;
+            text-align: center;
+            padding-top: 40px;
         }
     }
     .borderRNo{
         border-right: none
     }
+}
+.toliet-display-container2{
+    .colspan1{
+        width: 218px;
+    }
+    .colspan2{
+        width: 332px;
+    }
+    .colspan3{
+        width: 370px;
+    }
+    .toiletL7 ,.toiletL4 ,.toiletR4{
+        img{
+            width: 54px;
+            height: 56px;
+        }
+    }
+    .toiletL7{
+        li{
+            height: 80px;
+            border-bottom: 4px solid #00bffd;
+            padding-top: 8px;
+            text-align: center
+            
+        }
+        
+    }
+    .toiletL4{
+        li{
+            height: 140px;
+            border-bottom: 4px solid #00bffd;
+            padding-top: 40px;
+            text-align: center
+        }
+    }
+    .toiletR4{
+        li{
+            height: 140px;
+            border-bottom: 4px solid #00bffd;
+            padding-top: 40px;
+            text-align: center;
+            border-right: 4px solid #00bffd;
+        }
+    }
+    .toiletL5{
+        li{
+            height:112px;
+            border-bottom: 4px solid #00bffd;
+            padding-top: 40px;
+            padding-left: 12px;
+        }
+    }
+    .toiletR5{
+        li{
+            height: 112px;
+            border-bottom: 4px solid #00bffd;
+            padding-top: 40px;
+            border-right: 4px solid #00bffd; 
+            padding-right: 12px;
+            text-align: right;
+        }
+        .borderRNo{
+            border-right: none
+        }
+    }
+    .toiletL6{
+        li{
+            height: 93px;
+            border-bottom: 4px solid #00bffd;     
+            text-align: center;  
+            padding-top: 15px;
+            img{
+                width: 54px;
+                height: 56px;
+            }
+        }
+    }
+    .toiletR6{
+        li{
+            height: 93px;
+            border-bottom: 4px solid #00bffd;
+            text-align: center;
+            padding-top: 15px;
+            border-right: 4px solid #00bffd; 
+            img{
+                width: 54px;
+                height: 56px;
+            }
+        }
+        .borderRNo{
+            border-right: none
+        }
+    }
+    
 }
