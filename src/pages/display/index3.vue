@@ -209,14 +209,14 @@ export default {
             this.connection();
             let that= this;
             // 断开重连机制,尝试发送消息,捕获异常发生时重连
-            // this.timer = setInterval(() => {
-            //     try {
-            //         // that.stompClient.send("test");
-            //     } catch (err) {
-            //         console.log("断线了: " + err);
-            //         that.connection();
-            //     }
-            // }, 5000);
+            this.timer = setInterval(() => {
+                try {
+                    that.stompClient.send("test");
+                } catch (err) {
+                    console.log("断线了: " + err);
+                    that.connection();
+                }
+            }, 5000);
         },  
         connection() {
             let self = this;
@@ -225,9 +225,9 @@ export default {
             // 获取STOMP子协议的客户端对象
             this.stompClient = Stomp.over(socket);
             // 定义客户端的认证信息,按需求配置
-            let headers = {
-                Authorization:''
-            }
+            // let headers = {
+            //     Authorization:''
+            // }
             // 向服务器发起websocket连接
             this.stompClient.connect({},() => {
                 this.stompClient.subscribe('/topic/callback', (msg) => { // 订阅服务端提供的某个topic
@@ -291,11 +291,28 @@ export default {
     },
     mounted(){
         this.initWebSocket();
+        var self = this;
+        var week = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+        var timerID = setInterval(updateTime, 1000);
+        updateTime();
+        function updateTime() {
+            var cd = new Date();
+            self.nowTime = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
+            self.nowDate = zeroPadding(cd.getFullYear(), 4) + '-' + zeroPadding(cd.getMonth()+1, 2) + '-' + zeroPadding(cd.getDate(), 2) ;
+            self.nowWeek = week[cd.getDay()]
+        };
+        function zeroPadding(num, digit) {
+            var zero = '';
+            for(var i = 0; i < digit; i++) {
+                zero += '0';
+            }
+            return (zero + num).slice(-digit);
+        }
     },
     beforeDestroy: function () {
         // 页面离开时断开连接,清除定时器
         this.disconnect();
-        // clearInterval(this.timer);
+        clearInterval(this.timer);
     }
 
 }

@@ -192,13 +192,18 @@
         li:last-of-type{
             margin-bottom: 0;
         }
+        
     }
+
     .toilet2{
         text-align: left;
         li{
             padding-left: 10px;
             border-style:solid solid solid none ;
         }
+    }
+    .toiletMount4 li{
+        margin-bottom:112px;
     }
     .borderR{
         border-right: 3px solid #0090e1
@@ -243,7 +248,7 @@
     .sLbox5,.sRbox5{
         li{
             padding: 10px;
-            margin-bottom: 63px;
+            margin-bottom: 50px;
         }
         
     }
@@ -441,7 +446,7 @@
     top: 5px;
     margin:0 5px;
     display: inline-block;
-    min-width: 22px;
+    min-width: 32px;
 }
 
 .main-container{

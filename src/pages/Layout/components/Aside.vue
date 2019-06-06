@@ -15,6 +15,7 @@
         </el-popover>
       </div>
       <el-menu
+      :unique-opened='uniqueOpen'
       router
       class="el-menu-vertical-demo">
         <template v-for="item in routeList" v-if="!item.hidden ">
@@ -33,13 +34,18 @@
 </template>
 <script>
 export default {
-
+    data() {
+      return {
+        uniqueOpen:false
+      }
+    },
     computed: {
         routeList() {
             return this.$store.getters.permission_routers
         }
     },
     mounted() {
+      // console.log(this.routeList)
     },
     methods:{
       changePass() {

@@ -52,42 +52,42 @@ export const constantRouterMap  =[
       }
     ]
   },
-  {
-    path: '/display/index1',
-    name: 'display1',
-    component: display1,
-    hidden:true,
-    meta:{
-      title:'展示'
-    }
-  },
-  {
-    path: '/display/index2',
-    name: 'display2',
-    component: display2,
-    hidden:true,
-    meta:{
-      title:'展示'
-    }
-  },
-  {
-    path: '/display/index3',
-    name: 'display3',
-    component: display3,
-    hidden:true,
-    meta:{
-      title:'展示'
-    }
-  },
-  {
-    path: '/display/index4',
-    name: 'display4',
-    component: display4,
-    hidden:true,
-    meta:{
-      title:'展示'
-    }
-  },
+  // {
+  //   path: '/display/index1',
+  //   name: 'display1',
+  //   component: display1,
+  //   hidden:true,
+  //   meta:{
+  //     title:'展示'
+  //   }
+  // },
+  // {
+  //   path: '/display/index2',
+  //   name: 'display2',
+  //   component: display2,
+  //   hidden:true,
+  //   meta:{
+  //     title:'展示'
+  //   }
+  // },
+  // {
+  //   path: '/display/index3',
+  //   name: 'display3',
+  //   component: display3,
+  //   hidden:true,
+  //   meta:{
+  //     title:'展示'
+  //   }
+  // },
+  // {
+  //   path: '/display/index4',
+  //   name: 'display4',
+  //   component: display4,
+  //   hidden:true,
+  //   meta:{
+  //     title:'展示'
+  //   }
+  // },
 ]
 
 export const routerMap = {  
@@ -222,7 +222,30 @@ export const routerMap = {
     component:toiletSet4,
     meta:{ title:'西侧女卫生间'}
   },
-  
+  '27':{
+    path:'display/index1',   
+    name:'东厕男', 
+    component:display1,
+    meta:{ title:'东厕男'}
+  },
+  '28':{
+    path:'display/index2',   
+    name:'东侧女', 
+    component:display2,
+    meta:{ title:'东侧女'}
+  },
+  '29':{
+    path:'display/index3',   
+    name:'西厕男', 
+    component:display3,
+    meta:{ title:'西厕男'}
+  },
+  '30':{
+    path:'display/index4',   
+    name:'西厕女', 
+    component:display4,
+    meta:{ title:'西厕女'}
+  },
   
 }
 export default new Router({

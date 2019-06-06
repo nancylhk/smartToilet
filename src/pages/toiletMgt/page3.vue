@@ -5,7 +5,7 @@
         </div>
         <div class="toilet-set-box">
             <el-row :gutter="30">
-                <el-col :span="18">
+                <el-col :span="24">
                     <div class="displayBox pad20">
                         <el-row class="toliet-set-container  ">             
                             <el-col :span="12">
@@ -19,7 +19,7 @@
                                         </ul>
                                     </el-col>
                                     <el-col :span="8" :offset="8" class="borderR">
-                                        <ul class="toilet1">
+                                        <ul class="toilet1 toiletMount4">
                                             <li v-for="o in list2" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                                 <img src="../../assets/img/toiletIcon1.png" />
@@ -31,7 +31,7 @@
                             <el-col :span="12">
                                 <el-row  >
                                     <el-col :span="8" class="borderL">
-                                        <ul class="toilet2">
+                                        <ul class="toilet2 toiletMount4">
                                             <li v-for="o in list3" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
                                                 <img src="../../assets/img/toiletIcon2.png" />
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
@@ -50,7 +50,7 @@
                         </el-row>
                     </div>
                 </el-col>
-                <el-col :span="6" class="toiletSet-right-container">
+                <!-- <el-col :span="6" class="toiletSet-right-container">
                     <div class='displayBox pad20 box1'>
                         <p>{{nowDate}}&nbsp;&nbsp;&nbsp;&nbsp;{{nowWeek}}</p>
                         <div class="nowTime">{{nowTime}}</div>
@@ -78,7 +78,7 @@
                         <p>当日累计：<span class="commonColor ">110</span></p>
                         <p>累计入厕：<span class="commonColor">1010</span></p>
                     </div>
-                </el-col>
+                </el-col> -->
             </el-row>
             <!-- 设备和厕位绑定弹框 -->
             <el-dialog

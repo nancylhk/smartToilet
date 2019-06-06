@@ -1,9 +1,6 @@
 import { routerMap, constantRouterMap } from '@/router'
 import Layout from '@/pages/Layout/Layout'
-import display1 from '@/pages/display/index1'
-import display2 from '@/pages/display/index2'
-import display3 from '@/pages/display/index3'
-import display4 from '@/pages/display/index4'
+import Layout1 from '@/pages/Layout/Layout1'
 import axios from 'axios';
 import router from '@/router'
 import store from '@/store/'
@@ -70,33 +67,61 @@ const permission = {
 						if (newList.length > 0) {
 							commit('SET_PERMISSION', true)
 							for (let i = 0; i < newList.length; i++) {
-								let moduleRouter = {
-									path: '',
-									component: Layout,
-									icon:newList[i].icon,
-									redirect: '',
-									children: [],
-									name: newList[i].id,
-									meta: {
-										title: newList[i].menuName
+								if(newList[i].id != 5 ){
+									let moduleRouter = {
+										path: '',
+										component: Layout,
+										icon:newList[i].icon,
+										redirect: '',
+										children: [],
+										name: newList[i].id,
+										meta: {
+											title: newList[i].menuName
+										}
+									}
+									let flag = false;
+									// 子菜单
+									let routerChildren = newList[i].childMenu;
+									for (let j = 0; j < routerChildren.length; j++) {
+										let menuId = routerChildren[j].id;
+										// 所有已配置的路由信息中存在相同menuId的
+										if (routerMap[menuId] != undefined) {
+											moduleRouter.children.push(routerMap[menuId]);
+											flag = true;
+										}                            
+
+									}
+									if (flag) {
+										tempRouter.push(moduleRouter);
+									}
+								}else{
+									let moduleRouter2 = {
+										component:Layout1,
+										path: '',
+										icon:newList[i].icon,
+										redirect: '',
+										children: [],
+										name: newList[i].id,
+										meta: {
+											title: newList[i].menuName
+										}
+									}
+									let flag = false;
+									// 子菜单
+									let routerChildren2 = newList[i].childMenu;
+									for (let j = 0; j < routerChildren2.length; j++) {
+										let menuId2 = routerChildren2[j].id;
+										// 所有已配置的路由信息中存在相同menuId的
+										if (routerMap[menuId2] != undefined) {
+											moduleRouter2.children.push(routerMap[menuId2]);
+											flag = true;
+										}                            
+
+									}
+									if (flag) {
+										tempRouter.push(moduleRouter2);
 									}
 								}
-								let flag = false;
-								// 子菜单
-								let routerChildren = newList[i].childMenu;
-                                for (let j = 0; j < routerChildren.length; j++) {
-                                    let menuId = routerChildren[j].id;
-                                    // 所有已配置的路由信息中存在相同menuId的
-                                    if (routerMap[menuId] != undefined) {
-                                        moduleRouter.children.push(routerMap[menuId]);
-                                        flag = true;
-                                    }                            
-
-                                }
-								if (flag) {
-									tempRouter.push(moduleRouter);
-								}
-
 							}
 							// 重定向路由
 							let redirectModule = tempRouter[0].children;
@@ -109,41 +134,7 @@ const permission = {
 							router.push({
                                  path: '/'
 							})
-							tempRouter.push(
-								{
-									path: '',
-									icon: "fa-database",
-									meta:{ title:'展示效果'},
-									name:'5',
-									children:[
-										{
-											path:'display/index1',
-											name: '东侧男',
-											component:display1,
-											meta:{ title:'展示效果'},
-										},
-										{
-											path:'display/index2',
-											name: '东侧女',
-											component:display2,
-											meta:{ title:'展示效果'},
-										},
-										{
-											path:'display/index3',
-											name: '西侧男',
-											component:display3,
-											meta:{ title:'展示效果'},
-										},
-										{
-											path:'display/index4',
-											name: '西侧女',
-											component:display4,
-											meta:{ title:'展示效果'},
-										}
-									]
-								},
-								
-							)
+							// console.log(tempRouter)
 							commit('SET_ROUTERS', tempRouter)
 							resolve()
 						} else {

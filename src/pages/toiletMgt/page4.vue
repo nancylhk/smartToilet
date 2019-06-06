@@ -5,7 +5,7 @@
         </div>
         <div class="toilet-set-box toilet-set-box2">
             <el-row :gutter="30">
-                <el-col :span="18">
+                <el-col :span="24">
                     <div class="displayBox pad20">
                         <el-row class="toliet-set-container  ">
                             <el-col :span="6">
@@ -93,7 +93,7 @@
                         </el-row>
                     </div>
                 </el-col>
-                <el-col :span="6" class="toiletSet-right-container">
+                <!-- <el-col :span="6" class="toiletSet-right-container">
                     <div class='displayBox pad20 box1'>
                         <p>{{nowDate}}&nbsp;&nbsp;&nbsp;&nbsp;{{nowWeek}}</p>
                         <div class="nowTime">{{nowTime}}</div>
@@ -121,7 +121,7 @@
                         <p>当日累计：<span class="commonColor ">110</span></p>
                         <p>累计入厕：<span class="commonColor">1010</span></p>
                     </div>
-                </el-col>
+                </el-col> -->
             </el-row>
             <!-- 设备和厕位绑定弹框 -->
             <el-dialog
