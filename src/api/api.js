@@ -1,6 +1,7 @@
 const BASE_URL = ''
 export default {
-    "login": BASE_URL+'/main/login', //登录验证
+    "login": BASE_URL+'/main/login', //登录验证   
+    "userPasswordUpdate": BASE_URL + '/user/userPasswordUpdate',//
     "menu": BASE_URL + '/main/index',//
     // 用户管理
     "getUserList": BASE_URL + '/user/getUserList',//
@@ -30,7 +31,6 @@ export default {
     "getTodayAmount": BASE_URL + '/toiletController/getTodayAmount',//
     "getRecentAmount": BASE_URL + '/toiletController/getRecentAmount',//
     "getDeviceCountByToiletType": BASE_URL + '/deviceController/getDeviceCountByToiletType',//
-    "": BASE_URL + '',//
     "": BASE_URL + '',//
     "": BASE_URL + '',//
 }

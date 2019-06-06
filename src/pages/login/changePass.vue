@@ -4,17 +4,17 @@
             <span>修改密码</span>
         </div>
         <el-form ref="form" :model="form" label-width="160px" :rules="rules" class="addForm">
-            <el-form-item label="原密码：" prop="deviceCode">
-                <el-input v-model="form.deviceCode"></el-input>
+            <el-form-item label="原密码：" prop="olderPassword">
+                <el-input v-model="form.olderPassword" type="password"></el-input>
             </el-form-item>
-            <el-form-item label="新密码：" prop="deviceName">
-                <el-input v-model="form.deviceName"></el-input>
+            <el-form-item label="新密码：" prop="newPassword">
+                <el-input v-model="form.newPassword" type="password"></el-input>
             </el-form-item>
-            <el-form-item label="确认密码：" prop="productor">
-                <el-input v-model="form.productor"></el-input>
+            <el-form-item label="确认密码：" prop="confirmPass">
+                <el-input v-model="form.confirmPass" type="password"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="onAdd()">修改密码</el-button>
+                <el-button type="primary" @click="changePass()">修改密码</el-button>
                 <!-- <el-button @click="back()">取消</el-button> -->
             </el-form-item>
         </el-form>
@@ -23,45 +23,30 @@
 <script>
 export default {
     data() {
-        var validateDeviceCode = (rule, value, callback) => {
-            const reg = /^[0-9]*[1-9][0-9]*$/ ;
-            
-            if(value === '') {
-                callback(new Error('请输入设备ID'));
-                // console.log(value)
-            } else if(reg.test(this.form.telephone)) {
-                callback();			
+        var validatePass2 = (rule, value, callback) => {
+            if (value === '') {
+            callback(new Error('请再次输入密码'));
+            } else if (value !== this.form.newPassword) {
+            callback(new Error('两次输入密码不一致!'));
             } else {
-                if( value <0 || value > 255){
-                    callback(new Error('设备ID为0~255之间的整数'));
-                }             
+            callback();
             }
         };
         return {
             form:{
-                deviceCode: "",
-                toiletId: "",
-                deviceName: '',
-                status: '',
-                productor: "",
-                toiletTypeId:'',
-                positionId:''
+                olderPassword: "",
+                newPassword: "",
+                confirmPass:''
             },
             rules:{
-                deviceCode:[
-                    { required:true,validator:validateDeviceCode,trigger: 'blur'	}
+                olderPassword:[
+                    { required:true,message:'请输入原密码',trigger: 'blur'	}
                 ],
-                status:[
+                newPassword:[
                     { required:true,message:'请选择设备使用状态',trigger: 'change'},
                 ],
-                deviceName:[
-                    { required:true,message:'请输入设备名称',trigger: 'blur'},
-                ],
-                productor:[
-                    // { message:'请输入设备厂家',trigger: 'blur'},
-                ],
-                positionId:[
-                    { required:true,message:'请选择设备所属区域',trigger: 'change'},
+                confirmPass:[
+                    { required:true,validator:validatePass2,trigger: 'blur'},
                 ]
             }
         }
@@ -73,33 +58,28 @@ export default {
         back() {
             this.$router.back(-1)
         },
-        onAdd() {
+        changePass() {
             let self = this;
             this.$refs.form.validate((valid) => {
                 if (valid) {
                     let params = new FormData();
-                    params.append('deviceCode', self.form.deviceCode)
-                    params.append('toiletId', self.form.toiletId)
-                    params.append('deviceName', self.form.deviceName)
-                    params.append('status', self.form.status)
-                    params.append('productor', self.form.productor)
-                    params.append('toiletTypeId', self.form.toiletTypeId)
-                    params.append('positionId', self.form.positionId)
-                    self.$http.post(self.api.addDevice, params, {
+                    params.append('olderPassword', self.form.olderPassword)
+                    params.append('newPassword', self.form.newPassword)
+                    self.$http.post(self.api.userPasswordUpdate, params, {
                         headers: {
                             "Content-Type": "multipart/form-data"
                         },
                     }, function (response) {
                         if(response.status == 1) {
+                            self.$store.dispatch('LogOut');
                             self.$message({
                                 type: 'success',
-                                message: '添加成功!'
+                                message: '修改成功，页面即将跳转至登录页',
+                                duration: 1000,
+                                onClose: function() {
+                                    location.reload();
+                                }
                             });
-                            setTimeout(function() {
-                                self.$router.push({
-                                    path:'/device/configure'
-                                })
-                            },1500)
                         }else{
                             self.$message({
                             type: 'error',

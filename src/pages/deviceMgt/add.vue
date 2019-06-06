@@ -12,8 +12,9 @@
             </el-form-item>
             <el-form-item label="设备使用状态：" prop="status">
                 <el-select v-model="form.status" placeholder="请选择">
-                    <el-option label="未使用" value="0"></el-option>
-                    <el-option label="使用中" value="1"></el-option>
+                    <el-option label="正常" value="1"></el-option>
+                    <el-option label="故障" value="2"></el-option>
+                    <el-option label="维修" value="3"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="设备所属区域：" prop="positionId">
@@ -38,17 +39,19 @@
 export default {
     data() {
         var validateDeviceCode = (rule, value, callback) => {
-            const reg = /^[0-9]*[1-9][0-9]*$/ ;
-            
+            const reg = /^[0-9]*[1-9][0-9]*$/ ;     
             if(value === '') {
                 callback(new Error('请输入设备ID'));
                 // console.log(value)
-            } else if(reg.test(this.form.telephone)) {
-                callback();			
-            } else {
-                if( value <0 || value > 255){
-                    callback(new Error('设备ID为0~255之间的整数'));
-                }             
+            }else if(!reg.test(this.form.deviceCode)){
+                callback(new Error('请输入0~255之间的整数'));                   
+            }else {
+                if(value <0 || value > 255){
+                    callback(new Error('设备ID为0~255之间的整数')); 
+                }else{
+                    callback();	
+                } 
+                		
             }
         };
         return {
@@ -70,9 +73,6 @@ export default {
                 ],
                 deviceName:[
                     { required:true,message:'请输入设备名称',trigger: 'blur'},
-                ],
-                productor:[
-                    // { message:'请输入设备厂家',trigger: 'blur'},
                 ],
                 positionId:[
                     { required:true,message:'请选择设备所属区域',trigger: 'change'},

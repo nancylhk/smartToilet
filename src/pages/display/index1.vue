@@ -84,7 +84,7 @@
                                     </el-col>
                                     <el-col :span="9" :offset="9">
                                         <ul class="toiletR6">
-                                            <li v-for="o in list1" :key="o.toiletId" >
+                                            <li v-for="o in allList.slice(0,6)" :key="o.toiletId" >
                                                 <img src="../../assets/img/6.png" v-if="o.status=='0'"/>
                                                 <img src="../../assets/img/4.png" v-if="o.status=='1'"/>
                                                 <img src="../../assets/img/5.png" v-if="o.status=='2'"/>
@@ -97,7 +97,7 @@
                                 <el-row >
                                     <el-col :span="7">
                                         <ul class="toiletL6">
-                                            <li v-for="o in list2" :key="o.toiletId">
+                                            <li v-for="o in allList.slice(6,12)" :key="o.toiletId">
                                                 <img src="../../assets/img/1.png" v-if="o.status=='2'"/>
                                                 <img src="../../assets/img/2.png" v-if="o.status=='1'"/>
                                                 <img src="../../assets/img/3.png" v-if="o.status=='0'"/>
@@ -106,7 +106,7 @@
                                     </el-col>
                                     <el-col :span="7" :offset="10">
                                         <ul class="toiletR6">
-                                            <li v-for="o in list3" :key="o.toiletId" class="borderRNo">
+                                            <li v-for="o in allList.slice(12,18)" :key="o.toiletId" class="borderRNo">
                                                 <img src="../../assets/img/6.png" v-if="o.status=='0'"/>
                                                 <img src="../../assets/img/4.png" v-if="o.status=='1'"/>
                                                 <img src="../../assets/img/5.png" v-if="o.status=='2'"/>
@@ -134,22 +134,22 @@
                     </div>
                     <div class="thirdBox">
                         <div class="lightBox">
-                            <h3>12344</h3>
+                            <h3>{{allFlow}}</h3>
                             <h4>累计人数</h4>
                             <img src="../../assets/img/11.png" class="bgLight"/>
                         </div>
                         <div class="lightBox">
-                            <h3>18</h3>
+                            <h3>{{allToilet}}</h3>
                             <h4>总厕位数</h4>
                              <img src="../../assets/img/11.png" class="bgLight"/>
                         </div>
                         <div class="lightBox">
-                            <h3>8</h3>
+                            <h3>{{inuse}}</h3>
                             <h4>已使用数</h4>
                              <img src="../../assets/img/11.png" class="bgLight"/>
                         </div>
                         <div class="lightBox">
-                            <h3>36</h3>
+                            <h3>{{allToilet-inuse}}</h3>
                             <h4>剩余数</h4>
                              <img src="../../assets/img/11.png" class="bgLight"/>
                         </div>
@@ -164,10 +164,13 @@
                     <li  class="left washPen">洗手池</li>
                 </ul>
             </div>
-      </div>
-      <div class="bg-box">
-          <img src="../../assets/img/background.png" />
-      </div>
+        </div>
+        <div class="bg-box">
+            <img src="../../assets/img/background.png" />
+        </div>
+        <div>
+            <img src="../../assets/img/back.png" class="backIcon" @click="goBack()"/>
+        </div>
   </div>
   </template>
   <script>
@@ -181,23 +184,24 @@ export default {
             nowTime:'',
             stompClient:'',
             timer:'',
-            list1:[ 
+            allFlow:0,
+            allToilet:18,
+            inuse:0,
+            allList:[
                 {toiletId:'96',deviceCode:'',deviceId:'',status:'0'},
                 {toiletId:'97',deviceCode:'',deviceId:'',status:'0'},
                 {toiletId:'98',deviceCode:'',deviceId:'',status:'0'},
                 {toiletId:'99',deviceCode:'',deviceId:'',status:'0'},
                 {toiletId:'100',deviceCode:'',deviceId:'',status:'0'},
                 {toiletId:'115',deviceCode:'',deviceId:'',status:'0'},
-            ],
-            list2:[ 
+
                 {toiletId:'116',deviceCode:'',deviceId:'',status:'0'},
                 {toiletId:'117',deviceCode:'',deviceId:'',status:'0'},
                 {toiletId:'118',deviceCode:'',deviceId:'',status:'0'},
                 {toiletId:'119',deviceCode:'',deviceId:'',status:'0'},
                 {toiletId:'120',deviceCode:'',deviceId:'',status:'0'},
                 {toiletId:'121',deviceCode:'',deviceId:'',status:'0'},
-            ],
-            list3:[ 
+
                 {toiletId:'122',deviceCode:'',deviceId:'',status:'0'},
                 {toiletId:'123',deviceCode:'',deviceId:'',status:'0'},
                 {toiletId:'124',deviceCode:'',deviceId:'',status:'0'},
@@ -205,10 +209,24 @@ export default {
                 {toiletId:'126',deviceCode:'',deviceId:'',status:'0'},
                 {toiletId:'127',deviceCode:'',deviceId:'',status:'0'},
             ],
-            allList:[]
+            lastPath:''
         }
     },
+    beforeRouteEnter(to, from, next) {
+        next((vm)=>{ //参数vm就是当前组件的实例。
+            vm.lastPath = from.path
+        })
+    },
     methods:{
+        goBack() {
+            console.log(this.lastPath)
+            if(this.lastPath == '/login' || this.lastPath == '/'){
+                this.$store.dispatch('LogOut');
+                location.reload()
+            }else{
+                this.$router.back(-1)
+            }
+        },     
         initWebSocket() {
             this.connection();
             let that= this;
@@ -232,16 +250,18 @@ export default {
             this.stompClient.connect({},() => {
                 this.stompClient.subscribe('/topic/callback', (msg) => { // 订阅服务端提供的某个topic
                     // console.log(msg.body);  // msg.body存放的是服务端发送给我们的信息
-                    let statusObj = JSON.parse(msg.body);
-                    statusObj = statusObj.data;
-                    let allList = []
-                    self.list1.forEach(e=>{
+                    let statusStr = JSON.parse(msg.body);
+                    let statusObj = statusStr.data;
+                    self.allFlow = statusStr.msg.split(';')[1];
+                    let inuse = 0;
+                    self.allList.forEach(e=>{
                         for( var i in statusObj){
                             if(i == e.toiletId){   			
                                 if(statusObj[i] == '00'){
                                     e.status = '0'
                                 }else if(statusObj[i] == '01'){
                                     e.status = '1'
+                                    inuse ++;
                                 }
                                 break;
                             }else{
@@ -249,34 +269,7 @@ export default {
                             }
                         }                  
                     })
-                    self.list2.forEach(e=>{
-                        for( var i in statusObj){
-                            if(i == e.toiletId){   			
-                                if(statusObj[i] == '00'){
-                                    e.status = '0'
-                                }else if(statusObj[i] == '01'){
-                                    e.status = '1'
-                                }
-                                break;
-                            }else{
-                                e.status = '0'
-                            }
-                        }                  
-                    })
-                    self.list3.forEach(e=>{
-                        for( var i in statusObj){
-                            if(i == e.toiletId){   			
-                                if(statusObj[i] == '00'){
-                                    e.status = '0'
-                                }else if(statusObj[i] == '01'){
-                                    e.status = '1'
-                                }
-                                break;
-                            }else{
-                                e.status = '0'
-                            }
-                        }                  
-                    })
+                    self.inuse = inuse
                 });
             }, (err) => {
                 // 连接发生错误时的处理函数
@@ -291,7 +284,7 @@ export default {
         },  // 断开连接
     },
     mounted(){
-        // this.initWebSocket();
+        this.initWebSocket();
         var self = this;
         var week = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
         var timerID = setInterval(updateTime, 1000);

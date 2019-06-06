@@ -15,7 +15,7 @@
         </el-popover>
       </div>
       <el-menu
-      :unique-opened='uniqueOpen'
+      :unique-opened='isOpenUnique'
       router
       class="el-menu-vertical-demo">
         <template v-for="item in routeList" v-if="!item.hidden ">
@@ -36,7 +36,7 @@
 export default {
     data() {
       return {
-        uniqueOpen:false
+        isOpenUnique:true
       }
     },
     computed: {
