@@ -105,7 +105,7 @@ export default {
                     
                     let total = 0;
                     self.todayAmount.forEach(e=>{
-                        e.amount +=  total
+                        total += e.amount
                     })
                     self.total = total
                 }else{

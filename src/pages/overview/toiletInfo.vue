@@ -31,7 +31,7 @@
                                 <div class="listContent">今日流量：{{item.amount}}</div>
                             </el-col>
                         </el-row>
-                        <p class="noData" v-if="dataInfo.length==2">无数据</p>
+                        <p class="noData" v-if="dataInfo.length<=2">无数据</p>
                     </div>
                 </el-col>
             </el-row>

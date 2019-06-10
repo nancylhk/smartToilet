@@ -16,7 +16,7 @@
                                 <el-row >
                                     <el-col :span="8">
                                         <ul class="toilet2">
-                                            <li v-for="o in list1" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
+                                            <li v-for="o in allList.slice(0,7)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
                                                 <img src="../../assets/img/toiletIcon2.png" />
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                             </li>
@@ -24,7 +24,7 @@
                                     </el-col>
                                     <el-col :span="8" :offset="8" class="borderR">
                                         <ul class="toilet1 toiletMount4">
-                                            <li v-for="o in list2" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
+                                            <li v-for="o in allList.slice(7,11)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                                 <img src="../../assets/img/toiletIcon1.png" />
                                             </li>
@@ -36,7 +36,7 @@
                                 <el-row  >
                                     <el-col :span="8" class="borderL">
                                         <ul class="toilet2 toiletMount4">
-                                            <li v-for="o in list3" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
+                                            <li v-for="o in allList.slice(11,15)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
                                                 <img src="../../assets/img/toiletIcon2.png" />
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                             </li>
@@ -95,8 +95,8 @@
                     <el-form-item label="此厕位号：" prop="toiletId" >
                         <el-input v-model="form.toiletId" readonly></el-input>
                     </el-form-item>
-                    <el-form-item label="此设备号：" prop="deviceCode">
-                        <el-select v-model="form.deviceCode" placeholder="请选择设备号">
+                    <el-form-item label="设备名称：" prop="deviceCode">
+                        <el-select v-model="form.deviceCode" placeholder="请选择设备">
                             <el-option
                             v-for="item in unBindDeviceList"
                             :key="item.deviceId"
@@ -159,7 +159,7 @@ export default {
                     { required: true, message: '请选择设备编号', trigger: 'change' },
                 ]
             },
-            list1:[ 
+            allList:[ 
                 {toiletId:'81',deviceCode:'',deviceId:'',bind:false},
                 {toiletId:'82',deviceCode:'',deviceId:'',bind:false},
                 {toiletId:'83',deviceCode:'',deviceId:'',bind:false},
@@ -167,14 +167,12 @@ export default {
                 {toiletId:'85',deviceCode:'',deviceId:'',bind:false},
                 {toiletId:'86',deviceCode:'',deviceId:'',bind:false},
                 {toiletId:'87',deviceCode:'',deviceId:'',bind:false},
-            ],
-             list2:[ 
+                
                 {toiletId:'88',deviceCode:'',deviceId:'',bind:false},
                 {toiletId:'89',deviceCode:'',deviceId:'',bind:false},
                 {toiletId:'90',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'91',deviceCode:'',deviceId:'',bind:false}
-            ],
-             list3:[ 
+                {toiletId:'91',deviceCode:'',deviceId:'',bind:false},
+
                 {toiletId:'92',deviceCode:'',deviceId:'',bind:false},
                 {toiletId:'93',deviceCode:'',deviceId:'',bind:false},
                 {toiletId:'94',deviceCode:'',deviceId:'',bind:false},
@@ -208,29 +206,13 @@ export default {
     methods:{
         getToiletIds() {
             let self = this;
-            self.list1.forEach( e=>{
-                e.bind = false
-            })
-            self.list2.forEach( e=>{
-                e.bind = false
-            })
-            self.list3.forEach( e=>{
+            self.allList.forEach( e=>{
                 e.bind = false
             })
             self.$http.get(self.api.getToiletIds, {}, function(response) {
                 if(response.status == 1){           
                     response.data.forEach(toiletId => {
-                        self.list1.forEach( e=>{
-                            if(e.toiletId == toiletId ){
-                                e.bind = true
-                            }
-                        })
-                        self.list2.forEach( e=>{
-                            if(e.toiletId == toiletId ){
-                                e.bind = true
-                            }
-                        })
-                        self.list3.forEach( e=>{
+                        self.allList.forEach( e=>{
                             if(e.toiletId == toiletId ){
                                 e.bind = true
                             }
@@ -274,7 +256,7 @@ export default {
             let self = this;
             self.$http.get(self.api.getUnBindDevice, {
                 params:{
-                    
+                    positionId:3
                 }
             }, function(response) {
                 if(response.status == 1){

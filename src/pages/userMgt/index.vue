@@ -9,7 +9,7 @@
         </div>
         <div class="plr20">
             <el-form :inline="true" :model="form" class="demo-form-inline search-container">
-                <el-form-item label="用户名：">
+                <el-form-item label="账户名：">
                     <el-input v-model="form.userName" placeholder="请输入" clearable></el-input>
                 </el-form-item>
                 <el-form-item>
