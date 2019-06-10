@@ -43,7 +43,7 @@
                         <td>{{item.productor}}</td>
                         <td>{{item.createTimes}}</td>
                         <td>
-                            <a class="tedit" @click="edit(item.deviceId)">修改</a>
+                            <a class="tedit" @click="edit(item.deviceId,item.status)">修改</a>
                             <a class="tdelete" v-if="item.status == 0" @click="handleDelete(item.deviceId)">删除</a>
                         </td>
                     </tr>
@@ -83,41 +83,46 @@ export default {
     methods:{
         search() {
             let self = this;
-            self.$http.get(self.api.getDeviceByDeviceCode, {
-                params:{
-                    deviceCode:self.form.deviceCode
-                }
-            }, function(response) {
-                if(response.status == 1){
-                    self.dataList = response.data;
-                    self.dataList.forEach((e) => {
-                        if(e.createTime) {                     
-                            let date = new Date(parseInt(e.createTime));
-                            let Y = date.getFullYear() + '-'
-                            let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-'
-                            let D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ' '
-                            let h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':'
-                            let m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':'
-                            let s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds())
-                            e.createTimes = Y + M + D + h + m + s
-                        }
-                        if(e.status == 0) {
-                            e.statusC = '未绑定'
-                        }else if(e.status == 1) {
-                            e.statusC = '已绑定'
-                        }else if(e.status == 2) {
-                            e.statusC = '故障中'
-                        }else if(e.status == 3) {
-                            e.statusC = '维修中'
-                        }
-                    })
-                }else{
+            if(self.form.deviceCode != '') {           
+                self.$http.get(self.api.getDeviceByDeviceCode, {
+                    params:{
+                        deviceCode:self.form.deviceCode
+                    }
+                }, function(response) {
+                    if(response.status == 1){
+                        self.dataList = response.data;
+                        self.dataList.forEach((e) => {
+                            if(e.createTime) {                     
+                                let date = new Date(parseInt(e.createTime));
+                                let Y = date.getFullYear() + '-'
+                                let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-'
+                                let D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ' '
+                                let h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':'
+                                let m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':'
+                                let s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds())
+                                e.createTimes = Y + M + D + h + m + s
+                            }
+                            if(e.status == 0) {
+                                e.statusC = '未绑定'
+                            }else if(e.status == 1) {
+                                e.statusC = '已绑定'
+                            }else if(e.status == 2) {
+                                e.statusC = '故障中'
+                            }else if(e.status == 3) {
+                                e.statusC = '维修中'
+                            }
+                        })
+                    }else{
 
-                }
-            
-            }, function(response) {
-                //失败回调
-            })
+                    }
+                
+                }, function(response) {
+                    //失败回调
+                })
+            }else{
+                self.getList();
+                self.getLength()
+            }
         },
         handleCurrentChange(val) {
             this.currentPage = val
@@ -191,10 +196,10 @@ export default {
                 path:'/device/add'
             })
         },
-        edit(id) {
+        edit(id,status) {
             this.$router.push({
                 path:"/device/edit",
-                query:{ id:id }
+                query:{ id:id,status:status }
             })
         },
         handleDelete(id) {

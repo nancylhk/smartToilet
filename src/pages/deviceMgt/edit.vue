@@ -10,9 +10,9 @@
             <el-form-item label="设备名称：" prop="deviceName">
                 <el-input v-model="form.deviceName"></el-input>
             </el-form-item>
-            <el-form-item label="设备使用状态：" prop="status">
-                <el-select v-model="form.status" placeholder="请选择">            
-                    <el-option label="未绑定" value="0"></el-option>
+            <el-form-item label="设备状态：" prop="status">
+                <el-select v-model="form.status" placeholder="请选择" :disabled="form.status=='0'">            
+                    <el-option label="未绑定" value="0" disabled></el-option>
                     <el-option label="已绑定" value="1"></el-option>
                     <el-option label="故障中" value="2"></el-option>
                     <el-option label="维修中" value="3"></el-option>
@@ -95,7 +95,7 @@ export default {
                 params:{
                     satrt:'',
                     end:'',
-                    status:1,
+                    status:self.$route.query.status,
                     deviceId:self.$route.query.id
                 }
             }, function(response) {
