@@ -42,8 +42,8 @@
                     <el-input v-model="form.region"></el-input>
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="onEdit">修改</el-button>
-                    <el-button>取消</el-button>
+                    <el-button type="primary" @click="onEdit">确认修改</el-button>
+                    <el-button @click="goBack()">取消</el-button>
                 </el-form-item>
             </el-form>
         </div>
@@ -105,6 +105,9 @@ export default {
         this.getInfo();
     },
     methods:{
+        goBack() {
+            this.$router.back(-1)
+        },
         getInfo() {
             let self = this;
             self.$http.get(self.api.getConfigInfo, {}, function(response) {

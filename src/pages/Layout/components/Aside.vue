@@ -8,8 +8,8 @@
         <p @click="changePass">修改密码</p>
           <div class="headBox" slot="reference">
             <div>
-              <img src="../../../assets/img/headIcon.jpg" class="headIcon"/>
-              <p>戚薇</p>
+              <img src="../../../assets/img/headIcon.png" class="headIcon"/>
+              <p>{{username}}</p>
             </div>
           </div>
         </el-popover>
@@ -42,6 +42,9 @@ export default {
     computed: {
         routeList() {
             return this.$store.getters.permission_routers
+        },
+        username() {
+           return this.$store.getters.token
         }
     },
     mounted() {

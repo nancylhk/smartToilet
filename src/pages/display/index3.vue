@@ -29,10 +29,10 @@
                                 <span class="using">已使用</span>
                                 <img class="iconUse" src="../../assets/img/2.png"/>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <span class="cannotuse">修理中</span>
                                 <img class="iconUse" src="../../assets/img/1.png"/>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="secondBox">

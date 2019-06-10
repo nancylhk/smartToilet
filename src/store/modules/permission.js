@@ -147,6 +147,8 @@ const permission = {
 
 				}).catch(function onRejected(error) {
 					console.error(error);
+					store.dispatch('LogOut');
+					location.reload();
 				});
 
 			})

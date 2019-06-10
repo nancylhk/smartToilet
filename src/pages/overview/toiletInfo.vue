@@ -1,6 +1,6 @@
 <template>
-    <div class="render-div">
-        <p class="dataTitle">今日数据</p>
+    <div class="render-div"> 
+        <p class="dataTitle" style="margin-bottom:0;">今日数据</p>
         <div class="toiletInfo-container">
             <el-row>
                 <el-col :span="12">
@@ -18,6 +18,7 @@
                                 <div class="listContent">今日流量：1</div>
                             </el-col> -->
                         </el-row>
+                        <p class="noData" v-if="dataInfo.length==0">无数据</p>
                     </div>
                 </el-col>
                 <el-col :span="12">
@@ -30,6 +31,7 @@
                                 <div class="listContent">今日流量：{{item.amount}}</div>
                             </el-col>
                         </el-row>
+                        <p class="noData" v-if="dataInfo.length==2">无数据</p>
                     </div>
                 </el-col>
             </el-row>
@@ -40,11 +42,11 @@
                         <el-row>
                             <el-col :span="12" class="content">
                                 <p class="left-title">南区</p>
-                                <div class="listContent">设备数：10</div>
+                                <div class="listContent">设备数：0</div>
                             </el-col>
                             <el-col :span="12" class="content">
                                 <p class="left-title">北区</p>
-                                <div class="listContent">设备数：11</div>
+                                <div class="listContent">设备数：0</div>
                             </el-col>
                         </el-row>
                     </div>
@@ -55,13 +57,13 @@
                         <el-row>
                             <el-col :span="12" class="content">
                                 <p class="left-title">南区</p>
-                                <div class="listContent">隔间：1</div>
-                                <div class="listContent">已使用：1</div>
+                                <div class="listContent">隔间：0</div>
+                                <div class="listContent">已使用：0</div>
                             </el-col>
                             <el-col :span="12" class="content">
                                 <p class="left-title">北区</p>
-                                <div class="listContent">隔间：1</div>
-                                <div class="listContent">已使用：1</div>
+                                <div class="listContent">隔间：0</div>
+                                <div class="listContent">已使用：0</div>
                             </el-col>
                         </el-row>
                     </div>

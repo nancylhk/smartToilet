@@ -9,8 +9,8 @@
         </div>
         <div class="plr20">
             <el-form :inline="true" :model="form" class="demo-form-inline search-container">
-                <el-form-item label="设备ID：">
-                    <el-input v-model="form.deviceId" placeholder="请输入" clearable></el-input>
+                <el-form-item label="设备编号：">
+                    <el-input v-model="form.deviceCode" placeholder="请输入" clearable></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" @click="search">查询</el-button>
@@ -39,12 +39,12 @@
                     <tr v-for="item in dataList">
                         <td>{{item.deviceCode}}</td>
                         <td>{{item.deviceName}}</td>
-                        <td>{{item.status==1?'使用中':'未使用'}}</td>
+                        <td>{{item.statusC}}</td>
                         <td>{{item.productor}}</td>
                         <td>{{item.createTimes}}</td>
                         <td>
                             <a class="tedit" @click="edit(item.deviceId)">修改</a>
-                            <a class="tdelete" @click="handleDelete(item.deviceId)">删除</a>
+                            <a class="tdelete" v-if="item.status == 0" @click="handleDelete(item.deviceId)">删除</a>
                         </td>
                     </tr>
                 </tbody>
@@ -67,7 +67,7 @@ export default {
     data() {
         return{
             form:{
-                deviceId:''
+                deviceCode:''
             },
             dataList:[],
             currentPage:1,
@@ -82,8 +82,42 @@ export default {
     },
     methods:{
         search() {
-            this.getList();
-            this.getLength();
+            let self = this;
+            self.$http.get(self.api.getDeviceByDeviceCode, {
+                params:{
+                    deviceCode:self.form.deviceCode
+                }
+            }, function(response) {
+                if(response.status == 1){
+                    self.dataList = response.data;
+                    self.dataList.forEach((e) => {
+                        if(e.createTime) {                     
+                            let date = new Date(parseInt(e.createTime));
+                            let Y = date.getFullYear() + '-'
+                            let M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-'
+                            let D = (date.getDate() < 10 ? '0' + date.getDate() : date.getDate()) + ' '
+                            let h = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':'
+                            let m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':'
+                            let s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds())
+                            e.createTimes = Y + M + D + h + m + s
+                        }
+                        if(e.status == 0) {
+                            e.statusC = '未绑定'
+                        }else if(e.status == 1) {
+                            e.statusC = '已绑定'
+                        }else if(e.status == 2) {
+                            e.statusC = '故障中'
+                        }else if(e.status == 3) {
+                            e.statusC = '维修中'
+                        }
+                    })
+                }else{
+
+                }
+            
+            }, function(response) {
+                //失败回调
+            })
         },
         handleCurrentChange(val) {
             this.currentPage = val
@@ -96,7 +130,7 @@ export default {
                     satrt:'',
                     end:'',
                     status:'',
-                    deviceId:self.form.deviceId
+                    deviceId:''
                 }
             }, function(response) {
                 if(response.status == 1){
@@ -118,7 +152,7 @@ export default {
                     start:start,
                     end:end,
                     status:'',
-                    deviceId:self.form.deviceId
+                    deviceId:''
                 }
             }, function(response) {
                 if(response.status == 1){
@@ -133,6 +167,15 @@ export default {
                             let m = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':'
                             let s = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds())
                             e.createTimes = Y + M + D + h + m + s
+                        }
+                        if(e.status == 0) {
+                            e.statusC = '未绑定'
+                        }else if(e.status == 1) {
+                            e.statusC = '已绑定'
+                        }else if(e.status == 2) {
+                            e.statusC = '故障中'
+                        }else if(e.status == 3) {
+                            e.statusC = '维修中'
                         }
                     })
                 }else{
@@ -156,7 +199,7 @@ export default {
         },
         handleDelete(id) {
             let self = this;
-            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+            this.$confirm('此操作将永久删除该设备, 是否继续?', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning'

@@ -4,19 +4,19 @@
             <span>新增设备信息</span>
         </div>
         <el-form ref="form" :model="form" label-width="160px" :rules="rules" class="addForm">
-            <el-form-item label="设备ID：" prop="deviceCode">
+            <el-form-item label="设备编号：" prop="deviceCode">
                 <el-input v-model="form.deviceCode"></el-input>
             </el-form-item>
             <el-form-item label="设备名称：" prop="deviceName">
                 <el-input v-model="form.deviceName"></el-input>
             </el-form-item>
-            <el-form-item label="设备使用状态：" prop="status">
+            <!-- <el-form-item label="设备使用状态：" prop="status">
                 <el-select v-model="form.status" placeholder="请选择">
                     <el-option label="正常" value="1"></el-option>
                     <el-option label="故障" value="2"></el-option>
                     <el-option label="维修" value="3"></el-option>
                 </el-select>
-            </el-form-item>
+            </el-form-item> -->
             <el-form-item label="设备所属区域：" prop="positionId">
                 <el-select v-model="form.positionId" placeholder="请选择">
                     <el-option label="东" value="1"></el-option>
@@ -59,7 +59,7 @@ export default {
                 deviceCode: "",
                 toiletId: "",
                 deviceName: '',
-                status: '',
+                status: 0,
                 productor: "",
                 toiletTypeId:'',
                 positionId:''

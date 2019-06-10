@@ -7,6 +7,10 @@
             <el-row :gutter="30">
                 <el-col :span="24">
                     <div class="displayBox pad20">
+                        <div class="bindExplain">
+                            <span class="bind"><em></em>已绑定设备</span>
+                            <span class="unbind"><em></em>未绑定设备</span>
+                        </div>
                         <el-row class="toliet-set-container  ">             
                             <el-col :span="12">
                                 <el-row >

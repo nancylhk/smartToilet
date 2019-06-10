@@ -38,7 +38,18 @@ import lineComp from '../../components/charts/LineComp.vue';
 export default {
     data() {
         return {
-            todayAmount:[],
+            todayAmount:[
+                {
+                    amount: 0,
+                    toiletTypeId: 2,
+                    toiletTypeName: "女厕所"
+                },
+                {
+                    amount: 0,
+                    toiletTypeId: 1,
+                    toiletTypeName: "男厕所"
+                }
+            ],
             total:0,
             incomeTrendData: [
                 // {	name:'',
@@ -75,7 +86,23 @@ export default {
             let self = this;
             self.$http.get(self.api.getTodayAmount, {}, function(response) {
                 if(response){
-                    self.todayAmount = response;
+                    if(response.length==0) {
+                        self.todayAmount=[
+                            {
+                                amount: 0,
+                                toiletTypeId: 2,
+                                toiletTypeName: "女厕所"
+                            },
+                            {
+                                amount: 0,
+                                toiletTypeId: 1,
+                                toiletTypeName: "男厕所"
+                            }
+                        ]
+                    }else{
+                        self.todayAmount = response;
+                    }
+                    
                     let total = 0;
                     self.todayAmount.forEach(e=>{
                         e.amount +=  total

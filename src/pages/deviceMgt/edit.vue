@@ -4,7 +4,7 @@
             <span>修改设备信息</span>
         </div>
         <el-form ref="form" :model="form" label-width="160px" :rules="rules" class="addForm">
-            <el-form-item label="设备ID：" prop="deviceCode">
+            <el-form-item label="设备编号：" prop="deviceCode">
                 <el-input v-model="form.deviceCode"></el-input>
             </el-form-item>
             <el-form-item label="设备名称：" prop="deviceName">
@@ -12,9 +12,10 @@
             </el-form-item>
             <el-form-item label="设备使用状态：" prop="status">
                 <el-select v-model="form.status" placeholder="请选择">            
-                    <el-option label="正常" value="1"></el-option>
-                    <el-option label="故障" value="2"></el-option>
-                    <el-option label="维修" value="3"></el-option>
+                    <el-option label="未绑定" value="0"></el-option>
+                    <el-option label="已绑定" value="1"></el-option>
+                    <el-option label="故障中" value="2"></el-option>
+                    <el-option label="维修中" value="3"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="设备所属区域：" prop="positionId">
@@ -99,9 +100,12 @@ export default {
                 }
             }, function(response) {
                 if(response){
-                    self.form= response.data[0];
-                    self.form.status = '' + self.form.status;
-                    self.form.positionId = '' + self.form.positionId;
+                    if(response.data.length>0) {
+                        self.form= response.data[0];
+                        self.form.status = '' + self.form.status;
+                        self.form.positionId = '' + self.form.positionId;
+                    }
+                    
                     
                 }else{
                 }     

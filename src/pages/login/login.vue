@@ -56,7 +56,7 @@ export default {
                         },                  
                     },function(response){ 
                         if(response.status == 1) {                      
-                            self.$store.dispatch('LoginByUsername', 'aaa').then(() => {                           
+                            self.$store.dispatch('LoginByUsername', self.form.name).then(() => {                           
                                 self.$store.dispatch('GenerateRoutes').then(() => {
                                     self.$router.addRoutes(self.$store.getters.addRouters) // 动态添加可访问路由表
                                     

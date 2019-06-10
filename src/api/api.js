@@ -16,6 +16,7 @@ export default {
     "addDevice": BASE_URL + '/deviceController/addDevice',//
     "deleteDevice": BASE_URL + '/deviceController/deleteDevice',//
     "editDevice": BASE_URL + '/deviceController/editDevice',//
+    "getDeviceByDeviceCode": BASE_URL + "/deviceController/getDeviceByDeviceCode",
     // 平台信息
     "getConfigInfo": BASE_URL + '/config/getConfigInfo',// 
     "updateConfig": BASE_URL + '/config/updateConfig',//
