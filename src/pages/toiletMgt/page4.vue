@@ -16,17 +16,23 @@
                                 <el-row >
                                     <el-col :span="8">
                                         <ul class="toilet2">
-                                            <li v-for="o in allList.slice(0,7)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
-                                                <img src="../../assets/img/toiletIcon2.png" />
-                                                <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
+                                            <li>
+                                                <img src="../../assets/img/tuoba.png" />
+                                            </li>
+                                            <li v-for="o in allList.slice(1,7)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
+                                                <img src="../../assets/img/dun5.png" v-if="o.style==0"/>
+                                                <img src="../../assets/img/toiletIcon2.png" v-if="o.style==1"/>
+                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>                                                                              
                                             </li>
                                         </ul>
                                     </el-col>
-                                    <el-col :span="8" :offset="8" class="borderR">
-                                        <ul class="toilet1 sRbox5">
+                                    <el-col :span="8" :offset="8" class="borderR relative5">
+                                        <ul class="toilet1 sRbox5 ">
                                             <li v-for="o in allList.slice(7,12)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
-                                                <img src="../../assets/img/toiletIcon1.png" />
+                                                
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
+                                                <img src="../../assets/img/toiletIcon1.png" v-if="o.style==1"/>
+                                                <img src="../../assets/img/dun6.png" v-if="o.style==0"/>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -38,7 +44,8 @@
                                         <ul class="toilet2">
                                             <ul class="toilet2 sLbox5">
                                             <li v-for="o in allList.slice(12,17)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
-                                                <img src="../../assets/img/toiletIcon2.png" />
+                                                <img src="../../assets/img/toiletIcon2.png" v-if="o.style==1"/>
+                                                <img src="../../assets/img/dun5.png" v-if="o.style==0"/>
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                             </li>
                                         </ul>
@@ -47,8 +54,10 @@
                                     <el-col :span="8" :offset="8" class="borderR">
                                         <ul class="toilet1 sRbox5">
                                             <li v-for="o in allList.slice(17,22)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
-                                                <img src="../../assets/img/toiletIcon1.png" />
+                                                
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
+                                                <img src="../../assets/img/toiletIcon1.png" v-if="o.style==1"/>
+                                                <img src="../../assets/img/dun6.png" v-if="o.style==0"/>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -56,10 +65,11 @@
                             </el-col>
                             <el-col :span="6">
                                 <el-row >
-                                    <el-col :span="8" class="borderL">
-                                        <ul class="toilet2 sLbox5">
+                                    <el-col :span="8" class="borderL relative5">
+                                        <ul class="toilet2 sLbox5 ">
                                             <li v-for="o in allList.slice(22,27)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
-                                                <img src="../../assets/img/toiletIcon2.png" />
+                                                <img src="../../assets/img/toiletIcon2.png"  v-if="o.style==1"/>
+                                                <img src="../../assets/img/dun5.png" v-if="o.style==0"/>
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                             </li>
                                         </ul>
@@ -67,8 +77,10 @@
                                     <el-col :span="8" :offset="8" class="borderR">
                                         <ul class="toilet1 sRbox5">
                                             <li v-for="o in allList.slice(27,32)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
-                                                <img src="../../assets/img/toiletIcon1.png" />
+                                               
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
+                                                 <img src="../../assets/img/toiletIcon1.png"  v-if="o.style==1"/>
+                                                <img src="../../assets/img/dun6.png" v-if="o.style==0"/>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -79,7 +91,8 @@
                                     <el-col :span="8" class="borderL">
                                         <ul class="toilet2 sLbox5">
                                             <li v-for="o in allList.slice(32,37)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
-                                                <img src="../../assets/img/toiletIcon2.png" />
+                                                <img src="../../assets/img/toiletIcon2.png" v-if="o.style==1"/>
+                                                <img src="../../assets/img/dun5.png" v-if="o.style==0"/>
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                             </li>
                                         </ul>
@@ -87,8 +100,10 @@
                                     <el-col :span="8" :offset="8">
                                         <ul class="toilet1">
                                             <li v-for="o in allList.slice(37,44)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
-                                                <img src="../../assets/img/toiletIcon1.png" />
+                                                
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
+                                                <img src="../../assets/img/toiletIcon1.png" v-if="o.style==1"/>
+                                                <img src="../../assets/img/dun5.png" v-if="o.style==0"/>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -203,57 +218,57 @@ export default {
                 ]
             },
             allList:[ 
-                {toiletId:'1',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'2',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'3',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'4',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'5',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'6',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'7',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'6',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'5',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'4',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'3',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'2',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'1',deviceCode:'',deviceId:'',bind:false,style:0},
                 
-                {toiletId:'8',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'9',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'10',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'11',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'12',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'7',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'8',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'9',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'10',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'11',deviceCode:'',deviceId:'',bind:false,style:0},
                 
-                {toiletId:'13',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'14',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'15',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'16',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'17',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'16',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'15',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'14',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'13',deviceCode:'',deviceId:'',bind:false,style:1},
+                {toiletId:'12',deviceCode:'',deviceId:'',bind:false,style:1},
                 
-                {toiletId:'18',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'19',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'20',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'21',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'22',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'17',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'18',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'19',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'20',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'21',deviceCode:'',deviceId:'',bind:false,style:0},
                 
-                {toiletId:'23',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'24',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'25',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'26',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'27',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'26',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'25',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'24',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'23',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'22',deviceCode:'',deviceId:'',bind:false,style:0},
                 
-                {toiletId:'28',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'29',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'30',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'31',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'32',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'27',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'28',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'29',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'30',deviceCode:'',deviceId:'',bind:false,style:1},
+                {toiletId:'31',deviceCode:'',deviceId:'',bind:false,style:1},
                 
-                {toiletId:'33',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'34',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'35',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'36',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'37',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'36',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'35',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'34',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'33',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'32',deviceCode:'',deviceId:'',bind:false,style:0},
                 
-                {toiletId:'38',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'39',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'40',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'41',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'42',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'43',deviceCode:'',deviceId:'',bind:false},
-                {toiletId:'44',deviceCode:'',deviceId:'',bind:false},
+                {toiletId:'37',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'38',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'39',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'40',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'41',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'42',deviceCode:'',deviceId:'',bind:false,style:0},
+                {toiletId:'43',deviceCode:'',deviceId:'',bind:false,style:0},
             ],
         }
     },

@@ -152,6 +152,9 @@
         width: 100%;
     }
 }
+.relative5{
+    margin-left: 120px;
+}
 .toliet-set-container{
     border: 6px solid #0090e1;
     border-bottom: none;
@@ -186,7 +189,7 @@
             // box-sizing: content-box;
             img{
                 width: 60px;
-                height: auto;
+                height: 60px;
             }
         }
         li:last-of-type{
@@ -230,8 +233,8 @@
             border-color: #999;
             margin-bottom: 10px;
             img{
-                width: 50px;
-                height: auto;
+                width: 58px;
+                height: 50px;
             }
         }
         li:last-of-type{
@@ -827,24 +830,28 @@
 .toliet-display-container{
     ul li {
         img{
-            width: 54px;
-            height: 56px;
+            width: 60px;
+            height: 50px;
         }
     }
     .toiletL7{
         li{
             height: 80px;
             border-bottom: 4px solid #00bffd;
-            padding-top: 9px;
+            padding-top: 14px;
             text-align: center
         }
-        
+        .chuwujian{
+            font-size: 24px;
+            color: #f00;
+            line-height: 54px;
+        }
     }
     .toiletR7{
         li{
             height: 80px;
             border-bottom: 4px solid #00bffd;
-            padding-top: 9px;
+            padding-top: 14px;
             text-align: center;
         }
     }
@@ -869,6 +876,7 @@
         border-right: none
     }
 }
+
 .toliet-display-container2{
     .colspan1{
         width: 218px;
@@ -881,15 +889,24 @@
     }
     .toiletL7 ,.toiletL4 ,.toiletR4{
         img{
-            width: 54px;
-            height: 56px;
+            width: 60px;
+            height: 50px;
+        }
+        .fontImg{
+            width: 50px;
+            height: 50px;
+        }
+        .chuwujian{
+            font-size: 24px;
+            color: #f00;
+            line-height: 54px;
         }
     }
     .toiletL7{
         li{
             height: 80px;
             border-bottom: 4px solid #00bffd;
-            padding-top: 8px;
+            padding-top: 13px;
             text-align: center
             
         }
@@ -899,7 +916,7 @@
         li{
             height: 140px;
             border-bottom: 4px solid #00bffd;
-            padding-top: 40px;
+            padding-top: 45px;
             text-align: center
         }
     }

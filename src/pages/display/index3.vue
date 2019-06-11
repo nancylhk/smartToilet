@@ -41,19 +41,31 @@
                                 <el-row >
                                     <el-col :span="6">
                                         <ul class="toiletL7">
-                                            <li v-for="o in allList.slice(0,7)" :key="o.toiletId">
-                                                <img src="../../assets/img/1.png" v-if="o.status=='2'"/>
-                                                <img src="../../assets/img/2.png" v-if="o.status=='1'"/>
-                                                <img src="../../assets/img/3.png" v-if="o.status=='0'"/>
+                                            <li >
+                                                <!-- <img src="../../assets/img/tuoba2.png" class="fontImg"/> -->
+                                                <span class="chuwujian">储物间</span>
+                                            </li>
+                                            <li v-for="o in allList.slice(1,7)" :key="o.toiletId">
+                                                <img src="../../assets/img/1.png" v-if="o.status=='2'&&o.style=='1'"/>
+                                                <img src="../../assets/img/2.png" v-if="o.status=='1'&&o.style=='1'"/>
+                                                <img src="../../assets/img/3.png" v-if="o.status=='0'&&o.style=='1'"/>
+
+                                                <img src="../../assets/img/dun8.png" v-if="o.status=='2'&&o.style=='0'"/>
+                                                <img src="../../assets/img/dun4.png" v-if="o.status=='1'&&o.style=='0'"/>
+                                                <img src="../../assets/img/dun2.png" v-if="o.status=='0'&&o.style=='0'"/>
                                             </li>
                                         </ul>
                                     </el-col>
                                     <el-col :span="9" :offset="9">
                                         <ul class="toiletR4">
                                             <li v-for="o in allList.slice(7,11)" :key="o.toiletId" >
-                                                <img src="../../assets/img/6.png" v-if="o.status=='0'"/>
-                                                <img src="../../assets/img/4.png" v-if="o.status=='1'"/>
-                                                <img src="../../assets/img/5.png" v-if="o.status=='2'"/>
+                                                <img src="../../assets/img/6.png" v-if="o.status=='0'&&o.style=='1'"/>
+                                                <img src="../../assets/img/4.png" v-if="o.status=='1'&&o.style=='1'"/>
+                                                <img src="../../assets/img/5.png" v-if="o.status=='2'&&o.style=='1'"/>
+
+                                                <img src="../../assets/img/dun1.png" v-if="o.status=='0'&&o.style=='0'"/>
+                                                <img src="../../assets/img/dun3.png" v-if="o.status=='1'&&o.style=='0'"/>
+                                                <img src="../../assets/img/dun7.png" v-if="o.status=='2'&&o.style=='0'"/>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -64,9 +76,13 @@
                                     <el-col :span="8">
                                         <ul class="toiletL4">
                                             <li v-for="o in allList.slice(11,15)" :key="o.toiletId">
-                                                <img src="../../assets/img/1.png" v-if="o.status=='2'"/>
-                                                <img src="../../assets/img/2.png" v-if="o.status=='1'"/>
-                                                <img src="../../assets/img/3.png" v-if="o.status=='0'"/>
+                                                <img src="../../assets/img/1.png" v-if="o.status=='2'&&o.style=='1'"/>
+                                                <img src="../../assets/img/2.png" v-if="o.status=='1'&&o.style=='1'"/>
+                                                <img src="../../assets/img/3.png" v-if="o.status=='0'&&o.style=='1'"/>
+
+                                                <img src="../../assets/img/dun8.png" v-if="o.status=='2'&&o.style=='0'"/>
+                                                <img src="../../assets/img/dun4.png" v-if="o.status=='1'&&o.style=='0'"/>
+                                                <img src="../../assets/img/dun2.png" v-if="o.status=='0'&&o.style=='0'"/>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -185,26 +201,26 @@ export default {
             stompClient:'',
             timer:'',
             allFlow:0,
-            allToilet:15,
+            allToilet:14,
             inuse:0,
             allList:[ 
-                {toiletId:'81',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'82',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'83',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'84',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'85',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'86',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'87',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'86',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'85',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'84',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'83',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'82',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'81',deviceCode:'',deviceId:'',status:'0',style:'0'},
                 
-                {toiletId:'88',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'89',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'90',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'91',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'87',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'88',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'89',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'90',deviceCode:'',deviceId:'',status:'0',style:'0'},
                 
-                {toiletId:'92',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'93',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'94',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'95',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'94',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'93',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'92',deviceCode:'',deviceId:'',status:'0',style:'1'},
+                {toiletId:'91',deviceCode:'',deviceId:'',status:'0',style:'1'},
             ],
             lastPath:''
         }
