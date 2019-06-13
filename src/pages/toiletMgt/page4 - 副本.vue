@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="dataTitle mb0">
-            <span>东侧（女）</span>
+            <span>西侧（女）</span>
         </div>
         <div class="toilet-set-box toilet-set-box2">
             <el-row :gutter="30">
@@ -26,8 +26,8 @@
                                             </li>
                                         </ul>
                                     </el-col>
-                                    <el-col :span="8" :offset="8" class="borderR">
-                                        <ul class="toilet1 sRbox5">
+                                    <el-col :span="8" :offset="8" class="borderR relative5">
+                                        <ul class="toilet1 sRbox5 ">
                                             <li v-for="o in allList.slice(7,12)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
                                                 
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
@@ -41,17 +41,20 @@
                             <el-col :span="6">
                                 <el-row >
                                     <el-col :span="8" class="borderL2">
-                                        <ul class="toilet2 sLbox5">
+                                        <ul class="toilet2">
+                                            <ul class="toilet2 sLbox5">
                                             <li v-for="o in allList.slice(12,17)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
                                                 <img src="../../assets/img/toiletIcon2.png" v-if="o.style==1"/>
                                                 <img src="../../assets/img/dun5.png" v-if="o.style==0"/>
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                             </li>
                                         </ul>
+                                        </ul>
                                     </el-col>
                                     <el-col :span="8" :offset="8" class="borderR">
                                         <ul class="toilet1 sRbox5">
-                                            <li v-for="o in allList.slice(17,22)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">                                      
+                                            <li v-for="o in allList.slice(17,22)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
+                                                
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                                 <img src="../../assets/img/toiletIcon1.png" v-if="o.style==1"/>
                                                 <img src="../../assets/img/dun6.png" v-if="o.style==0"/>
@@ -62,8 +65,8 @@
                             </el-col>
                             <el-col :span="6">
                                 <el-row >
-                                    <el-col :span="8" class="borderL">
-                                        <ul class="toilet2 sLbox5">
+                                    <el-col :span="8" class="borderL relative5">
+                                        <ul class="toilet2 sLbox5 ">
                                             <li v-for="o in allList.slice(22,27)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
                                                 <img src="../../assets/img/toiletIcon2.png"  v-if="o.style==1"/>
                                                 <img src="../../assets/img/dun5.png" v-if="o.style==0"/>
@@ -87,7 +90,7 @@
                                 <el-row >
                                     <el-col :span="8" class="borderL">
                                         <ul class="toilet2 sLbox5">
-                                           <li v-for="o in allList.slice(32,37)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
+                                            <li v-for="o in allList.slice(32,37)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
                                                 <img src="../../assets/img/toiletIcon2.png" v-if="o.style==1"/>
                                                 <img src="../../assets/img/dun5.png" v-if="o.style==0"/>
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
@@ -100,7 +103,7 @@
                                                 
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                                 <img src="../../assets/img/toiletIcon1.png" v-if="o.style==1"/>
-                                                <img src="../../assets/img/dun6.png" v-if="o.style==0"/>
+                                                <img src="../../assets/img/dun5.png" v-if="o.style==0"/>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -198,6 +201,22 @@ export default {
             dialogVisible:false,
             unBindDialogVisible:false,
             unBindDeviceList:[],
+            form:{
+                toiletId:'',
+                deviceCode:''
+            },
+            unbindForm:{
+                toiletId:'',
+                deviceCode:''
+            },
+            rules:{
+                toiletId:[
+                    { required: true, message: '请输入活动名称', trigger: 'blur' },
+                ],
+                deviceCode:[
+                    { required: true, message: '请选择设备编号', trigger: 'change' },
+                ]
+            },
             allList:[ 
                 {toiletId:'',deviceCode:'',deviceId:'',bind:false,style:0},
                 {toiletId:'6',deviceCode:'',deviceId:'',bind:false,style:0},
@@ -251,25 +270,10 @@ export default {
                 {toiletId:'42',deviceCode:'',deviceId:'',bind:false,style:0},
                 {toiletId:'43',deviceCode:'',deviceId:'',bind:false,style:0},
             ],
-            form:{
-                toiletId:'',
-                deviceCode:''
-            },
-            unbindForm:{
-                toiletId:'',
-                deviceCode:''
-            },
-            rules:{
-                toiletId:[
-                    { required: true, message: '请输入活动名称', trigger: 'blur' },
-                ],
-                deviceCode:[
-                    { required: true, message: '请选择设备编号', trigger: 'change' },
-                ]
-            }
         }
     },
     created() {
+        this.getUnBindDevice()
         this.getToiletIds()
     },
     mounted() {
@@ -306,7 +310,6 @@ export default {
                                 e.bind = true
                             }
                         })
-                        
                     });
                 }else{
 
@@ -346,7 +349,7 @@ export default {
             let self = this;
             self.$http.get(self.api.getUnBindDevice, {
                 params:{
-                    positionId:1
+                    positionId:3
                 }
             }, function(response) {
                 if(response.status == 1){

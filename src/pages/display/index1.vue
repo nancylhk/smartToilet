@@ -23,11 +23,11 @@
                         <div class="twoBox">
                             <div>
                                 <span class="unuse">未使用</span>
-                                <img class="iconUse" src="../../assets/img/3.png"/>
+                                <!-- <img class="iconUse" src="../../assets/img/3.png"/> -->
                             </div>
                             <div>
                                 <span class="using">已使用</span>
-                                <img class="iconUse" src="../../assets/img/2.png"/>
+                                <!-- <img class="iconUse" src="../../assets/img/2.png"/> -->
                             </div>
                             <!-- <div>
                                 <span class="cannotuse">修理中</span>
@@ -85,9 +85,13 @@
                                     <el-col :span="9" :offset="9">
                                         <ul class="toiletR6">
                                             <li v-for="o in allList.slice(0,6)" :key="o.toiletId" >
-                                                <img src="../../assets/img/6.png" v-if="o.status=='0'"/>
-                                                <img src="../../assets/img/4.png" v-if="o.status=='1'"/>
-                                                <img src="../../assets/img/5.png" v-if="o.status=='2'"/>
+                                                 <img src="../../assets/img/6.png" v-if="o.status=='0'&&o.style=='1'"/>
+                                                <img src="../../assets/img/4.png" v-if="o.status=='1'&&o.style=='1'"/>
+                                                <img src="../../assets/img/5.png" v-if="o.status=='2'&&o.style=='1'"/>
+
+                                                <img src="../../assets/img/dun1.png" v-if="o.status=='0'&&o.style=='0'"/>
+                                                <img src="../../assets/img/dun3.png" v-if="o.status=='1'&&o.style=='0'"/>
+                                                <img src="../../assets/img/dun7.png" v-if="o.status=='2'&&o.style=='0'"/>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -98,18 +102,26 @@
                                     <el-col :span="7">
                                         <ul class="toiletL6">
                                             <li v-for="o in allList.slice(6,12)" :key="o.toiletId">
-                                                <img src="../../assets/img/1.png" v-if="o.status=='2'"/>
-                                                <img src="../../assets/img/2.png" v-if="o.status=='1'"/>
-                                                <img src="../../assets/img/3.png" v-if="o.status=='0'"/>
+                                               <img src="../../assets/img/1.png" v-if="o.status=='2'&&o.style=='1'"/>
+                                                <img src="../../assets/img/2.png" v-if="o.status=='1'&&o.style=='1'"/>
+                                                <img src="../../assets/img/3.png" v-if="o.status=='0'&&o.style=='1'"/>
+
+                                                <img src="../../assets/img/dun8.png" v-if="o.status=='2'&&o.style=='0'"/>
+                                                <img src="../../assets/img/dun4.png" v-if="o.status=='1'&&o.style=='0'"/>
+                                                <img src="../../assets/img/dun2.png" v-if="o.status=='0'&&o.style=='0'"/>
                                             </li>
                                         </ul>
                                     </el-col>
                                     <el-col :span="7" :offset="10">
                                         <ul class="toiletR6">
                                             <li v-for="o in allList.slice(12,18)" :key="o.toiletId" class="borderRNo">
-                                                <img src="../../assets/img/6.png" v-if="o.status=='0'"/>
-                                                <img src="../../assets/img/4.png" v-if="o.status=='1'"/>
-                                                <img src="../../assets/img/5.png" v-if="o.status=='2'"/>
+                                                <img src="../../assets/img/6.png" v-if="o.status=='0'&&o.style=='1'"/>
+                                                <img src="../../assets/img/4.png" v-if="o.status=='1'&&o.style=='1'"/>
+                                                <img src="../../assets/img/5.png" v-if="o.status=='2'&&o.style=='1'"/>
+
+                                                <img src="../../assets/img/dun1.png" v-if="o.status=='0'&&o.style=='0'"/>
+                                                <img src="../../assets/img/dun3.png" v-if="o.status=='1'&&o.style=='0'"/>
+                                                <img src="../../assets/img/dun7.png" v-if="o.status=='2'&&o.style=='0'"/>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -188,26 +200,26 @@ export default {
             allToilet:18,
             inuse:0,
             allList:[
-                {toiletId:'96',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'97',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'98',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'99',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'100',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'115',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'96',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'97',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'98',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'99',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'100',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'115',deviceCode:'',deviceId:'',status:'0',style:'0'},
 
-                {toiletId:'116',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'117',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'118',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'119',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'120',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'121',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'116',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'117',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'118',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'119',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'120',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'121',deviceCode:'',deviceId:'',status:'0',style:'0'},
 
-                {toiletId:'122',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'123',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'124',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'125',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'126',deviceCode:'',deviceId:'',status:'0'},
-                {toiletId:'127',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'122',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'123',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'124',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'125',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'126',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'127',deviceCode:'',deviceId:'',status:'0',style:'0'},
             ],
             lastPath:''
         }

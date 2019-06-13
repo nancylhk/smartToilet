@@ -23,11 +23,11 @@
                         <div class="twoBox">
                             <div>
                                 <span class="unuse">未使用</span>
-                                <img class="iconUse" src="../../assets/img/3.png"/>
+                                <!-- <img class="iconUse" src="../../assets/img/3.png"/> -->
                             </div>
                             <div>
                                 <span class="using">已使用</span>
-                                <img class="iconUse" src="../../assets/img/2.png"/>
+                                <!-- <img class="iconUse" src="../../assets/img/2.png"/> -->
                             </div>
                             <!-- <div>
                                 <span class="cannotuse">修理中</span>
