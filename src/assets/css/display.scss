@@ -1,0 +1,184 @@
+.new-display-container{ 
+    // background-color: rgba(255, 255, 255, 0.2)
+    div,p,span{
+        color: #fff;
+    }
+    .headTop{
+        height: 116px;
+        background: #182446;
+        .first-Head-Box,.second-Head-Box,.last-Head-Box{
+            height: 116px;
+            display: inline-block;
+            line-height: 116px;
+            width: 250px;
+            text-align: center;
+            vertical-align: top;
+        }
+        .first-Head-Box{           
+            font-size: 24px;
+            .dian{
+                width: 10px;
+                height: 10px;
+                display: inline-block;
+                background: #fff;
+                border-radius: 50%;
+                margin: 0 10px;
+                position: relative;
+                top: -3px;
+            }
+        }
+        .second-Head-Box{
+            width: 1400px;
+            img{
+                vertical-align: top;
+            }
+        }
+        .last-Head-Box{
+            padding: 30px 0;
+            .nowDate{
+                font-size: 22px;
+                line-height: 40px;
+            }
+            .nowTime{
+                font-size: 20px;
+                line-height: 26px;
+            }
+        }
+    }
+    .Bottom-container{
+        width: 100%;
+        height: 120px;
+        background: rgba(255,255,255,0.3);
+        border-top: #978883 6px solid;
+        position: fixed;
+        bottom: 0;
+        left: 0;;
+        .first-bottom-Box,.second-bottom-Box,.last-bottom-Box{
+            height: 120px;
+            display: inline-block;
+            width: 400px;
+            text-align: center;
+            vertical-align: top;
+        }
+        .first-bottom-Box,.last-bottom-Box{
+            padding: 30px 0;
+            img{
+                width: 60px;
+                height: 60px;
+                vertical-align: top;
+                margin-right: 10px;
+            }
+            .bottomList{
+                display: inline-block;
+                vertical-align: top;
+                p{
+                    line-height: 28px;
+                    span{
+                        font-size: 17px;
+                        letter-spacing: 2px;
+                    }
+                    .leftCont{
+                        width: 80px;
+                        display: inline-block;
+                    }
+                    .rightCont{
+                        margin-left: 15px;
+                        width: 210px;
+                        display: inline-block;
+                        text-align: left;
+                    }
+                }
+            }
+        }
+        .second-bottom-Box{
+            width:1100px ;
+            line-height: 120px;
+            font-size: 30px;
+            letter-spacing: 3px;
+        }
+    }
+    .display-container-part{
+        padding: 54px;
+        .display-Box{
+            .first-box,.three-box{
+                width: 270px;
+                height: 680px;
+                background: rgba(0,0,0,0.2);
+                display: inline-block;
+                vertical-align: top;
+            }
+            .second-box{
+                display: inline-block;
+                vertical-align: top;
+                width: 1250px;
+                height: 740px;
+            }
+            .first-box{
+                text-align: center;
+                padding: 30px;
+                .wenTitle{
+                    font-size: 26px;
+                    margin-bottom: 20px;
+                }
+                .special{
+                    width: 28px;
+                    display: inline-block;
+                }
+                .weatherIcon{
+                    width: 50px;
+                    height: 50px;
+                    margin: 20px;
+                }
+                .nowTemp{
+                    font-size: 40px;
+                }
+                .weatherCont{
+                    font-size:18px;
+                    margin: 10px 0 20px; 
+                }
+            }
+            .three-box{
+                padding: 20px;
+                padding-left: 30px;
+                .useList{
+                    padding: 16px 12px;
+                    border-bottom: 1px solid #504d4d;
+                    span{
+                        font-size: 28px;
+                    }
+                }
+                .useList:last-of-type{
+                    border-bottom: none;
+                }
+                .rightpan{
+                    margin-left: 20px;
+                    letter-spacing: 1px;
+                }
+                .blue1{
+                    color: #74c9d5
+                }
+                .red1{
+                    color:#f03836
+                }
+                .green1{
+                    color: #7ac66d
+                }
+                .orange1{
+                    color: #e88750
+                }
+            }
+        }
+    }
+}
+.bg-box{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    img{
+        width: 100%;
+        height: 100%;
+    }
+}
