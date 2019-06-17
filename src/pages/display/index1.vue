@@ -1,79 +1,176 @@
 <template>
     <div class="new-display-container">
-        <div class="headTop">
-            <div class="first-Head-Box">江苏<em class="dian"></em>苏州</div>
-            <div class="second-Head-Box">
-               <img src="../../assets/img/title.png" />
-            </div>
-            <div class="last-Head-Box">
-                <p class="nowDate">6月10日（周五）</p>
-                <p class="nowTime">12:20:35</p>
-            </div>
-        </div>
+        <!-- 头部 -->
+        <Header></Header>
         <div class="display-container-part">
             <div class="display-Box">
-                <div class="first-box">
-                    <h2 class="wenTitle">今日天气</h2>
-                    <div ><span class="nowTemp">27</span><span class="special">℃<br/>实时</span></div>
-                    <div>
-                        <img src="../../assets/img/weather/0.png" class="weatherIcon"/>
+                <!-- zuobian -->
+                <Left :allUseNum='allUseNum' :weatherInfo='weatherInfo'></Left>
+                <div class="second-box ">
+                    <img src="../../assets/img/display1.png" class="toilet1Pic"/>
+                    <div class="display-set1">
+                        <ul class="left1">
+                            <li >
+                                <img src="../../assets/img/tuoba2.png" />
+                            </li>
+                            <li v-for="o in allList.slice(1,7)" :key="o.toiletId">
+                                <img src="../../assets/img/jing0.png" v-if="o.status=='0'"/>
+                                <img src="../../assets/img/jing1.png" v-if="o.status=='1'"/>
+                                <img src="../../assets/img/jing2.png" v-if="o.status=='2'"/>
+                            </li>
+                        </ul>
+                        <ul class="right1">
+                            <li v-for="o in allList.slice(7,11)" :key="o.toiletId">
+                                <img src="../../assets/img/jing0.png" v-if="o.status=='0'"/>
+                                <img src="../../assets/img/jing1.png" v-if="o.status=='1'"/>
+                                <img src="../../assets/img/jing2.png" v-if="o.status=='2'"/>
+                            </li>
+                        </ul>
+                        <ul class="left2">
+                            <li v-for="o in allList.slice(11,15)" :key="o.toiletId">
+                                <img src="../../assets/img/jing0.png" v-if="o.status=='0'"/>
+                                <img src="../../assets/img/jing1.png" v-if="o.status=='1'"/>
+                                <img src="../../assets/img/jing2.png" v-if="o.status=='2'"/>
+                            </li>
+                        </ul>
+                        <div class="entrance entrance1">入口</div>
                     </div>
-                    <p class="weatherCont">晴转多云</p>
-                    <p class="weatherCont">25℃ ~ 32℃</p>
-                    <p class="weatherCont">紫外线：较强</p>
-                    <p class="weatherCont">空气质量：优</p>
                 </div>
-                <div class="second-box">
-                    <img src="../../assets/img/display1.png"/>
-                </div>
-                <div class="three-box">
-                    <div class="useList">
-                        <span class="leftpan">全&nbsp;部：</span>
-                        <span class="rightpan blue1">42</span>
-                    </div>
-                    <div class="useList">
-                        <span class="leftpan">使&nbsp;用：</span>
-                        <span class="rightpan red1">42</span>
-                    </div>
-                    <div class="useList">
-                        <span class="leftpan">空&nbsp;位：</span>
-                        <span class="rightpan green1">42</span>
-                    </div>
-                    <div class="useList">
-                        <span class="leftpan">故&nbsp;障：</span>
-                        <span class="rightpan orange1">42</span>
-                    </div>
-                </div>
+                <Right :todayUseNum='todayUseNum' :allToilet='allToilet' :inuse='inuse' :badNum='badNum'></Right>
             </div>
         </div>
-        <div class="Bottom-container">
-            <div class="first-bottom-Box">
-                <img src="../../assets/img/temp.png"/>
-                <div class="bottomList">
-                    <p><span class="leftCont">室内温度</span><span class="rightCont">26℃</span></p>
-                    <p><span class="leftCont">室内湿度</span><span class="rightCont">50%</span></p>
-                </div>
-            </div>
-            <div class="second-bottom-Box">
-               欢迎光临阳澄湖服务区
-            </div>
-            <div class="last-bottom-Box">
-                <img src="../../assets/img/yezi.png"/>
-                <div class="bottomList">
-                    <p><span class="leftCont">PM2.5</span><span class="rightCont">20（正常）</span></p>
-                    <p><span class="leftCont">VOC：</span><span class="rightCont">100（正常）</span></p>
-                </div>
-            </div>
-        </div>
+        <!-- dibu -->
+        <Bottom></Bottom>
         <div class="bg-box">
             <img src="../../assets/img/bgNew2.png" />
         </div>
     </div>
 </template>
- <script>
+<script>
+import Header from './components/header';
+import Left from './components/left';
+import Right from './components/right';
+import Bottom from './components/bottom';
  export default {
-     
- }
+    components:{
+        Header,
+        Left,
+        Right,
+        Bottom,
+    },
+    data() {
+        return {
+            weatherInfo:'',
+            todayUseNum:'123',
+            allUseNum:'6102',
+            stompClient:'',
+            timer:'',
+            allToilet:14,
+            inuse:0,
+            badNum:0,
+            lastPath:'',
+            allList:[ 
+                {toiletId:'',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'86',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'85',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'84',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'83',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'82',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'81',deviceCode:'',deviceId:'',status:'0'},
+                
+                {toiletId:'87',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'88',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'89',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'90',deviceCode:'',deviceId:'',status:'0'},
+                
+                {toiletId:'94',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'93',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'92',deviceCode:'',deviceId:'',status:'0'},
+                {toiletId:'91',deviceCode:'',deviceId:'',status:'0'},
+            ],
+        }
+    },
+    beforeRouteEnter(to, from, next) {
+        next((vm)=>{ //参数vm就是当前组件的实例。
+            vm.lastPath = from.path
+        })
+    },
+    methods:{
+        goBack() {
+            console.log(this.lastPath)
+            if(this.lastPath == '/login' || this.lastPath == '/'){
+                this.$store.dispatch('LogOut');
+                location.reload()
+            }else{
+                this.$router.back(-1)
+            }
+        },     
+        initWebSocket() {
+            this.connection();
+            let that= this;
+            // 断开重连机制,尝试发送消息,捕获异常发生时重连
+            this.timer = setInterval(() => {
+                try {
+                    that.stompClient.send("test");
+                } catch (err) {
+                    console.log("断线了: " + err);
+                    that.connection();
+                }
+            }, 5000);
+        },  
+        connection() {
+            let self = this;
+            // 建立连接对象
+            let socket = new SockJS('/my-websocket');
+            // 获取STOMP子协议的客户端对象
+            this.stompClient = Stomp.over(socket);
+            // 向服务器发起websocket连接
+            this.stompClient.connect({},() => {
+                this.stompClient.subscribe('/topic/callback', (msg) => { // 订阅服务端提供的某个topic
+                    // console.log(msg.body);  // msg.body存放的是服务端发送给我们的信息
+                    let statusStr = JSON.parse(msg.body);
+                    let statusObj = statusStr.data;
+                    self.todayUseNum = statusStr.msg.split(';')[1];
+                    let inuse = 0;
+                    self.allList.forEach(e=>{
+                        for( var i in statusObj){
+                            if(i == e.toiletId){   			
+                                if(statusObj[i] == '00'){
+                                    e.status = '0'
+                                }else if(statusObj[i] == '01'){
+                                    e.status = '1'
+                                    inuse ++;
+                                }
+                                break;
+                            }else{
+                                e.status = '0'
+                            }
+                        }                  
+                    })
+                    self.inuse = inuse
+                });
+            }, (err) => {
+                // 连接发生错误时的处理函数
+                console.log('失败')
+                console.log(err);
+            });
+        },    //连接 后台
+        disconnect() {
+            if (this.stompClient) {
+                this.stompClient.disconnect();
+            }
+        },  // 断开连接
+    },
+    mounted(){
+        this.initWebSocket();
+    },
+    beforeDestroy: function () {
+        // 页面离开时断开连接,清除定时器
+        this.disconnect();
+        clearInterval(this.timer);
+    }
+
+}
  </script>
  
 <style >
