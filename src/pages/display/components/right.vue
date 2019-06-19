@@ -25,8 +25,9 @@
             </div>
         </div>
         <div>
-            <h3>当日使用人数：</h3>
+            <h3>当日累计使用人数：</h3>
             <div class="allUseNum">
+                <div v-if="todayUseNum.length>4"><span>{{todayUseNum.length>4?todayUseNum.split('')[todayUseNum.length-5]:'0'}}</span></div>
                 <div><span>{{todayUseNum.length>3?todayUseNum.split('')[todayUseNum.length-4]:'0'}}</span></div>
                 <div><span>{{todayUseNum.length>2?todayUseNum.split('')[todayUseNum.length-3]:'0'}}</span></div>
                 <div><span>{{todayUseNum.length>1?todayUseNum.split('')[todayUseNum.length-2]:'0'}}</span></div>
@@ -44,12 +45,22 @@ export default {
     },
     data() {
         return{
-            ringData
+
         }
     },
     computed: {
         ringData() {
-            return this.inuse/this.allToilet*100
+            return parseFloat((this.inuse/this.allToilet*100).toFixed(2))
+        }
+    },
+    mounted() {
+        // this.console()
+    },
+    methods:{
+        console() {
+            console.log(this.inuse);
+            console.log(this.allToilet)
+            console.log(this.ringData)
         }
     }
 }

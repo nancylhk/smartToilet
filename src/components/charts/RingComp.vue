@@ -34,13 +34,14 @@
 				var chartColor = color;
 				chart.setOption({
 					title: {
-						text: '使用率'+chartData +'%',
+						text: '使用率\n'+chartData +'%',
 						left: 'center',
 						top: 'center',
 						textStyle: {
 							fontWeight: 'normal',
-							color: color,
-							fontSize: 20
+							color: '#fff',
+							fontSize: 20,
+							lineHeight:40
 						}
 					},
 					series: [{
@@ -66,7 +67,12 @@
 							value: chartData>100? 100 : chartData ,
 							itemStyle: {
 								normal: {
-									color: chartColor,
+									color: new echarts.graphic.LinearGradient(0, 0, 1, 0, 
+									[
+										{offset:0,color:'#61b6a8'},
+										{offset: 1, color: '#61b6a8'}
+									],
+								 false),
 								}
 							}
 						}, {

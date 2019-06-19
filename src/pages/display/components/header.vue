@@ -8,7 +8,7 @@
                 <p class="englishSign">JS EXPRESSWAY JASMINE</p>
             </div>
         </div> -->
-        <div class="first-Head-Box">
+        <div class="first-Head-Box" @click="goBack">
             <img src="../../../assets/img/logoTeam5.png" class="logoPic2"/>
         </div>
         <div class="second-Head-Box">
@@ -22,6 +22,7 @@
 </template>
 <script>
 export default {
+    props:['lastPath'],
     data() {
         return {
             nowDate:'',
@@ -49,5 +50,15 @@ export default {
             return (zero + num).slice(-digit);
         }      
     },
+    methods:{
+        goBack() {
+            if(this.lastPath == '/login' || this.lastPath == '/'){
+                this.$store.dispatch('LogOut');
+                location.reload()
+            }else{
+                this.$router.back(-1)
+            }
+        },
+    }
 }
 </script>

@@ -23,7 +23,7 @@
                 </el-col>
                 <el-col :span="12">
                     <div class="cinfo-content contentHeight">
-                        <p class="info-title" v-if="dataInfo.length>2">{{dataInfo[3].positionName}}</p>
+                        <p class="info-title" v-if="dataInfo.length>2">{{dataInfo[2].positionName}}</p>
                         <el-row>
                             <el-col :span="12" class="content" v-for="(item,index) in dataInfo.slice(2,4)" :key='index'>
                                 <p class="left-title">{{item.toiletTypeName}}<img :src="item.toiletTypeName=='男厕所'?nanIcon:nvIcon" class="nanicon" /></p>
