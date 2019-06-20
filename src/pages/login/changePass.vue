@@ -23,6 +23,15 @@
 <script>
 export default {
     data() {
+        var validateNewPass = (rule, value, callback) => {
+            if (value === '') {
+            callback(new Error('请输入新密码'));
+            } else if (value === this.form.olderPassword) {
+            callback(new Error('新密码不得与原密码一致!'));
+            } else {
+            callback();
+            }
+        };
         var validatePass2 = (rule, value, callback) => {
             if (value === '') {
             callback(new Error('请再次输入密码'));
@@ -43,7 +52,7 @@ export default {
                     { required:true,message:'请输入原密码',trigger: 'blur'	}
                 ],
                 newPassword:[
-                    { required:true,message:'请选择设备使用状态',trigger: 'change'},
+                    { required:true,validator:validateNewPass,trigger: 'blur'},
                 ],
                 confirmPass:[
                     { required:true,validator:validatePass2,trigger: 'blur'},

@@ -246,7 +246,12 @@ export const routerMap = {
     component:display4,
     meta:{ title:'西厕女'}
   },
-  
+  '31':{
+    path:'changePass/page',   
+    name:'修改密码', 
+    component:changePass,
+    meta:{ title:'修改密码'}
+  },
 }
 export default new Router({
   scrollBehavior: () => ({
