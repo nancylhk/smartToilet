@@ -81,7 +81,7 @@ export default {
         }
     },
     mounted() {
-        // this.getTodayWeather()
+        this.getTodayWeather()
         var self = this;
         self.task = window.setInterval(function() {
             axios({

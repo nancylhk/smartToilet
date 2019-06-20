@@ -11,7 +11,7 @@
                             <span class="bind"><em></em>已绑定设备</span>
                             <span class="unbind"><em></em>未绑定设备</span>
                         </div>
-                        <el-row class="toliet-set-container  ">
+                        <el-row class="toliet-set-container  female">
                             <el-col :span="6">
                                 <el-row >
                                     <el-col :span="8">
@@ -19,20 +19,22 @@
                                             <!-- <li>
                                                 <img src="../../assets/img/tuoba.png" />
                                             </li> -->
-                                            <li v-for="o in allList.slice(0,7)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
+                                            <li v-for="o in allList.slice(0,7)" :key="o.toiletId" @click="set(o.toiletId)" class="cp hasBox">
                                                 <img src="../../assets/img/dun5.png" v-if="o.style==0"/>
                                                 <img src="../../assets/img/toiletIcon2.png" v-if="o.style==1"/>
-                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>                                                                              
+                                                <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>    
+                                                <div class="hoverBox">点击进行设备绑定</div>                                                                          
                                             </li>
                                         </ul>
                                     </el-col>
                                     <el-col :span="8" :offset="8" class="borderR">
                                         <ul class="toilet1 sRbox5">
-                                            <li v-for="o in allList.slice(7,12)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
+                                            <li v-for="o in allList.slice(7,12)" :key="o.toiletId" @click="set(o.toiletId)" class="cp hasBox">
                                                 
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                                 <img src="../../assets/img/toiletIcon1.png" v-if="o.style==1"/>
                                                 <img src="../../assets/img/dun6.png" v-if="o.style==0"/>
+                                                <div class="hoverBox">点击进行设备绑定</div>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -42,19 +44,21 @@
                                 <el-row >
                                     <el-col :span="8" class="borderL2">
                                         <ul class="toilet2 sLbox5">
-                                            <li v-for="o in allList.slice(12,17)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
+                                            <li v-for="o in allList.slice(12,17)" :key="o.toiletId" @click="set(o.toiletId)" class="cp hasBox">
                                                 <img src="../../assets/img/toiletIcon2.png" v-if="o.style==1"/>
                                                 <img src="../../assets/img/dun5.png" v-if="o.style==0"/>
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
+                                                <div class="hoverBox">点击进行设备绑定</div>
                                             </li>
                                         </ul>
                                     </el-col>
                                     <el-col :span="8" :offset="8" class="borderR">
                                         <ul class="toilet1 sRbox5">
-                                            <li v-for="o in allList.slice(17,22)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">                                      
+                                            <li v-for="o in allList.slice(17,22)" :key="o.toiletId" @click="set(o.toiletId)" class="cp hasBox">                                      
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                                 <img src="../../assets/img/toiletIcon1.png" v-if="o.style==1"/>
                                                 <img src="../../assets/img/dun6.png" v-if="o.style==0"/>
+                                                <div class="hoverBox">点击进行设备绑定</div>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -64,20 +68,22 @@
                                 <el-row >
                                     <el-col :span="8" class="borderL">
                                         <ul class="toilet2 sLbox5">
-                                            <li v-for="o in allList.slice(22,27)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
+                                            <li v-for="o in allList.slice(22,27)" :key="o.toiletId" @click="set(o.toiletId)" class="cp hasBox">
                                                 <img src="../../assets/img/toiletIcon2.png"  v-if="o.style==1"/>
                                                 <img src="../../assets/img/dun5.png" v-if="o.style==0"/>
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
+                                                <div class="hoverBox">点击进行设备绑定</div>
                                             </li>
                                         </ul>
                                     </el-col>
                                     <el-col :span="8" :offset="8" class="borderR">
                                         <ul class="toilet1 sRbox5">
-                                            <li v-for="o in allList.slice(27,32)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
+                                            <li v-for="o in allList.slice(27,32)" :key="o.toiletId" @click="set(o.toiletId)" class="cp hasBox">
                                                
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                                  <img src="../../assets/img/toiletIcon1.png"  v-if="o.style==1"/>
                                                 <img src="../../assets/img/dun6.png" v-if="o.style==0"/>
+                                                <div class="hoverBox">点击进行设备绑定</div>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -87,20 +93,22 @@
                                 <el-row >
                                     <el-col :span="8" class="borderL">
                                         <ul class="toilet2 sLbox5">
-                                           <li v-for="o in allList.slice(32,37)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
+                                           <li v-for="o in allList.slice(32,37)" :key="o.toiletId" @click="set(o.toiletId)" class="cp hasBox">
                                                 <img src="../../assets/img/toiletIcon2.png" v-if="o.style==1"/>
                                                 <img src="../../assets/img/dun5.png" v-if="o.style==0"/>
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
+                                                <div class="hoverBox">点击进行设备绑定</div>
                                             </li>
                                         </ul>
                                     </el-col>
                                     <el-col :span="8" :offset="8">
                                         <ul class="toilet1">
-                                            <li v-for="o in allList.slice(37,44)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
+                                            <li v-for="o in allList.slice(37,44)" :key="o.toiletId" @click="set(o.toiletId)" class="cp hasBox">
                                                 
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                                 <img src="../../assets/img/toiletIcon1.png" v-if="o.style==1"/>
                                                 <img src="../../assets/img/dun6.png" v-if="o.style==0"/>
+                                                <div class="hoverBox">点击进行设备绑定</div>
                                             </li>
                                         </ul>
                                     </el-col>

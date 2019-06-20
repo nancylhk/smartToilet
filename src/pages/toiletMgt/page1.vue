@@ -11,7 +11,7 @@
                             <span class="bind"><em></em>已绑定设备</span>
                             <span class="unbind"><em></em>未绑定设备</span>
                         </div>
-                        <el-row class="toliet-set-container  ">
+                        <el-row class="toliet-set-container  maleBox">
                             <el-col :span="12">
                                 <el-row  >
                                     <el-col :span="8">
@@ -23,10 +23,11 @@
                                     </el-col>
                                     <el-col :span="8" class="borderR" :offset="8">
                                         <ul class="toilet1">
-                                            <li v-for="o in allList.slice(0,6)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
+                                            <li v-for="o in allList.slice(0,6)" :key="o.toiletId" @click="set(o.toiletId)" class="cp hasBox">
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                                 <img src="../../assets/img/toiletIcon1.png" v-if="o.style==1"/>
                                                 <img src="../../assets/img/dun6.png" v-if="o.style==0"/>
+                                                <div class="hoverBox">点击进行设备绑定</div>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -36,19 +37,21 @@
                                 <el-row >
                                     <el-col :span="8" class="borderL">
                                         <ul class="toilet2">
-                                            <li v-for="o in allList.slice(6,12)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
+                                            <li v-for="o in allList.slice(6,12)" :key="o.toiletId" @click="set(o.toiletId)" class="cp hasBox">
                                                 <img src="../../assets/img/toiletIcon2.png"  v-if="o.style==1"/>
                                                 <img src="../../assets/img/dun5.png" v-if="o.style==0"/>
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
+                                                <div class="hoverBox">点击进行设备绑定</div>
                                             </li>
                                         </ul>
                                     </el-col>
                                     <el-col :span="8" :offset="8">
                                         <ul class="toilet1">
-                                            <li v-for="o in allList.slice(12,18)" :key="o.toiletId" @click="set(o.toiletId)" class="cp">
+                                            <li v-for="o in allList.slice(12,18)" :key="o.toiletId" @click="set(o.toiletId)" class="cp hasBox">
                                                 <span class="toiletCode" :class="o.bind?'green':''">{{o.toiletId}}</span>
                                                <img src="../../assets/img/toiletIcon1.png" v-if="o.style==1"/>
                                                 <img src="../../assets/img/dun6.png" v-if="o.style==0"/>
+                                                <div class="hoverBox">点击进行设备绑定</div>
                                             </li>
                                         </ul>
                                     </el-col>
@@ -56,36 +59,7 @@
                             </el-col>
                         </el-row>
                     </div>
-                </el-col>
-                <!-- <el-col :span="6" class="toiletSet-right-container">
-                    <div class='displayBox pad20 box1'>
-                        <p>{{nowDate}}&nbsp;&nbsp;&nbsp;&nbsp;{{nowWeek}}</p>
-                        <div class="nowTime">{{nowTime}}</div>
-                    </div>
-                    <div class='displayBox pad20 box2'>
-                        <p class="first">气温数据</p>
-                        <p>
-                            <span class="cleft">温度：</span>
-                            <span class="cright">27℃</span>
-                        </p>
-                        <p>
-                            <span class="cleft">湿度：</span>
-                            <span class="cright">27℃</span>
-                        </p>
-                        <p>
-                            <span class="cleft">氮气：</span>
-                            <span class="cright">27℃</span>
-                        </p>
-                        <p>
-                            <span class="cleft">PM2.5：</span>
-                            <span class="cright">56.8PA</span>
-                        </p>
-                    </div>
-                    <div class='displayBox pad20 box3'>
-                        <p>当日累计：<span class="commonColor ">110</span></p>
-                        <p>累计入厕：<span class="commonColor">1010</span></p>
-                    </div>
-                </el-col> -->
+                </el-col>              
             </el-row>
             <!-- 设备和厕位绑定弹框 -->
             <el-dialog

@@ -190,7 +190,7 @@ import Bottom from './components/bottom';
                     // console.log(msg.body);  // msg.body存放的是服务端发送给我们的信息
                     let statusStr = JSON.parse(msg.body);
                     let statusObj = statusStr.data;
-                    self.todayUseNum = statusStr.msg.split(';')[1];
+                    self.todayUseNum = statusStr.msg.split(';')[2];
                     self.allUseNum = statusStr.msg.split(';')[3];
                     let inuse = 0;
                     self.allList.forEach(e=>{

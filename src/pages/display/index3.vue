@@ -10,8 +10,9 @@
                     <img src="../../assets/img/display3.png" class="toilet1Pic"/>
                     <div class="display-set3">
                         <ul class="left1">
-                            <li >
-                                <img src="../../assets/img/a.png" />
+                            <li class="zawuBox">
+                                <img src="../../assets/img/zawu3.png" class="zawu1 "/>
+                                <!-- <span>杂物间</span> -->
                             </li>
                             <li v-for="o in allList.slice(1,7)" :key="o.toiletId">
                                 <img src="../../assets/img/jing0.png" v-if="o.status=='0'"/>

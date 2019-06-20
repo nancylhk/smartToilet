@@ -10,8 +10,9 @@
                     <img src="../../assets/img/display4.png" class="toilet1Pic"/>
                     <div class="display-set4">
                         <ul class="left1">
-                            <li >
-                                <img src="../../assets/img/a.png" />
+                            <li class="zawuBox">
+                                <img src="../../assets/img/zawu4.png" class="zawu"/>
+                                <!-- <span>杂物间</span> -->
                             </li>
                             <li v-for="o in allList.slice(1,7)" :key="o.toiletId">
                                 <img src="../../assets/img/jing0.png" v-if="o.status=='0'"/>
@@ -190,7 +191,7 @@ import Bottom from './components/bottom';
                     // console.log(msg.body);  // msg.body存放的是服务端发送给我们的信息
                     let statusStr = JSON.parse(msg.body);
                     let statusObj = statusStr.data;
-                    self.todayUseNum = statusStr.msg.split(';')[1];
+                    self.todayUseNum = statusStr.msg.split(';')[2];
                     self.allUseNum = statusStr.msg.split(';')[3];
                     let inuse = 0;
                     self.allList.forEach(e=>{
