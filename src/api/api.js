@@ -32,6 +32,7 @@ export default {
     "getTodayAmount": BASE_URL + '/toiletController/getTodayAmount',//
     "getRecentAmount": BASE_URL + '/toiletController/getRecentAmount',//
     "getDeviceCountByToiletType": BASE_URL + '/deviceController/getDeviceCountByToiletType',//
-    "": BASE_URL + '',//
+    // 天气
+    "getTodayWeather": BASE_URL + '/weather/getTodayWeather',//
     "": BASE_URL + '',//
 }

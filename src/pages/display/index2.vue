@@ -96,8 +96,8 @@ import Bottom from './components/bottom';
     data() {
         return {
             weatherInfo:'',
-            todayUseNum:'123',
-            allUseNum:'6102',
+            todayUseNum:'',
+            allUseNum:'',
             stompClient:'',
             timer:'',
             allToilet:44,
@@ -191,6 +191,7 @@ import Bottom from './components/bottom';
                     let statusStr = JSON.parse(msg.body);
                     let statusObj = statusStr.data;
                     self.todayUseNum = statusStr.msg.split(';')[1];
+                    self.allUseNum = statusStr.msg.split(';')[3];
                     let inuse = 0;
                     self.allList.forEach(e=>{
                         for( var i in statusObj){
@@ -222,7 +223,7 @@ import Bottom from './components/bottom';
         },  // 断开连接
     },
     mounted(){
-        // this.initWebSocket();
+        this.initWebSocket();
     },
     beforeDestroy: function () {
         // 页面离开时断开连接,清除定时器
