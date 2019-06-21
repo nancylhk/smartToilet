@@ -72,7 +72,13 @@
                     <el-form-item label="此厕位号：" prop="toiletId" >
                         <el-input v-model="form.toiletId" readonly></el-input>
                     </el-form-item>
-                    <el-form-item label="设备名称：" prop="deviceCode">
+                    <el-form-item label="厕位状态：" prop="status">
+                        <el-radio-group v-model="form.status" @change='statusChange'>
+                            <el-radio label="正常"></el-radio>
+                            <el-radio label="维修"></el-radio>
+                        </el-radio-group>
+                    </el-form-item>
+                    <el-form-item label="设备名称：" prop="deviceCode" v-if="showSelect">
                         <el-select v-model="form.deviceCode" placeholder="请选择设备">
                             <el-option
                             v-for="item in unBindDeviceList"
@@ -142,9 +148,11 @@ export default {
                 {toiletId:'126',deviceCode:'',deviceId:'',bind:false,style:0 },
                 {toiletId:'127',deviceCode:'',deviceId:'',bind:false,style:0 },
             ],
+            showSelect:true,
             form:{
                 toiletId:'',
-                deviceCode:''
+                deviceCode:'',
+                status:'正常'
             },
             unbindForm:{
                 toiletId:'',
@@ -153,6 +161,9 @@ export default {
             rules:{
                 toiletId:[
                     { required: true, message: '请输入活动名称', trigger: 'blur' },
+                ],
+                status:[
+                    { required: true,message: '请选择设备状态', trigger: 'blur' },
                 ],
                 deviceCode:[
                     { required: true, message: '请选择设备编号', trigger: 'change' },
@@ -185,6 +196,14 @@ export default {
         }
     },
     methods:{
+        statusChange() {
+            // console.log(this.form.status)
+            if(this.form.status == '维修') {
+                this.showSelect = false
+            }else{
+                this.showSelect = true
+            }
+        },
         getToiletIds() {
             let self = this;
             self.allList.forEach( e=>{
