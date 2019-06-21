@@ -91,6 +91,7 @@ export default {
                 }, function(response) {
                     if(response.status == 1){
                         self.dataList = response.data;
+                        self.total = response.data.length;
                         self.dataList.forEach((e) => {
                             if(e.createTime) {                     
                                 let date = new Date(parseInt(e.createTime));

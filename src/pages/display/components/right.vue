@@ -13,10 +13,10 @@
                 <span class="leftpan">空&nbsp;位：</span>
                 <span class="rightpan green1">{{allToilet-inuse}}</span>
             </div>
-            <div class="useList">
+            <!-- <div class="useList">
                 <span class="leftpan">故&nbsp;障：</span>
                 <span class="rightpan orange1">{{badNum}}</span>
-            </div>
+            </div> -->
             <div>
                 <ringComp class="ring-income" ref="yearOutcomeChart" 
                 :_id="'yearOutcome'" 

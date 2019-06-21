@@ -15,6 +15,7 @@
         <div>
             <h3>当月累计使用人数：</h3>
             <div class="allUseNum">
+                <div v-if="allUseNum.length>5"><span>{{allUseNum.length>5?allUseNum.split('')[allUseNum.length-6]:'0'}}</span></div>
                 <div v-if="allUseNum.length>4"><span>{{allUseNum.length>4?allUseNum.split('')[allUseNum.length-5]:'0'}}</span></div>
                 <div><span>{{allUseNum.length>3?allUseNum.split('')[allUseNum.length-4]:'0'}}</span></div>
                 <div><span>{{allUseNum.length>2?allUseNum.split('')[allUseNum.length-3]:'0'}}</span></div>
@@ -32,16 +33,16 @@ export default {
         return{
             weatherInfo:{
                 "WIND": "东风3-4级",
-                "REGIME_END_PIC_PATH": "10.png",
+                "REGIME_END_PIC_PATH": "2.png",
                 "AIR_QUALITY": "空气质量：良",
                 "WEATHER_DATE": 1560960000000,
                 "CITY_ID": "1",
                 "TEMPERATURE": "22℃/26℃",
-                "REGIME_NAME": "中雨转暴雨",
+                "REGIME_NAME": "晴转多云",
                 "WEATHER_ID": "20190620101825000000",
-                "REGIME_START_PIC_PATH": "8.png",
+                "REGIME_START_PIC_PATH": "1.png",
                 "WEATHER_WEEK": "星期四",
-                "ULTRAVIOLET_RAY": "紫外线强度：最弱"
+                "ULTRAVIOLET_RAY": "紫外线强度：较强"
             },
             weatherIcon:{
                 img0:require('../../../assets/img/weather/b_0.png'),
