@@ -239,8 +239,7 @@ export default {
         getUnBindDevice() {
             let self = this;
             self.$http.get(self.api.getUnBindDevice, {
-                params:{
-                    positionId:1,
+                params:{                  
                     deviceTypeId:1
                 }
             }, function(response) {
@@ -306,6 +305,7 @@ export default {
                     let params = new FormData();
                     params.append('deviceId', self.form.deviceCode)
                     params.append('toiletId', self.form.toiletId)
+                    params.append('positionId', 1)
                     params.append('toiletTypeId', '1')
                     self.$http.post(self.api.bindDevice, params, {
                         headers: {

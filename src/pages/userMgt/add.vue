@@ -144,13 +144,7 @@ export default {
                             "Content-Type": "multipart/form-data"
                         },
                     }, function (response) {
-                        if(response.data.data == null) {
-                            self.$message({
-                                type: 'error',
-                                message: response.data.msg
-                            });
-                            
-                        }else if(response.data.data == true){
+                        if(response.status == 1){
                             self.$message({
                                 type: 'success',
                                 message: '添加成功'
@@ -163,7 +157,7 @@ export default {
                         }else{
                             self.$message({
                                 type: 'error',
-                                message: response.data.msg
+                                message: response.msg
                             });
                         }
                     }, function (response) {

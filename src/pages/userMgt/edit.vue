@@ -175,12 +175,11 @@ export default {
                                 self.$router.push({
                                     path:'/user/userMgt'
                                 })
-                            },1500)
-                            
+                            },1500)                           
                         }else{
                             self.$message({
-                            type: 'error',
-                            message: '修改失败'
+                                type: 'error',
+                                message: response.msg
                             });
                         }
                     }, function (response) {

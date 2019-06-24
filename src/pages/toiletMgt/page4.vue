@@ -354,7 +354,6 @@ export default {
             let self = this;
             self.$http.get(self.api.getUnBindDevice, {
                 params:{
-                    positionId:3,
                     deviceTypeId:2
                 }
             }, function(response) {
@@ -419,6 +418,7 @@ export default {
                     params.append('deviceId', self.form.deviceCode)
                     params.append('toiletId', self.form.toiletId)
                     params.append('toiletTypeId', '2')
+                    params.append('positionId', 3)
                     self.$http.post(self.api.bindDevice, params, {
                         headers: {
                             "Content-Type": "multipart/form-data"

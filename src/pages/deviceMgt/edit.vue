@@ -16,15 +16,7 @@
                     <el-option label="正常" value="1" :disabled="form.status=='0'"></el-option>
                     <el-option label="维修" value="2" :disabled="form.status=='0'"></el-option>
                 </el-select>
-            </el-form-item>
-            <el-form-item label="设备所属区域：" prop="positionId">
-                <el-select v-model="form.positionId" placeholder="请选择">
-                    <el-option label="东" value="1"></el-option>
-                    <el-option label="南" value="2"></el-option>
-                    <el-option label="西" value="3"></el-option>
-                    <el-option label="北" value="4"></el-option>
-                </el-select>
-            </el-form-item>
+            </el-form-item>          
             <el-form-item label="设备标识：" prop="deviceTypeId">
                 <el-radio-group v-model="form.deviceTypeId">
                     <el-radio :label="1">男</el-radio>
@@ -68,7 +60,6 @@ export default {
                 status: '',
                 productor: "",
                 toiletTypeId:'',
-                positionId:'',
                 deviceTypeId:''
             },
             rules:{
@@ -80,9 +71,6 @@ export default {
                 ],
                 deviceName:[
                     { required:true,message:'请输入设备名称',trigger: 'blur'},
-                ],
-                positionId:[
-                    { required:true,message:'请选择设备所属区域',trigger: 'change'},
                 ],
                 deviceTypeId:[
                     { required: true, message: '请选择设备标识', trigger: 'change' }
@@ -112,7 +100,6 @@ export default {
                     if(response.data.length>0) {
                         self.form= response.data[0];
                         self.form.status = '' + self.form.status;
-                        self.form.positionId = '' + self.form.positionId;
                     }
                     
                     
@@ -134,7 +121,6 @@ export default {
                     params.append('status', self.form.status)
                     params.append('productor', self.form.productor)
                     params.append('toiletTypeId', self.form.toiletTypeId)
-                    params.append('positionId', self.form.positionId)
                     params.append('deviceTypeId', self.form.deviceTypeId)
                     self.$http.post(self.api.editDevice, params, {
                         headers: {
