@@ -10,13 +10,6 @@
             <el-form-item label="设备名称：" prop="deviceName">
                 <el-input v-model="form.deviceName"></el-input>
             </el-form-item>
-            <!-- <el-form-item label="设备使用状态：" prop="status">
-                <el-select v-model="form.status" placeholder="请选择">
-                    <el-option label="正常" value="1"></el-option>
-                    <el-option label="故障" value="2"></el-option>
-                    <el-option label="维修" value="3"></el-option>
-                </el-select>
-            </el-form-item> -->
             <el-form-item label="设备所属区域：" prop="positionId">
                 <el-select v-model="form.positionId" placeholder="请选择">
                     <el-option label="东" value="1"></el-option>
@@ -24,6 +17,12 @@
                     <el-option label="西" value="3"></el-option>
                     <el-option label="北" value="4"></el-option>
                 </el-select>
+            </el-form-item>
+            <el-form-item label="设备标识：" prop="deviceTypeId">
+                <el-radio-group v-model="form.deviceTypeId">
+                    <el-radio :label="1">男</el-radio>
+                    <el-radio :label="2">女</el-radio>
+                </el-radio-group>
             </el-form-item>
             <el-form-item label="设备厂家：" prop="productor">
                 <el-input v-model="form.productor"></el-input>
@@ -62,7 +61,8 @@ export default {
                 status: 0,
                 productor: "",
                 toiletTypeId:'',
-                positionId:''
+                positionId:'',
+                deviceTypeId:''
             },
             rules:{
                 deviceCode:[
@@ -76,6 +76,9 @@ export default {
                 ],
                 positionId:[
                     { required:true,message:'请选择设备所属区域',trigger: 'change'},
+                ],
+                deviceTypeId:[
+                    { required: true, message: '请选择设备标识', trigger: 'change' }
                 ]
             }
         }
@@ -99,6 +102,7 @@ export default {
                     params.append('productor', self.form.productor)
                     params.append('toiletTypeId', self.form.toiletTypeId)
                     params.append('positionId', self.form.positionId)
+                    params.append('deviceTypeId', self.form.deviceTypeId)
                     self.$http.post(self.api.addDevice, params, {
                         headers: {
                             "Content-Type": "multipart/form-data"

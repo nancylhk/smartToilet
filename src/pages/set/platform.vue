@@ -26,7 +26,7 @@
                 <el-form-item label="所属区域：" class="readOnly">
                     <el-input v-model="form.region" readonly></el-input>
                 </el-form-item>
-                <el-form-item>
+                <el-form-item v-if="info.groupId=='3'">
                     <el-button type="primary" @click="update">修改</el-button>
                 </el-form-item>
             </el-form>
@@ -37,6 +37,7 @@
 export default {
     data() {
         return{
+            info:'',
             form:{
                 name:'智慧公厕管理平台',
                 period:'2017-03-30 ~ 2018-03-29',
@@ -50,6 +51,7 @@ export default {
     },
     created() {
         this.getInfo();
+        this.queryUserByUserName()
     },
     methods:{
         getInfo() {
@@ -67,6 +69,18 @@ export default {
                 }else{
 
                 }     
+            }, function(response) {
+                //失败回调
+            })
+        },
+        queryUserByUserName() {        
+            let self = this;
+            self.$http.get(self.api.queryUserByUserName, {
+                params:{
+                    userName:this.$store.getters.token
+                }
+            }, function(response) {
+                self.info = response;     
             }, function(response) {
                 //失败回调
             })

@@ -71,7 +71,7 @@
                         <div class="entrance entrance1">入口</div>
                     </div>
                 </div>
-                <Right :todayUseNum='todayUseNum' :allToilet='allToilet' :inuse='inuse' :badNum='badNum'></Right>
+                <Right :todayUseNum='todayUseNum' :allToilet='allToilet' :inuse='inuse' :empty='empty'></Right>
             </div>
         </div>
         <!-- dibu -->
@@ -102,60 +102,60 @@ import Bottom from './components/bottom';
             timer:'',
             allToilet:44,
             inuse:0,
-            badNum:0,
+            empty:0,
             lastPath:'',
             allList:[ 
-                {toiletId:'45',deviceCode:'',deviceId:'',status:'0',style:'1'},
-                {toiletId:'46',deviceCode:'',deviceId:'',status:'0',style:'1'},
-                {toiletId:'47',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'48',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'49',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'50',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'51',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'45',deviceCode:'',deviceId:'',status:'2',style:'1'},
+                {toiletId:'46',deviceCode:'',deviceId:'',status:'2',style:'1'},
+                {toiletId:'47',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'48',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'49',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'50',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'51',deviceCode:'',deviceId:'',status:'2',style:'0'},
                  
-                {toiletId:'52',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'53',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'54',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'55',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'56',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'52',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'53',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'54',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'55',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'56',deviceCode:'',deviceId:'',status:'2',style:'0'},
                  
-                {toiletId:'57',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'58',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'59',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'60',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'61',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'57',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'58',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'59',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'60',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'61',deviceCode:'',deviceId:'',status:'2',style:'0'},
                 
-                {toiletId:'62',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'63',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'64',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'65',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'66',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'62',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'63',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'64',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'65',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'66',deviceCode:'',deviceId:'',status:'2',style:'0'},
                 
-                {toiletId:'67',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'68',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'69',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'70',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'71',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'67',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'68',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'69',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'70',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'71',deviceCode:'',deviceId:'',status:'2',style:'0'},
                 
-                {toiletId:'72',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'73',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'74',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'75',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'76',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'72',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'73',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'74',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'75',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'76',deviceCode:'',deviceId:'',status:'2',style:'0'},
                 
-                {toiletId:'77',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'78',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'79',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'80',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'101',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'77',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'78',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'79',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'80',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'101',deviceCode:'',deviceId:'',status:'2',style:'0'},
                 
-                {toiletId:'102',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'103',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'104',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'105',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'106',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'107',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'108',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'102',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'103',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'104',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'105',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'106',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'107',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'108',deviceCode:'',deviceId:'',status:'2',style:'0'},
             ],
         }
     },
@@ -193,22 +193,27 @@ import Bottom from './components/bottom';
                     self.todayUseNum = statusStr.msg.split(';')[2];
                     self.allUseNum = statusStr.msg.split(';')[3];
                     let inuse = 0;
+                    let empty = 0;
                     self.allList.forEach(e=>{
                         for( var i in statusObj){
                             if(i == e.toiletId){   			
                                 if(statusObj[i] == '00'){
                                     e.status = '0'
+                                    empty ++
                                 }else if(statusObj[i] == '01'){
                                     e.status = '1'
                                     inuse ++;
+                                }else if(statusObj[i] == '02'){
+                                    e.status = '2'
                                 }
                                 break;
                             }else{
-                                e.status = '0'
+                                e.status = '2'
                             }
                         }                  
                     })
-                    self.inuse = inuse
+                    self.inuse = inuse;
+                    self.empty = empty;
                 });
             }, (err) => {
                 // 连接发生错误时的处理函数

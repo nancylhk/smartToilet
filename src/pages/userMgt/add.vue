@@ -144,20 +144,26 @@ export default {
                             "Content-Type": "multipart/form-data"
                         },
                     }, function (response) {
-                        if(response.status == 1) {
+                        if(response.data.data == null) {
+                            self.$message({
+                                type: 'error',
+                                message: response.data.msg
+                            });
+                            
+                        }else if(response.data.data == true){
                             self.$message({
                                 type: 'success',
-                                message: '添加成功!'
+                                message: '添加成功'
                             });
-                            setTimeout(function() {
+                           setTimeout(function() {
                                 self.$router.push({
                                     path:'/user/userMgt'
                                 })
                             },1500)
                         }else{
                             self.$message({
-                            type: 'error',
-                            message: response.msg
+                                type: 'error',
+                                message: response.data.msg
                             });
                         }
                     }, function (response) {

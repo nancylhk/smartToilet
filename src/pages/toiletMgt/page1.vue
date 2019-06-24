@@ -72,13 +72,7 @@
                     <el-form-item label="此厕位号：" prop="toiletId" >
                         <el-input v-model="form.toiletId" readonly></el-input>
                     </el-form-item>
-                    <el-form-item label="厕位状态：" prop="status">
-                        <el-radio-group v-model="form.status" @change='statusChange'>
-                            <el-radio label="正常"></el-radio>
-                            <el-radio label="维修"></el-radio>
-                        </el-radio-group>
-                    </el-form-item>
-                    <el-form-item label="设备名称：" prop="deviceCode" v-if="showSelect">
+                    <el-form-item label="设备名称：" prop="deviceCode">
                         <el-select v-model="form.deviceCode" placeholder="请选择设备">
                             <el-option
                             v-for="item in unBindDeviceList"
@@ -148,11 +142,9 @@ export default {
                 {toiletId:'126',deviceCode:'',deviceId:'',bind:false,style:0 },
                 {toiletId:'127',deviceCode:'',deviceId:'',bind:false,style:0 },
             ],
-            showSelect:true,
             form:{
                 toiletId:'',
                 deviceCode:'',
-                status:'正常'
             },
             unbindForm:{
                 toiletId:'',
@@ -163,7 +155,7 @@ export default {
                     { required: true, message: '请输入活动名称', trigger: 'blur' },
                 ],
                 status:[
-                    { required: true,message: '请选择设备状态', trigger: 'blur' },
+                    { required: true,message: '请选择设备状态', trigger: 'change' },
                 ],
                 deviceCode:[
                     { required: true, message: '请选择设备编号', trigger: 'change' },
@@ -196,14 +188,6 @@ export default {
         }
     },
     methods:{
-        statusChange() {
-            // console.log(this.form.status)
-            if(this.form.status == '维修') {
-                this.showSelect = false
-            }else{
-                this.showSelect = true
-            }
-        },
         getToiletIds() {
             let self = this;
             self.allList.forEach( e=>{
@@ -256,7 +240,8 @@ export default {
             let self = this;
             self.$http.get(self.api.getUnBindDevice, {
                 params:{
-                    positionId:1
+                    positionId:1,
+                    toiletTypeId:1
                 }
             }, function(response) {
                 if(response.status == 1){

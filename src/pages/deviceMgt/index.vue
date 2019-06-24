@@ -108,8 +108,6 @@ export default {
                             }else if(e.status == 1) {
                                 e.statusC = '已绑定'
                             }else if(e.status == 2) {
-                                e.statusC = '故障中'
-                            }else if(e.status == 3) {
                                 e.statusC = '维修中'
                             }
                         })
@@ -179,8 +177,6 @@ export default {
                         }else if(e.status == 1) {
                             e.statusC = '已绑定'
                         }else if(e.status == 2) {
-                            e.statusC = '故障中'
-                        }else if(e.status == 3) {
                             e.statusC = '维修中'
                         }
                     })

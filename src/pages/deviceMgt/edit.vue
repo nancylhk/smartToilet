@@ -11,11 +11,10 @@
                 <el-input v-model="form.deviceName"></el-input>
             </el-form-item>
             <el-form-item label="设备状态：" prop="status">
-                <el-select v-model="form.status" placeholder="请选择" :disabled="form.status=='0'">            
-                    <el-option label="未绑定" value="0" disabled></el-option>
-                    <el-option label="已绑定" value="1"></el-option>
-                    <el-option label="故障中" value="2"></el-option>
-                    <el-option label="维修中" value="3"></el-option>
+                <el-select v-model="form.status" placeholder="请选择" > 
+                    <el-option label="未使用" value="0" disabled></el-option>  
+                    <el-option label="正常" value="1" :disabled="form.status=='0'"></el-option>
+                    <el-option label="维修" value="2" :disabled="form.status=='0'"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="设备所属区域：" prop="positionId">
@@ -25,6 +24,12 @@
                     <el-option label="西" value="3"></el-option>
                     <el-option label="北" value="4"></el-option>
                 </el-select>
+            </el-form-item>
+            <el-form-item label="设备标识：" prop="deviceTypeId">
+                <el-radio-group v-model="form.deviceTypeId">
+                    <el-radio :label="1">男</el-radio>
+                    <el-radio :label="2">女</el-radio>
+                </el-radio-group>
             </el-form-item>
             <el-form-item label="设备厂家：" prop="productor">
                 <el-input v-model="form.productor"></el-input>
@@ -63,7 +68,8 @@ export default {
                 status: '',
                 productor: "",
                 toiletTypeId:'',
-                positionId:''
+                positionId:'',
+                deviceTypeId:''
             },
             rules:{
                 deviceCode:[
@@ -77,6 +83,9 @@ export default {
                 ],
                 positionId:[
                     { required:true,message:'请选择设备所属区域',trigger: 'change'},
+                ],
+                deviceTypeId:[
+                    { required: true, message: '请选择设备标识', trigger: 'change' }
                 ]
             }
         }
@@ -126,6 +135,7 @@ export default {
                     params.append('productor', self.form.productor)
                     params.append('toiletTypeId', self.form.toiletTypeId)
                     params.append('positionId', self.form.positionId)
+                    params.append('deviceTypeId', self.form.deviceTypeId)
                     self.$http.post(self.api.editDevice, params, {
                         headers: {
                             "Content-Type": "multipart/form-data"

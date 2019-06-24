@@ -34,5 +34,7 @@ export default {
     "getDeviceCountByToiletType": BASE_URL + '/deviceController/getDeviceCountByToiletType',//
     // 天气
     "getTodayWeather": BASE_URL + '/weather/getTodayWeather',//
-    "": BASE_URL + '',//
+
+
+    "queryUserByUserName": BASE_URL + '/user/queryUserByUserName',//
 }

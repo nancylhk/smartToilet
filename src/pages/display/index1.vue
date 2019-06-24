@@ -33,7 +33,7 @@
                         <div class="entrance entrance1">入口</div>
                     </div>
                 </div>
-                <Right :todayUseNum='todayUseNum' :allToilet='allToilet' :inuse='inuse' :badNum='badNum'></Right>
+                <Right :todayUseNum='todayUseNum' :allToilet='allToilet' :inuse='inuse' :empty='empty'></Right>
             </div>
         </div>
         <!-- dibu -->
@@ -64,29 +64,29 @@ import Bottom from './components/bottom';
             timer:'',
             allToilet:18,
             inuse:0,
-            badNum:0,
+            empty:0,
             lastPath:'',
             allList:[
-                {toiletId:'96',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'97',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'98',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'99',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'100',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'115',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'96',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'97',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'98',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'99',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'100',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'115',deviceCode:'',deviceId:'',status:'2',style:'0'},
 
-                {toiletId:'116',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'117',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'118',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'119',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'120',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'121',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'116',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'117',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'118',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'119',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'120',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'121',deviceCode:'',deviceId:'',status:'2',style:'0'},
 
-                {toiletId:'122',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'123',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'124',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'125',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'126',deviceCode:'',deviceId:'',status:'0',style:'0'},
-                {toiletId:'127',deviceCode:'',deviceId:'',status:'0',style:'0'},
+                {toiletId:'122',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'123',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'124',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'125',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'126',deviceCode:'',deviceId:'',status:'2',style:'0'},
+                {toiletId:'127',deviceCode:'',deviceId:'',status:'2',style:'0'},
             ],
         }
     },
@@ -124,22 +124,27 @@ import Bottom from './components/bottom';
                     self.todayUseNum = statusStr.msg.split(';')[1];
                     self.allUseNum = statusStr.msg.split(';')[3];
                     let inuse = 0;
+                    let empty = 0;
                     self.allList.forEach(e=>{
                         for( var i in statusObj){
                             if(i == e.toiletId){   			
                                 if(statusObj[i] == '00'){
                                     e.status = '0'
+                                    empty ++;
                                 }else if(statusObj[i] == '01'){
                                     e.status = '1'
                                     inuse ++;
+                                }else if(statusObj[i] == '02'){
+                                    e.status = '2'
                                 }
                                 break;
                             }else{
-                                e.status = '0'
+                                e.status = '2'
                             }
                         }                  
                     })
-                    self.inuse = inuse
+                    self.inuse = inuse;
+                    self.empty = empty;
                 });
             }, (err) => {
                 // 连接发生错误时的处理函数

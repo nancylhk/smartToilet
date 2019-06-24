@@ -11,12 +11,12 @@
             </div>
             <div class="useList">
                 <span class="leftpan">空&nbsp;位：</span>
-                <span class="rightpan green1">{{allToilet-inuse}}</span>
+                <span class="rightpan green1">{{empty}}</span>
             </div>
-            <!-- <div class="useList">
+            <div class="useList">
                 <span class="leftpan">故&nbsp;障：</span>
-                <span class="rightpan orange1">{{badNum}}</span>
-            </div> -->
+                <span class="rightpan orange1">{{allToilet-inuse-empty}}</span>
+            </div>
             <div>
                 <ringComp class="ring-income" ref="yearOutcomeChart" 
                 :_id="'yearOutcome'" 
@@ -39,7 +39,7 @@
 <script>
 import ringComp from '../../../components/charts/RingComp.vue';
 export default {
-    props:['todayUseNum','allToilet','inuse','badNum'],
+    props:['todayUseNum','allToilet','inuse','empty'],
     components:{
         ringComp
     },
