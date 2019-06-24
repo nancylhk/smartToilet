@@ -57,7 +57,7 @@ export default {
         getInfo() {
             let self = this;
             self.$http.get(self.api.getConfigInfo, {}, function(response) {
-                if(response){
+                if(response.length>0){
                     let data = response[0];
                     self.form.name = data.configName,
                     self.form.period = data.configStartTime + ' ~ ' + data.configEndTime ,
@@ -66,9 +66,7 @@ export default {
                     self.form.developer = data.developer,
                     self.form.telephone = data.celphone,
                     self.form.region = data.address
-                }else{
-
-                }     
+                }   
             }, function(response) {
                 //失败回调
             })

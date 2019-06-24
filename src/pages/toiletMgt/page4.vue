@@ -355,7 +355,7 @@ export default {
             self.$http.get(self.api.getUnBindDevice, {
                 params:{
                     positionId:3,
-                    toiletTypeId:2
+                    deviceTypeId:2
                 }
             }, function(response) {
                 if(response.status == 1){
